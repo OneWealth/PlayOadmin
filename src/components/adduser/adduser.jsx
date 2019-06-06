@@ -44,6 +44,32 @@ class AddUser extends Component {
         return (
             <div className="row mg-top">
                 <div className="col-md-7 offset-md-2">
+                <table className="table tbl">
+                                <thead>
+                                    <tr>
+                                        <th>user name</th>
+                                        <th>venue name</th>
+                                        <th>email id</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                        <tr>
+                                            <th>{allvanues.userName}</th>
+                                            <td>{allvanues.venueName}</td>
+                                            <td>{allvanues.emailId}</td>
+                                            
+                                            <td>
+                                                <a>
+                                                    <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(allvanues)} />
+                                                </a>
+
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                     <form className="frm" onSubmit={this.onSubmit}>
                         <h2>new user</h2>
                         <div className="row sl-3">
