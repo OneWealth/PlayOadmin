@@ -152,9 +152,9 @@ class PackageContent extends Component {
                                 </div>
                             </div>
                             <div className="col-md-4 text-right">
-                                <button type="submit" class="btn btn-primary btn-block" onClick={this.onFinalClickHander.bind(this)}>
+                                <a class="btn btn-primary btn-block" onClick={this.onFinalClickHander.bind(this)}>
                                     Get Packages
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </form>

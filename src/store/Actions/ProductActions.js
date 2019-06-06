@@ -28,6 +28,8 @@ export const createproduct = values => dispatch => {
             venueID: values.venueID,
             Name: values.Name,
             Description: values.Description,
+            isActive: "true",
+            timeDependentFlag: values.timeDependentFlag
         },
         {
             headers: {
@@ -51,6 +53,7 @@ export const updateproduct = values => dispatch => {
             productid: values.productID,
             Name: values.Name,
             Description: values.Description,
+            timeDependentFlag: values.timeDependentFlag
         },
         {
             headers: {

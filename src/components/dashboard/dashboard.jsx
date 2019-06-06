@@ -15,8 +15,22 @@ import { withRouter } from "react-router";
 
 
 
+
+
+
 class Dashboard extends Component {
-    state = {};
+    constructor(props) {
+        super(props);
+    }
+
+    async  componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+
+    }
     render() {
         return (
             <div className="row">
@@ -46,7 +60,7 @@ class Dashboard extends Component {
                                     <Tab.Pane eventKey="sixth">
                                         <Downloads />
                                     </Tab.Pane>
-                                    <Tab.Pane eventKey="seventh">third tab</Tab.Pane>
+
                                 </Tab.Content>
                             </Col>
                         </Row>

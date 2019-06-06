@@ -2,6 +2,14 @@ import React, { Component } from "react";
 
 class Downloads extends Component {
     state = {};
+    async  componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+
+    }
     render() {
         return (
             <div className="row mg-top">

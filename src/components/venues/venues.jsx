@@ -27,6 +27,11 @@ class Venue extends Component {
     }
 
     async componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
         await this.props.verifyvenue();
         let allvanues = [];
         for (var i = 0; i < allvanues; i++) {
@@ -36,6 +41,8 @@ class Venue extends Component {
             this.setState({ contactNcr: this.props.allvenues.vanues.items[i].contactNbr });
         }
     }
+
+
     async componentWillReceiveProps() {
         // await this.props.verifyvenue();
         let allvanues = [];
