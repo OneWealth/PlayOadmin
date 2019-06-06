@@ -35,8 +35,15 @@ class PackageContent extends Component {
             this.setState({ adderess: this.props.allvenues.vanues.items[i].adderess });
             this.setState({ contactNcr: this.props.allvenues.vanues.items[i].contactNbr });
         }
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+
     }
 
+   
     getproducts = async (id) => {
         this.props.products({
             id
@@ -66,13 +73,13 @@ class PackageContent extends Component {
         this.setState({ venueID: evt.target.value });
     }
 
-    onFinalClickHander() {
+    onFinalClickHander(evt) {
+        evt.preventDefault();
         this.setState({
             showPackageTable: {
                 display: 'block',
             }
         })
-
     }
 
     createpackage = async (evt) => {
@@ -152,7 +159,7 @@ class PackageContent extends Component {
                                 </div>
                             </div>
                             <div className="col-md-4 text-right">
-                                <button type="submit" class="btn btn-primary btn-block" onClick={this.onFinalClickHander.bind(this)}>
+                                <button type="submit" class="btn btn-primary btn-block" onClick={(evt) => this.onFinalClickHander.bind(this)}>
                                     Get Packages
                                 </button>
                             </div>

@@ -19,7 +19,14 @@ class Product extends Component {
         };
     }
 
+    async  componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
 
+    }
 
     async componentWillReceiveProps() {
         // // await this.props.verifyvenue();
@@ -38,7 +45,8 @@ class Product extends Component {
         await this.props.createproduct({
             Name: this.state.name,
             Description: this.state.description,
-            venueID: this.props.products.venueID
+            venueID: this.props.products.venueID,
+            timeDependentFlag: this.state.timeDependentFlag
         }).then(() => {
             this.state.name = "";
             this.state.description = "";
@@ -55,7 +63,8 @@ class Product extends Component {
         await this.props.createproduct({
             Name: this.state.name,
             Description: this.state.description,
-            venueID: this.state.venueid
+            venueID: this.state.venueid,
+            timeDependentFlag: this.state.timeDependentFlag
         }).then(() => {
             this.state.name = "";
             this.state.description = "";
@@ -81,6 +90,7 @@ class Product extends Component {
             productID: this.state.productID,
             Name: this.state.name,
             Description: this.state.description,
+            timeDependentFlag: this.state.timeDependentFlag
         })
     };
 
@@ -107,6 +117,10 @@ class Product extends Component {
         this.setState({ productID: Allproducts.productID })
         this.setState({ name: Allproducts.name })
         this.setState({ description: Allproducts.description })
+        this.setState({ timeDependentFlag: Allproducts.timeDependentFlag })
+        // if (Allproducts.timeDependentFlag === true) {
+        //     document.getElementById("checkedcontact");
+        // }
         document.getElementById("venuename").value = Allproducts.name || "";
         document.getElementById("venuedecription").value = Allproducts.adderess || "";
     };
@@ -230,7 +244,10 @@ class Product extends Component {
                                 </div>
                                 <div class="form-group">
                                     <label for="dependent">
-                                        <input type="checkbox" id="contact" />
+                                        <input type="checkbox" id="contact" value={this.state.timeDependentFlag}
+                                            onClick={evt => {
+                                                this.setState({ timeDependentFlag: "true" });
+                                            }} />
                                         time dependent
                                      </label>
                                 </div>
@@ -288,12 +305,15 @@ class Product extends Component {
                                 </div>
                                 <div class="form-group">
                                     <label for="dependent">
-                                        <input type="checkbox" id="contact" />
+                                        <input type="checkbox" id="checkedcontact" value={this.state.timeDependentFlag}
+                                            onClick={evt => {
+                                                this.setState({ timeDependentFlag: "true" });
+                                            }} />
                                         time dependent
                                      </label>
                                 </div>
 
-                                <button type="submit" class="btn">
+                                <button type="submit" class="btn" >
                                     add
                                  </button>
                             </form>

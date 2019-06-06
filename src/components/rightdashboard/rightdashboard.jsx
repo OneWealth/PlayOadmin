@@ -3,6 +3,15 @@ import Profile from "../profile/profile";
 import "./rightdashboard.css";
 class RightDashboard extends Component {
     state = {};
+
+    async  componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+
+    }
     render() {
         return (
             <div className="row">
