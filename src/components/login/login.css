@@ -45,7 +45,6 @@
 }
 .adminlogin input {
   font-size: 12px !important;
-  text-transform: capitalize;
   border: 1px solid #acacad !important;
   margin-top: 10px;
   color: #acacad;

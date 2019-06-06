@@ -4,22 +4,31 @@ import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 
 class AddUser extends Component {
-    state = {
+    constructor(props) {
+        super();
+        this.state = {
         username: null,
         password: null,
         confirmpassword: null,
         emailid: null,
-        venueid: null
+        venueid: null,
+        userName:"",
+        venueName:"",
+        emailId:""
     };
+}
 
     async componentDidMount() {
-        await this.props.verifyvenue();
-        let allvanues = [];
-        for (var i = 0; i < allvanues; i++) {
-            this.setState({ venueID: this.props.allvenues.vanues.items[i].venueID });
-            this.setState({ name: this.props.allvenues.vanues.items[i].name });
-            this.setState({ adderess: this.props.allvenues.vanues.items[i].adderess });
-            this.setState({ contactNcr: this.props.allvenues.vanues.items[i].contactNbr });
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: '/',
+            });
+        }
+        await this.props.getuser();
+        console.log(this.props.alluser.getuser.items)
+        let allusers = [];
+        for (var i = 0; i < allusers; i++) {
+           
         }
     }
 
@@ -40,36 +49,69 @@ class AddUser extends Component {
         });
     };
 
+
     render() {
         return (
             <div className="row mg-top">
+                <div className="col-md-12 main-heading">
+                <h2>user</h2>
+                </div>
+               
+
                 <div className="col-md-7 offset-md-2">
-                <table className="table tbl">
+                <div className="col-md-12 add">
+                            <a href="#" onClick={this.addnew}>+ add user</a>
+                        </div>
+                <form onSubmit={this.getusers}>
+                        <div className="row venuetbl">
+                            <div className="col-md-7">
+                                <div className="row sl-3">
+                                    <select className="col-md-12" value={this.state.venueid}
+                                        onChange={evt => {
+                                            this.setState({ venueid: evt.target.value });
+                                        }}>
+                                        <option selected>Choose Venue Name </option>
+                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                            <option value={allvanues.venueID} >{allvanues.name}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="col-md-5 text-right">
+                                <button type="submit" class="btn btn-primary btn-block" >
+                                    Get Users
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table className="table tbl">
                                 <thead>
                                     <tr>
                                         <th>user name</th>
                                         <th>venue name</th>
                                         <th>email id</th>
-                                        
+                                        <th>link</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                        <tr>
-                                            <th>{allvanues.userName}</th>
-                                            <td>{allvanues.venueName}</td>
-                                            <td>{allvanues.emailId}</td>
+                                    {this.props.alluser.getuser.items && this.props.alluser.getuser.items && this.props.alluser.getuser.items.map((allusers, index) => (
+                                         <tr>
+                                            <td>{allusers.userName}</td>
+                                            <td>{allusers.venueName}</td>
+                                            <td>{allusers.emailId}</td>
                                             
                                             <td>
                                                 <a>
-                                                    <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(allvanues)} />
+                                                    <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(allusers)} />
                                                 </a>
 
                                             </td>
-                                        </tr>
-                                    ))}
+                                        </tr> 
+                                     ))}
                                 </tbody>
                             </table>
+
                     <form className="frm" onSubmit={this.onSubmit}>
                         <h2>new user</h2>
                         <div className="row sl-3">
@@ -91,7 +133,7 @@ class AddUser extends Component {
                                 type="text"
                                 class="form-control"
                                 id="username"
-                                placeholder="enter username"
+                                placeholder="Enter Username"
                                 value={this.state.username}
                                 onChange={evt => {
                                     this.setState({ username: evt.target.value });
@@ -104,7 +146,7 @@ class AddUser extends Component {
                                 type="password"
                                 class="form-control"
                                 id="password"
-                                placeholder="enter password"
+                                placeholder="Enter Password"
                                 value={this.state.password}
                                 onChange={evt => {
                                     this.setState({ password: evt.target.value });
@@ -117,7 +159,7 @@ class AddUser extends Component {
                                 type="password"
                                 id="contact"
                                 class="form-control"
-                                placeholder="confirm password"
+                                placeholder="Confirm Password"
                                 value={this.state.confirmpassword}
                                 onChange={evt => {
                                     this.setState({ confirmpassword: evt.target.value });
@@ -130,7 +172,7 @@ class AddUser extends Component {
                                 type="email"
                                 id="contact"
                                 class="form-control"
-                                placeholder="enter email"
+                                placeholder="Email"
                                 value={this.state.emailid}
                                 onChange={evt => {
                                     this.setState({ emailid: evt.target.value });
@@ -152,10 +194,12 @@ class AddUser extends Component {
 
 const mapStateToProps = state => ({
     allvenues: state.venue,
+    alluser:state.venue
 });
 const mapDispatchToProps = dispatch => ({
     verifyvenue: v => dispatch(actions.verifyvenue(v)),
-    playosuer: v => dispatch(actions.playosuer(v))
+    playosuer: v => dispatch(actions.playosuer(v)),
+    getuser: v => dispatch(actions.getuser(v))
 });
 
 export default withRouter(

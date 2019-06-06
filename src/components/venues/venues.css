@@ -92,12 +92,6 @@ textarea {
 .table thead th {
     text-transform: capitalize;
 }
-
-.mg-top {
-    margin-top: 40px;
-}
-
-
 #venue {
     display: none;
 }

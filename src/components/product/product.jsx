@@ -140,8 +140,14 @@ class Product extends Component {
         }
 
         return (
-            <div className="row mg-top">
+            <div className="row">
+                <div className="col-md-12 main-heading">
+                <h2>products</h2>
+                </div>
                 <div className="col-md-7 offset-md-2">
+                <div className="col-md-12 add">
+                            <a href="#" onClick={this.addnew}>+ add Product</a>
+                        </div>
                     <form onSubmit={this.getproducts}>
                         <div className="row venuetbl">
                             <div className="col-md-7">
@@ -165,11 +171,9 @@ class Product extends Component {
                         </div>
                     </form>
 
-                    <div className="row" style={style}>
-                        <div className="col-md-12 add">
-                            <a href="#" onClick={this.addnew}>+ add Product</a>
-                        </div>
-                        <div className="col-md-12 venuetbl">
+                    <div className="row">
+                        
+                        <div className="col-md-12 venuetbl" style={style}>
                             <table className="table tbl">
                                 <thead>
                                     <tr>

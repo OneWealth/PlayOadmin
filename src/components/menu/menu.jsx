@@ -18,10 +18,10 @@ class Menu extends Component {
                 <div className="col-md-12">
                     <Nav variant="pills" className="flex-column">
                         <Nav.Item>
-                            <Nav.Link eventKey="first">dashboard</Nav.Link>
+                            <Nav.Link eventKey="first">home</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="second">add user</Nav.Link>
+                            <Nav.Link eventKey="second">user</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="third">venue</Nav.Link>

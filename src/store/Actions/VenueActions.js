@@ -5,7 +5,7 @@ import { BACKEND_URL } from "../../config.js";
 const ADD_VENUE = createAction("ADD_VENUE");
 const CREATE_VENUE = createAction("CREATE_VENUE");
 const UPDATE_VENUE = createAction("UPDATE_VENUE");
-const CREATE_USER = createAction("CREATE_USER");
+const GET_USER = createAction("GET_USER");
 
 export const createvanue = values => dispatch => {
     return axios.post(
@@ -69,21 +69,18 @@ export const updatedata = values => dispatch => {
 };
 
 
-export const createuser = values => dispatch => {
-    return axios.post(
-        BACKEND_URL + "/api/PlayoUser", {
-            userName: values.userName,
-            venueName: values.venueName,
-            emailId: values.emailId,
-        },
+export const getuser = values => dispatch => {
+    return axios.get(
+        BACKEND_URL + "api/PlayoUser",
         {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
         }
     ).then(res => {
-        dispatch(CREATE_USER(res.data));
-    }).catch(error => {
-        return Promise.reject();
-    });
+        dispatch(GET_USER(res.data));
+    })
+        .catch(error => {
+            return Promise.reject();
+        });
 };

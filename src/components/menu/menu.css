@@ -1,6 +1,6 @@
 .nav-item .active {
-  background-color: #727cf6 !important;
-  color: #fff !important;
+  background-color: #fff !important;
+  color: #727cf6 !important;
 }
 .nav-item {
   margin-left: 15px;
@@ -20,11 +20,4 @@
   background-color: #727cf6;
   position: fixed !important;
   height: 100vh;
-}
-.rightbar {
-  position: absolute;
-  top: 0;
-  margin-left: 220px;
-  padding-right: 90px;
-  margin-bottom: 40px;
 }

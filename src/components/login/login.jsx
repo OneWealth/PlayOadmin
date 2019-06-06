@@ -91,7 +91,7 @@ class AdminLogin extends Component {
                                             <label>password</label>
                                             <input
                                                 type="password"
-                                                placeholder="enter password"
+                                                placeholder="Enter Password"
                                                 className="form-control"
                                                 value={this.state.password}
                                                 onChange={evt => {

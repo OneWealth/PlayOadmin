@@ -124,8 +124,14 @@ class PackageContent extends Component {
             style.display = 'block';
         }
         return (
-            <div className="row mg-top">
+            <div className="row">
+                 <div className="col-md-12 main-heading">
+                <h2>packages</h2>
+                </div>
                 <div className="col-md-7 offset-md-2">
+                <div className="col-md-12 add">
+                            <a href="#" onClick={this.show}>+ add package</a>
+                        </div>
                     <form >
                         <div className="row venuetbl">
                             <div className="col-md-4">
@@ -143,7 +149,7 @@ class PackageContent extends Component {
                             <div className="col-md-4">
                                 <div className="row sl-3">
                                     <select id="choose-packages" className="col-md-10" value={this.state.venueid}>
-                                        <option selected>Choose Packages Name </option>
+                                        <option selected>Choose Product Name </option>
                                         {this.props.customAllProducts.map((Allproducts, index) => (
                                             <option>{Allproducts.name}</option>
                                         ))}
@@ -151,7 +157,7 @@ class PackageContent extends Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="col-md-4 text-right">
+                            <div className="col-md-4 text-right linkstyle">
                                 <a class="btn btn-primary btn-block" onClick={this.onFinalClickHander.bind(this)}>
                                     Get Packages
                                 </a>
@@ -162,10 +168,9 @@ class PackageContent extends Component {
 
                     {/* Package Table */}
                     <div className="row">
-                        <div className="col-md-12 add">
-                            <a href="#" onClick={this.show}>+ add package</a>
-                        </div>
+                        
                         <div className="col-md-12 venuetbl" style={this.state.showPackageTable}>
+                        
                             <table className="table tbl">
                                 <thead>
                                     <tr>
