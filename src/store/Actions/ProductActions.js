@@ -28,6 +28,7 @@ export const createproduct = values => dispatch => {
             venueID: values.venueID,
             Name: values.Name,
             Description: values.Description,
+            isActive: "true"
         },
         {
             headers: {
