@@ -62,28 +62,7 @@ class AddUser extends Component {
                 <div className="col-md-12 add">
                             <a href="#" onClick={this.addnew}>+ add user</a>
                         </div>
-                <form onSubmit={this.getusers}>
-                        <div className="row venuetbl">
-                            <div className="col-md-7">
-                                <div className="row sl-3">
-                                    <select className="col-md-12" value={this.state.venueid}
-                                        onChange={evt => {
-                                            this.setState({ venueid: evt.target.value });
-                                        }}>
-                                        <option selected>Choose Venue Name </option>
-                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                            <option value={allvanues.venueID} >{allvanues.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="col-md-5 text-right">
-                                <button type="submit" class="btn btn-primary btn-block" >
-                                    Get Users
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                
 
                     <table className="table tbl">
                                 <thead>

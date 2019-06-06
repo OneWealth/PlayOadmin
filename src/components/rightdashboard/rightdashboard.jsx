@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Profile from "../profile/profile";
+import Revenue from "../revenue/revenue"
 import "./rightdashboard.css";
 class RightDashboard extends Component {
     state = {};
@@ -17,7 +18,7 @@ class RightDashboard extends Component {
             <div className="row">
                 <div className="col-md-12">
                     <Profile />
-                    {/* <Revenue /> */}
+                    <Revenue /> 
                 </div>
             </div>
         );

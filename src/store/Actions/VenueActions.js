@@ -71,7 +71,7 @@ export const updatedata = values => dispatch => {
 
 export const getuser = values => dispatch => {
     return axios.get(
-        BACKEND_URL + "api/PlayoUser",
+        BACKEND_URL + "adminapi/PlayoUser",
         {
             headers: {
                 Authorization: localStorage.getItem("token")
