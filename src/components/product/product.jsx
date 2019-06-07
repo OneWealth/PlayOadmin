@@ -3,6 +3,7 @@ import "./product.css";
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
+import { async } from "q";
 
 
 class Product extends Component {
@@ -18,7 +19,6 @@ class Product extends Component {
             productID: ""
         };
     }
-
     async  componentDidMount() {
         if (!localStorage.getItem("token")) {
             this.props.history.push({
@@ -27,19 +27,6 @@ class Product extends Component {
         }
 
     }
-
-    async componentWillReceiveProps() {
-        // // await this.props.verifyvenue();
-        // console.log(this.props.products);
-        // let allvanues = [];
-        // for (var i = 0; i < allvanues; i++) {
-        //     this.setState({ venueID: this.props.allvenues.vanues.items[i].venueID });
-        //     this.setState({ name: this.props.allvenues.vanues.items[i].name });
-        //     this.setState({ adderess: this.props.allvenues.vanues.items[i].adderess });
-        //     this.setState({ contactNcr: this.props.allvenues.vanues.items[i].contactNbr });
-        // }
-    }
-
     onSubmit = async (evt) => {
         evt.preventDefault();
         await this.props.createproduct({
@@ -55,9 +42,6 @@ class Product extends Component {
             return;
         });
     };
-
-
-
     Createproject = async (evt) => {
         evt.preventDefault();
         await this.props.createproduct({
@@ -73,17 +57,12 @@ class Product extends Component {
             return;
         });
     };
-
-
-
     getproducts = async (evt) => {
         evt.preventDefault();
         this.props.products({
             id: this.state.venueid
         })
     };
-
-
     updateproduct = async (evt) => {
         evt.preventDefault();
         await this.props.updateproduct({
@@ -93,17 +72,14 @@ class Product extends Component {
             timeDependentFlag: this.state.timeDependentFlag
         })
     };
-
     onClick = async (evt) => {
         evt.preventDefault();
         document.getElementById("product").style.display = "block";
     }
-
     show = async (Allproducts) => {
         console.log(Allproducts);
         document.getElementById("venue").style.display = "block";
     };
-
     addnew = async (allvanues) => {
         console.log(allvanues);
         document.getElementById("newvenue").style.display = "block";
@@ -118,18 +94,24 @@ class Product extends Component {
         this.setState({ name: Allproducts.name })
         this.setState({ description: Allproducts.description })
         this.setState({ timeDependentFlag: Allproducts.timeDependentFlag })
-        // if (Allproducts.timeDependentFlag === true) {
-        //     document.getElementById("checkedcontact");
-        // }
+        if (Allproducts.timeDependentFlag === true) {
+            document.getElementById("mycheck").checked = true;
+        }
+        else {
+            document.getElementById("mycheck").checked = false;
+        }
         document.getElementById("venuename").value = Allproducts.name || "";
         document.getElementById("venuedecription").value = Allproducts.adderess || "";
     };
-
-
     addnew = async () => {
         document.getElementById("createproduct").style.display = "block";
         document.getElementById("product").style.display = "none";
     };
+    unshowproduct = async () => {
+        document.getElementById("createproduct").style.display = "none";
+        document.getElementById("product").style.display = "none";
+        document.getElementById("productapiresult").style.display = "inline-block";
+    }
 
     render() {
         let style = {
@@ -138,16 +120,15 @@ class Product extends Component {
         if (this.props.customAllProducts.length > 0) {
             style.display = 'block';
         }
-
         return (
             <div className="row">
                 <div className="col-md-12 main-heading">
-                <h2>products</h2>
+                    <h2>products</h2>
                 </div>
                 <div className="col-md-7 offset-md-2">
-                <div className="col-md-12 add">
-                            <a href="#" onClick={this.addnew}>+ add Product</a>
-                        </div>
+                    <div className="col-md-12 add">
+                        <a href="#" onClick={this.addnew}>+ add Product</a>
+                    </div>
                     <form onSubmit={this.getproducts}>
                         <div className="row venuetbl">
                             <div className="col-md-7">
@@ -172,14 +153,15 @@ class Product extends Component {
                     </form>
 
                     <div className="row">
-                        
-                        <div className="col-md-12 venuetbl" style={style}>
+
+                        <div className="col-md-12 venuetbl" style={style} id="productapiresult">
                             <table className="table tbl">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>description</th>
+                                        <th>Time Dependent</th>
                                         <th>Link</th>
                                     </tr>
                                 </thead>
@@ -190,6 +172,7 @@ class Product extends Component {
                                             <th>{Allproducts.productID}</th>
                                             <td>{Allproducts.name}</td>
                                             <td>{Allproducts.description}</td>
+                                            <td>{Allproducts.timeDependentFlag ? "Yes" : "No"}</td>
                                             <td>
                                                 <a href="#" title="Update/Edit">
                                                     <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(Allproducts)} />
@@ -255,10 +238,12 @@ class Product extends Component {
                                         time dependent
                                      </label>
                                 </div>
-
                                 <button type="submit" class="btn">
                                     add
                                  </button>
+                                <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
+                                    Cancel
+                                </button>
                             </form>
                         </div>
                         {/* Create Product Form */}
@@ -312,7 +297,7 @@ class Product extends Component {
                                         <input type="checkbox" id="checkedcontact" value={this.state.timeDependentFlag}
                                             onClick={evt => {
                                                 this.setState({ timeDependentFlag: "true" });
-                                            }} />
+                                            }} id="mycheck" />
                                         time dependent
                                      </label>
                                 </div>
@@ -320,6 +305,9 @@ class Product extends Component {
                                 <button type="submit" class="btn" >
                                     add
                                  </button>
+                                <button class="btn" style={{ float: "right" }} onClick={this.unshoweditproduct}>
+                                    Cancel
+                                </button>
                             </form>
                         </div>
                         {/* Edit Product Form */}

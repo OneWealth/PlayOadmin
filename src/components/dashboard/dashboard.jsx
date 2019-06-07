@@ -33,7 +33,7 @@ class Dashboard extends Component {
     }
     render() {
         return (
-            <div className="row">
+            <div className="row main" >
                 <div className="col-md-12">
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                         <Row>

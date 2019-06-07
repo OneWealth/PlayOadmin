@@ -18,7 +18,7 @@ import Venu from "./components/venues/venues";
 import RightDashboard from "./components/rightdashboard/rightdashboard";
 // import Product from "./components/product/product";
 import Package from "./components/package/package";
-import RightBar from "./components/rightbar/rightbar";
+
 import Revenue from "./components/revenue/revenue";
 import Profile from "./components/profile/profile";
 import AddUser from "./components/adduser/adduser";
@@ -43,7 +43,6 @@ const routing = (
                 <Route path="/rightboard" component={RightDashboard} />
                 {/* <Route path="/product" component={Product} /> */}
                 <Route path="/package" component={Package} />
-                <Route path="/rightbar" component={RightBar} />
                 <Route path="/revenue" component={Revenue} />
                 <Route path="/profilecomponent" component={Profile} />
                 <Route path="/adduser" component={AddUser} />

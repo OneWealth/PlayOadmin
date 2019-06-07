@@ -7,16 +7,16 @@ class AddUser extends Component {
     constructor(props) {
         super();
         this.state = {
-        username: null,
-        password: null,
-        confirmpassword: null,
-        emailid: null,
-        venueid: null,
-        userName:"",
-        venueName:"",
-        emailId:""
-    };
-}
+            username: null,
+            password: null,
+            confirmpassword: null,
+            emailid: null,
+            venueid: null,
+            userName: "",
+            venueName: "",
+            emailId: "",
+        };
+    }
 
     async componentDidMount() {
         if (!localStorage.getItem("token")) {
@@ -24,13 +24,24 @@ class AddUser extends Component {
                 pathname: '/',
             });
         }
-        await this.props.getuser();
         console.log(this.props.alluser.getuser.items)
         let allusers = [];
         for (var i = 0; i < allusers; i++) {
-           
+
         }
     }
+
+
+    getvenueuser = async (evt) => {
+        evt.preventDefault();
+        await this.props.getvenueuser({
+            venueID: this.state.venueid,
+        }).then(() => {
+
+            document.getElementById("apiresult").style.display = "inline-table"
+        });
+    };
+
 
     onSubmit = async (evt) => {
         evt.preventDefault();
@@ -49,20 +60,30 @@ class AddUser extends Component {
         });
     };
 
+    show = async (evt) => {
+        document.getElementById("addnew").style.display = "block";
+        document.getElementById("apiresult").style.display = "none";
+    };
+
+    unshow = async (evt) => {
+        document.getElementById("apiresult").style.display = "inline-table";
+        document.getElementById("addnew").style.display = "none";
+    };
+
 
     render() {
         return (
             <div className="row mg-top">
                 <div className="col-md-12 main-heading">
-                <h2>user</h2>
+                    <h2>user</h2>
                 </div>
-               
+
 
                 <div className="col-md-7 offset-md-2">
-                <div className="col-md-12 add">
-                            <a href="#" onClick={this.addnew}>+ add user</a>
-                        </div>
-                    <form>
+                    <div className="col-md-12 add">
+                        <a href="#" onClick={this.show}>+ add user</a>
+                    </div>
+                    <form onSubmit={this.getvenueuser}>
                         <div className="row venuetbl">
                             <div className="col-md-7">
                                 <div className="row sl-3">
@@ -78,41 +99,33 @@ class AddUser extends Component {
                                 </div>
                             </div>
                             <div className="col-md-5 text-right">
-                                <button type="submit" class="btn btn-primary btn-block" >
+                                <button class="btn btn-primary btn-block" >
                                     Get Users
                                 </button>
                             </div>
                         </div>
                     </form>
 
-                    <table className="table tbl">
-                                <thead>
-                                    <tr>
-                                        <th>user name</th>
-                                        <th>venue name</th>
-                                        <th>email id</th>
-                                        <th>link</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.props.alluser.getuser.items && this.props.alluser.getuser.items && this.props.alluser.getuser.items.map((allusers, index) => (
-                                         <tr>
-                                            <td>{allusers.userName}</td>
-                                            <td>{allusers.venueName}</td>
-                                            <td>{allusers.emailId}</td>
-                                            
-                                            <td>
-                                                <a>
-                                                    <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(allusers)} />
-                                                </a>
+                    <table className="table  tbl" id="apiresult" style={{ display: "none" }}>
+                        <thead>
+                            <tr>
+                                <th>user name</th>
+                                <th>venue name</th>
+                                <th>email id</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.alluser.getuser.items && this.props.alluser.getuser.items && this.props.alluser.getuser.items.map((allusers, index) => (
+                                <tr>
+                                    <td>{allusers.userName}</td>
+                                    <td>{allusers.venueName}</td>
+                                    <td>{allusers.emailId}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
 
-                                            </td>
-                                        </tr> 
-                                     ))}
-                                </tbody>
-                            </table>
-
-                    <form className="frm" onSubmit={this.onSubmit}>
+                    <form className="frm" onSubmit={this.onSubmit} style={{ display: "none" }} id="addnew">
                         <h2>new user</h2>
                         <div className="row sl-3">
                             <label>venue Name</label>
@@ -182,6 +195,9 @@ class AddUser extends Component {
                         <button type="submit" class="btn">
                             add
                         </button>
+                        <button class="btn" style={{ float: "right" }} onClick={this.unshow} >
+                            Cancel
+                        </button>
                         <label id="success" className="text-success"></label>
                         <label id="error" className="text-danger"></label>
                     </form>
@@ -194,12 +210,12 @@ class AddUser extends Component {
 
 const mapStateToProps = state => ({
     allvenues: state.venue,
-    alluser:state.venue
+    alluser: state.venue
 });
 const mapDispatchToProps = dispatch => ({
     verifyvenue: v => dispatch(actions.verifyvenue(v)),
     playosuer: v => dispatch(actions.playosuer(v)),
-    getuser: v => dispatch(actions.getuser(v))
+    getvenueuser: v => dispatch(actions.getvenueuser(v))
 });
 
 export default withRouter(

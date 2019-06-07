@@ -1,93 +1,115 @@
 .datehide {
-  display: none;
+    display: none;
 }
+
 .adminlogin {
-  margin: auto;
-  background: #fff;
+    margin: auto;
+    background: #fff;
 }
+
+.main {
+    margin-top: 0px;
+}
+
 .admin {
-  background-color: #f1f4ff;
-  padding: 40px 0px;
-  position: relative;
+    background-color: #f1f4ff;
+    padding: 40px 0px;
+    position: relative;
+    min-height: 100vh
 }
+
 .adminlogin .logo {
-  background-color: #727cf6;
-  text-align: center;
-  margin: 0px;
+    background-color: #727cf6;
+    text-align: center;
+    margin: 0px;
 }
+
 .adminlogin .logo h1 {
-  font-size: 25px !important;
-  color: #fff;
-  padding: 20px;
-  font-weight: bold;
-  margin-bottom: 0px;
+    font-size: 25px !important;
+    color: #fff;
+    padding: 20px;
+    font-weight: bold;
+    margin-bottom: 0px;
 }
+
 .logheading {
-  text-align: center;
+    text-align: center;
 }
+
 .logheading h4 {
-  font-size: 20px;
-  text-transform: capitalize;
-  color: #767272;
-  font-weight: bold;
-  padding-top: 20px;
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #767272;
+    font-weight: bold;
+    padding-top: 20px;
 }
+
 .logheading p {
-  font-size: 16px;
-  padding: 5px 50px;
-  color: #acacad;
+    font-size: 16px;
+    padding: 5px 50px;
+    color: #acacad;
 }
+
 .adminlogin label {
-  text-transform: capitalize;
-  font-size: 14px;
-  color: #737d87;
-  font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: #737d87;
+    font-weight: 600;
 }
+
 .adminlogin input {
-  font-size: 12px !important;
-  border: 1px solid #acacad !important;
-  margin-top: 10px;
-  color: #acacad;
-  padding: 20px 10px !important;
+    font-size: 12px !important;
+    border: 1px solid #acacad !important;
+    margin-top: 10px;
+    color: #acacad;
+    padding: 20px 10px !important;
 }
+
 .adminlogin input:focus {
-  box-shadow: none;
+    box-shadow: none;
 }
+
 .adminlogin button {
-  background-color: #727cf6;
-  color: #fff;
-  font-size: 18px;
-  margin: auto;
-  text-transform: capitalize;
+    background-color: #727cf6;
+    color: #fff;
+    font-size: 18px;
+    margin: auto;
+    text-transform: capitalize;
 }
+
 .adminlogin button:hover {
-  color: #fff;
+    color: #fff;
 }
+
 .adminlogin button:focus {
-  box-shadow: none;
+    box-shadow: none;
 }
+
 .adminlogin a {
-  text-transform: capitalize;
-  font-size: 14px;
-  color: #737d87;
-  font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: #737d87;
+    font-weight: 600;
 }
+
 .adminlogin a:hover {
-  color: #737d87;
+    color: #737d87;
 }
+
 .adminlogin .forgot {
-  text-align: center;
-  margin: 20px 0px;
+    text-align: center;
+    margin: 20px 0px;
 }
+
 .circle {
-  position: absolute;
-  height: 620px;
-  background-color: #e4edfe;
-  top: 5px;
-  width: 620px;
-  /* margin: auto; */
-  bottom: 0;
-  left: 350px;
-  right: 0;
-  border-radius: 100%;
+    position: absolute;
+    height: 620px;
+    background-color: #e4edfe;
+    top: 5px;
+    width: 620px;
+    /* margin: auto; */
+    bottom: 0;
+    left: 350px;
+    right: 0;
+    border-radius: 100%;
 }

@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import "./venues.css";
-import RightBar from "../rightbar/rightbar";
-import Product from "../product/product";
-
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
-import { Modal, Button } from 'react-bootstrap';
-
-
 class Venue extends Component {
     constructor(props, context) {
         super(props, context);
@@ -25,7 +19,6 @@ class Venue extends Component {
         };
 
     }
-
     async componentDidMount() {
         if (!localStorage.getItem("token")) {
             this.props.history.push({
@@ -41,8 +34,6 @@ class Venue extends Component {
             this.setState({ contactNcr: this.props.allvenues.vanues.items[i].contactNbr });
         }
     }
-
-
     async componentWillReceiveProps() {
         // await this.props.verifyvenue();
         let allvanues = [];
@@ -53,7 +44,6 @@ class Venue extends Component {
             this.setState({ contactNcr: this.props.allvenues.vanues.items[i].contactNbr });
         }
     }
-
     onSubmit = async (evt) => {
         evt.preventDefault();
         await this.props.createvanue({
@@ -69,9 +59,6 @@ class Venue extends Component {
             return;
         });
     };
-
-
-
     updatedata = async (evt) => {
         evt.preventDefault();
         await this.props.updatedata({
@@ -81,11 +68,10 @@ class Venue extends Component {
             ContactNbr: this.state.contactNcr
         })
     };
-
-
     show = async (allvanues) => {
         document.getElementById("venue").style.display = "block";
         document.getElementById("newvenue").style.display = "none";
+        document.getElementById("apiresult").style.display = "none";
         document.getElementById("id").value = allvanues.venueID || "";
         this.setState({ venueID: allvanues.venueID })
         this.setState({ name: allvanues.name })
@@ -95,25 +81,33 @@ class Venue extends Component {
         document.getElementById("adderess").value = allvanues.adderess || "";
         document.getElementById("mobile").value = allvanues.contactNbr || "";
     };
-
-    addnew = async (allvanues) => {
-        document.getElementById("newvenue").style.display = "block";
+    addnew = async () => {
+        document.getElementById("venue").style.display = "block";
+        document.getElementById("newvenue").style.display = "none";
+        document.getElementById("apiresult").style.display = "none";
+    };
+    unshow = async () => {
+        document.getElementById("newvenue").style.display = "none";
+        document.getElementById("apiresult").style.display = "inline-block";
         document.getElementById("venue").style.display = "none";
     };
-
-
+    unshowedit = async () => {
+        document.getElementById("venue").style.display = "none";
+        document.getElementById("apiresult").style.display = "inline-block";
+        document.getElementById("newvenue").style.display = "none";
+    };
     render() {
         return (
             <div className="row">
                 <div className="col-md-12 main-heading">
-                <h2>Venue</h2>
+                    <h2>Venue</h2>
                 </div>
                 <div className="col-md-7 offset-md-2">
                     <div className="row">
                         <div className="col-md-12 add">
                             <a href="#" onClick={this.addnew}>+ add venue</a>
                         </div>
-                        <div className="col-md-12 venuetbl">
+                        <div className="col-md-12 venuetbl" id="apiresult" style={{ display: "inline-block" }}>
                             <table className="table tbl">
                                 <thead>
                                     <tr>
@@ -198,6 +192,9 @@ class Venue extends Component {
                                 <button type="submit" class="btn">
                                     add
                                 </button>
+                                <button class="btn" style={{ float: "right" }} onClick={this.unshow}>
+                                    Cancel
+                                </button>
                                 <label id="Sucess" className="text-success"></label>
                             </form>
                         </div>
@@ -246,6 +243,9 @@ class Venue extends Component {
                                 </div>
                                 <button type="submit" class="btn">
                                     add
+                                </button>
+                                <button class="btn" style={{ float: "right" }} onClick={this.unshowedit}>
+                                    Cancel
                                 </button>
                                 <label id="Sucess" className="text-success"></label>
                             </form>

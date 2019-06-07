@@ -22,7 +22,7 @@ class PackageContent extends Component {
             showPackageTable: {
                 display: 'none',
             },
-            PackageID: ""
+            packageID: "",
         };
     }
 
@@ -108,30 +108,34 @@ class PackageContent extends Component {
     show = async (evt) => {
         document.getElementById("packages").style.display = "block";
     };
+    unshowproduct = async () => {
+        document.getElementById("packages").style.display = "none";
+        document.getElementById("updatepackages").style.display = "none";
+        document.getElementById("productapiresult").style.display = "inline-block";
+    }
 
     render() {
-        let style = {
-            display: 'none',
-        };
 
         if (this.props.customAllProducts.length > 0) {
 
         }
         let { customAllProducts } = this.props;
         let packages = [];
-        if (customAllProducts.length > 0) {
-            packages = customAllProducts[0].linkedPackages;
-            style.display = 'block';
+
+        if (customAllProducts.length > 0 && parseInt(this.state.productID)) {
+            let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
+            packages = _c[0].linkedPackages;
         }
+
         return (
             <div className="row">
-                 <div className="col-md-12 main-heading">
-                <h2>packages</h2>
+                <div className="col-md-12 main-heading">
+                    <h2>packages</h2>
                 </div>
                 <div className="col-md-7 offset-md-2">
-                <div className="col-md-12 add">
-                            <a href="#" onClick={this.show}>+ add package</a>
-                        </div>
+                    <div className="col-md-12 add">
+                        <a href="#" onClick={this.show}>+ add package</a>
+                    </div>
                     <form >
                         <div className="row venuetbl">
                             <div className="col-md-4">
@@ -148,10 +152,10 @@ class PackageContent extends Component {
                             </div>
                             <div className="col-md-4">
                                 <div className="row sl-3">
-                                    <select id="choose-packages" className="col-md-10" value={this.state.venueid}>
+                                    <select id="choose-packages" className="col-md-10" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
                                         <option selected>Choose Product Name </option>
                                         {this.props.customAllProducts.map((Allproducts, index) => (
-                                            <option>{Allproducts.name}</option>
+                                            <option value={Allproducts.productID}>{Allproducts.name}</option>
                                         ))}
 
                                     </select>
@@ -168,9 +172,9 @@ class PackageContent extends Component {
 
                     {/* Package Table */}
                     <div className="row">
-                        
-                        <div className="col-md-12 venuetbl" style={this.state.showPackageTable}>
-                        
+
+                        <div className="col-md-12 venuetbl" style={this.state.showPackageTable} >
+
                             <table className="table tbl">
                                 <thead>
                                     <tr>
@@ -284,6 +288,9 @@ class PackageContent extends Component {
                                 <button type="submit" class="btn">
                                     add
                                 </button>
+                                <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
+                                    Cancel
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -299,7 +306,7 @@ class PackageContent extends Component {
                     <div className="row" id="updatepackages" style={{ display: "none" }}>
                         <div className="col-md-12 venuefrm"  >
                             <form className="frm" onSubmit={this.updatepackage}>
-                                <h2>new package</h2>
+                                <h2>Update package</h2>
 
                                 <div class="form-group">
                                     <input
@@ -362,6 +369,9 @@ class PackageContent extends Component {
                                 </div>
                                 <button type="submit" class="btn">
                                     add
+                                </button>
+                                <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
+                                    Cancel
                                 </button>
                             </form>
                         </div>

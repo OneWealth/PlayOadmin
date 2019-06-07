@@ -15,7 +15,7 @@ class Menu extends Component {
     render() {
         return (
             <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12 menu">
                     <Nav variant="pills" className="flex-column">
                         <Nav.Item>
                             <Nav.Link eventKey="first">home</Nav.Link>

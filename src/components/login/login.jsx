@@ -59,7 +59,7 @@ class AdminLogin extends Component {
             <div className="row">
                 <div className="col-md-12 admin">
                     <div className="circle" />
-                    <div className="row">
+                    <div className="row main">
                         <div className="col-md-4 adminlogin">
                             <div className="row">
                                 <div className="col-md-12 logo">

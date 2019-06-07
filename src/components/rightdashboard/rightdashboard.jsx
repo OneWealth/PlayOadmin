@@ -15,10 +15,10 @@ class RightDashboard extends Component {
     }
     render() {
         return (
-            <div className="row">
+            <div className="row mainbox">
                 <div className="col-md-12">
                     <Profile />
-                    <Revenue /> 
+                    <Revenue />
                 </div>
             </div>
         );

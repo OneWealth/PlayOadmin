@@ -69,9 +69,9 @@ export const updatedata = values => dispatch => {
 };
 
 
-export const getuser = values => dispatch => {
+export const getvenueuser = values => dispatch => {
     return axios.get(
-        BACKEND_URL + "adminapi/PlayoUser",
+        BACKEND_URL + "adminapi/PlayoUser/venue/" + values.venueID,
         {
             headers: {
                 Authorization: localStorage.getItem("token")
