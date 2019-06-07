@@ -13,7 +13,7 @@ class Product extends Component {
             productID: "",
             name: "",
             description: "",
-            timeDependentFlag: "",
+            timeDependentFlag: false,
             activeFlag: "",
             venueid: "",
             productID: ""
@@ -233,7 +233,7 @@ class Product extends Component {
                                     <label for="dependent">
                                         <input type="checkbox" id="contact" value={this.state.timeDependentFlag}
                                             onClick={evt => {
-                                                this.setState({ timeDependentFlag: "true" });
+                                                this.setState({ timeDependentFlag: !this.state.timeDependentFlag });
                                             }} />
                                         time dependent
                                      </label>

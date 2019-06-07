@@ -6,11 +6,11 @@ const PLAYO_USER = createAction("PLAYO_USER");
 
 export const playosuer = values => dispatch => {
     console.log(values);
-    return axios.post(BACKEND_URL + "api/PlayoUser",
+    return axios.post(BACKEND_URL + "adminapi/PlayoUser",
         {
             Username: values.Username,
             Password: values.Password,
-            Email: values.RequestedAt,
+            Email: values.Email,
             VenueId: values.VenueId,
         },
         {
