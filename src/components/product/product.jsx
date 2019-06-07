@@ -35,13 +35,22 @@ class Product extends Component {
             venueID: this.props.products.venueID,
             timeDependentFlag: this.state.timeDependentFlag
         }).then(() => {
-            this.state.name = "";
-            this.state.description = "";
-            this.state.venueID = "";
-            // this.props.history.push("");
-            return;
+            this.clearText();
+        document.getElementById("name").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("venueID").value = "";
+        return;
         });
     };
+
+    clearText = () => {
+        this.setState({
+          name: "",
+          description: "",
+          venueID: ""
+        });
+      };
+
     Createproject = async (evt) => {
         evt.preventDefault();
         await this.props.createproduct({
@@ -50,10 +59,11 @@ class Product extends Component {
             venueID: this.state.venueid,
             timeDependentFlag: this.state.timeDependentFlag
         }).then(() => {
-            this.state.name = "";
-            this.state.description = "";
-            this.state.venueID = "";
+            // this.state.name = "";
+            // this.state.description = "";
+            // this.state.venueID = "";
             // this.props.history.push("");
+            document.getElementById("venuename").innerHTML="";
             return;
         });
     };
@@ -106,6 +116,8 @@ class Product extends Component {
     addnew = async () => {
         document.getElementById("createproduct").style.display = "block";
         document.getElementById("product").style.display = "none";
+        document.getElementById("productapiresult").style.display = "none";
+        this.clearText();
     };
     unshowproduct = async () => {
         document.getElementById("createproduct").style.display = "none";
@@ -145,7 +157,7 @@ class Product extends Component {
                                 </div>
                             </div>
                             <div className="col-md-5 text-right">
-                                <button type="submit" class="btn btn-primary btn-block" >
+                                <button type="" class="btn btn-primary btn-block" onClick={this.unshowproduct}>
                                     Get Products
                                 </button>
                             </div>
@@ -195,7 +207,7 @@ class Product extends Component {
                                     <select className="col-md-12 form-control" value={this.state.venueid}
                                         onChange={evt => {
                                             this.setState({ venueid: evt.target.value });
-                                        }}>
+                                        }}required>
                                         <option selected>Choose Venue Name </option>
                                         {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
                                             <option value={allvanues.venueID} >{allvanues.name}</option>
@@ -214,7 +226,7 @@ class Product extends Component {
                                         onChange={evt => {
                                             this.setState({ name: evt.target.value });
                                         }}
-                                    />
+                                    required/>
                                 </div>
                                 <div class="form-group">
                                     <label for="description">description</label>
@@ -227,7 +239,7 @@ class Product extends Component {
                                         onChange={evt => {
                                             this.setState({ description: evt.target.value });
                                         }}
-                                    />
+                                   required />
                                 </div>
                                 <div class="form-group">
                                     <label for="dependent">
@@ -254,7 +266,7 @@ class Product extends Component {
                         {/* Edit Product Form */}
                         <div className="col-md-12 venuefrm" id="product" style={{ display: "none" }}>
                             <form className="frm" onSubmit={this.updateproduct}>
-                                <h2>new product</h2>
+                                <h2>Update product</h2>
                                 <div class="form-group">
                                     <label for="name">name</label>
                                     <input

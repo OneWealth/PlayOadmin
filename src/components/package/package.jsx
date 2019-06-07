@@ -75,6 +75,16 @@ class PackageContent extends Component {
 
     }
 
+    
+    clearText = () => {
+        this.setState({
+          name: "",
+          description: "",
+          duration: "",
+          money:"",
+          ProductID:""
+        });
+      };
     createpackage = async (evt) => {
         evt.preventDefault();
         await this.props.createpackage({
@@ -83,7 +93,16 @@ class PackageContent extends Component {
             Duration: this.state.duration,
             Money: this.state.money,
             ProductID: this.state.ProductID
-        })
+        }).then(() => {
+            this.clearText();
+        document.getElementById("name").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("duration").value = "";
+        document.getElementById("money").value = "";
+        document.getElementById("ProductID").value = "";
+        return;
+        });
+
     };
 
     updatepackage = async (evt) => {
@@ -107,11 +126,14 @@ class PackageContent extends Component {
     };
     show = async (evt) => {
         document.getElementById("packages").style.display = "block";
+        document.getElementById("updatepackages").style.display = "none";
+        document.getElementById("packagesapiresult").style.display = "none";
+        this.clearText();
     };
     unshowproduct = async () => {
         document.getElementById("packages").style.display = "none";
         document.getElementById("updatepackages").style.display = "none";
-        document.getElementById("productapiresult").style.display = "inline-block";
+        document.getElementById("packagesapiresult").style.display = "inline-block";
     }
 
     render() {
@@ -173,7 +195,7 @@ class PackageContent extends Component {
                     {/* Package Table */}
                     <div className="row">
 
-                        <div className="col-md-12 venuetbl" style={this.state.showPackageTable} >
+                        <div className="col-md-12 venuetbl" style={this.state.showPackageTable} id="packagesapiresult">
 
                             <table className="table tbl">
                                 <thead>
@@ -218,7 +240,7 @@ class PackageContent extends Component {
                                     <label className="col-md-12">Select venue</label>
                                     <select className="col-md-10" value={this.state.venueid}
                                         // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
-                                        onChange={this.handleChange.bind(this)}>
+                                        onChange={this.handleChange.bind(this)} required>
                                         <option >Choose Venue Name </option>
                                         {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
                                             < option value={allvanues.venueID} > {allvanues.name}</option>
@@ -229,7 +251,7 @@ class PackageContent extends Component {
                                     <label className="col-md-12">Select Product</label>
                                     <select id="choose-packages" className="col-md-10" value={this.state.ProductID} onChange={evt => {
                                         this.setState({ ProductID: evt.target.value });
-                                    }} >
+                                    }} required >
                                         <option >Choose Packages Name </option>
                                         {this.props.customAllProducts.map((Allproducts, index) => (
                                             <option value={Allproducts.productID}>{Allproducts.name}  ---- {Allproducts.description}</option>
@@ -247,7 +269,7 @@ class PackageContent extends Component {
                                         value={this.state.name} onChange={evt => {
                                             this.setState({ name: evt.target.value });
                                         }}
-                                    />
+                                   required />
                                 </div>
                                 <div class="form-group">
                                     <label for="description">description</label>
@@ -259,7 +281,7 @@ class PackageContent extends Component {
                                         value={this.state.description} onChange={evt => {
                                             this.setState({ description: evt.target.value });
                                         }}
-                                    />
+                                   required />
                                 </div>
                                 <div class="form-group">
                                     <label for="duration">time duration</label>
@@ -271,7 +293,7 @@ class PackageContent extends Component {
                                         value={this.state.duration} onChange={evt => {
                                             this.setState({ duration: evt.target.value });
                                         }}
-                                    />
+                                    required/>
                                 </div>
                                 <div class="form-group">
                                     <label for="money">money</label>
@@ -283,7 +305,7 @@ class PackageContent extends Component {
                                         value={this.state.money} onChange={evt => {
                                             this.setState({ money: evt.target.value });
                                         }}
-                                    />
+                                    required/>
                                 </div>
                                 <button type="submit" class="btn">
                                     add
