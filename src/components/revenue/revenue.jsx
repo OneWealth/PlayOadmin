@@ -1,29 +1,31 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import "./revenue.css";
-import RevenueTable from "../revenue/monthly/monthly";
+import Monthly from "../revenue/monthly/monthly";
+import Daily from "../revenue/daily/daily";
+
 class Revenue extends Component {
   state = {};
   render() {
     return (
       <div className="row">
         <div className="col-md-6 col-sm-12">
-          <Card bg="info" text="white">
+          <Card bg="danger" text="white">
             <Card.Header>Monthly Revenue</Card.Header>
             <Card.Body>
               {/* <Card.Title>Primary Card Title</Card.Title> */}
               <Card.Text>
-                <RevenueTable range="1" month="6" year="2019" />
+                <Monthly />
               </Card.Text>
             </Card.Body>
           </Card>
         </div>
 
         <div className="col-md-6 col-sm-12">
-          <Card bg="info" text="white">
-            <Card.Header>Monthly Revenue</Card.Header>
+          <Card bg="danger" text="white">
+            <Card.Header>Daily Revenue</Card.Header>
             <Card.Body>
-              {/* <Card.Title>Primary Card Title</Card.Title> */}
+ <Daily/>
               <Card.Text />
             </Card.Body>
           </Card>
