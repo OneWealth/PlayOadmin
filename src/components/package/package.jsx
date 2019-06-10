@@ -146,7 +146,6 @@ class PackageContent extends Component {
         let packages = [];
 
         if (customAllProducts.length > 0 && parseInt(this.state.productID)) {
-            // debugger
             let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
             packages = _c[0].linkedPackages;
         }

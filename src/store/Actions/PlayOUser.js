@@ -4,6 +4,7 @@ import { BACKEND_URL } from "../../config.js";
 
 const PLAYO_USER = createAction("PLAYO_USER");
 const MODEOFPAYMENT = createAction("MODEOFPAYMENT");
+const RFID = createAction("RFID");
 export const playosuer = values => dispatch => {
     console.log(values);
     return axios
@@ -44,6 +45,21 @@ export const getmodeofpayment = values => dispatch => {
         },
     ).then(res => {
         dispatch(MODEOFPAYMENT(res.data));
+    })
+        .catch(error => {
+        });
+};
+
+
+export const rfid = values => dispatch => {
+    return axios.get(
+        BACKEND_URL + "tableapi/RFID", {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        },
+    ).then(res => {
+        dispatch(RFID(res.data));
         console.log(res.data);
     })
         .catch(error => {

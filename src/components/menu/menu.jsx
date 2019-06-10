@@ -38,7 +38,10 @@ class Menu extends Component {
                             <Nav.Link eventKey="seventh">Mode of Payment</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="eight" onClick={this.logout}>
+                            <Nav.Link eventKey="eight">RFID</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="ninth" onClick={this.logout}>
                                 logout
                         </Nav.Link>
                         </Nav.Item>

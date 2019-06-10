@@ -8,6 +8,7 @@ import Product from "../product/product";
 import Package from "../package/package";
 import Downloads from "../downloads/downloads";
 import ModeOfPayment from "../modeofpayment/modeofpayment";
+import RFID from "../RFID/RFID";
 import "./dashboard.css";
 
 import { connect } from "react-redux";
@@ -57,6 +58,9 @@ class Dashboard extends Component {
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="seventh">
                                         <ModeOfPayment />
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="eight">
+                                        <RFID />
                                     </Tab.Pane>
                                 </Tab.Content>
                             </Col>

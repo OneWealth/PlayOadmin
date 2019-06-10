@@ -69,14 +69,14 @@ class AdminLogin extends Component {
                                 <div className="col-md-12" >
                                     <form onSubmit={this.onSubmit} >
                                         <div className="form-group col-md-12">
-                                            <label>email id</label>
+                                            <label>Enter UserName</label>
                                             <input
                                                 type="email"
                                                 value={this.state.username}
                                                 onChange={evt => {
                                                     this.setState({ username: evt.target.value });
                                                 }}
-                                                placeholder="Enter Email ID"
+                                                placeholder="Enter UserName"
                                                 className="form-control"
                                                 id="username"
                                             />

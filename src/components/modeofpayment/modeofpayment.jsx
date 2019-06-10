@@ -38,33 +38,23 @@ class modeofpayment extends Component {
                 <div className="col-md-6 ">
                     <div className="row">
                         <div className="col-md-12 venuefrm">
-                            <form className="frm">
-                                <div className="row ">
-                                    <div className="col-md-4">
-                                        <label >Mode of Payment</label>
-                                    </div>
 
-                                    <div className="col-md-8" style={{ marginTop: "0px" }}>
-                                        <Form.Group controlId="formBasicName" >
-                                            <Form.Control as="select" value={this.state.modeofpayment} onChange={evt => {
-                                                this.setState({ modeofpayment: evt.target.value });
-                                            }}>
-                                                {this.props.payment.modeofpayment.items && this.props.payment.modeofpayment.items && this.props.payment.modeofpayment.items.map((paymentmode) => {
-                                                    return (
-                                                        <option >   {paymentmode.paymentName}
-                                                        </option>
-                                                    )
-                                                })}
-                                            </Form.Control>
-                                        </Form.Group>
-                                    </div>
-                                </div>
-
-
-                                <button type="submit" class="btn">
-                                    Done
-                                </button>
-                            </form>
+                            <table className="table tbl" style={{ marginTop: "20px" }} >
+                                <thead>
+                                    <tr>
+                                        <th>Mode of Payment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.props.payment.modeofpayment.items && this.props.payment.modeofpayment.items && this.props.payment.modeofpayment.items.map((paymentmode) => {
+                                        return (
+                                            <tr>
+                                                <td> {paymentmode.paymentName}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
