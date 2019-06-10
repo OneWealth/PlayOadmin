@@ -13,6 +13,9 @@ class Downloads extends Component {
     render() {
         return (
             <div className="row mg-top">
+                <div className="col-md-12 main-heading">
+                <h2>downloads</h2>
+                </div>
                 <div className="col-md-7 offset-md-2">
                     <div className="row">
                         <div className="col-md-12 venuefrm">

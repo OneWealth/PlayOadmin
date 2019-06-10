@@ -1,8 +1,3 @@
-.rightbar {
-    padding: 50px;
-}
-
-.sidenavbar {
-    padding: 20px;
-    padding-top: 150px;
+.main {
+    min-height: 100vh !important;
 }

@@ -59,7 +59,7 @@ class AdminLogin extends Component {
             <div className="row">
                 <div className="col-md-12 admin">
                     <div className="circle" />
-                    <div className="row">
+                    <div className="row main">
                         <div className="col-md-4 adminlogin">
                             <div className="row">
                                 <div className="col-md-12 logo">
@@ -91,7 +91,7 @@ class AdminLogin extends Component {
                                             <label>password</label>
                                             <input
                                                 type="password"
-                                                placeholder="enter password"
+                                                placeholder="Enter Password"
                                                 className="form-control"
                                                 value={this.state.password}
                                                 onChange={evt => {
