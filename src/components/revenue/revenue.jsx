@@ -5,34 +5,33 @@ import Monthly from "../revenue/monthly/monthly";
 import Daily from "../revenue/daily/daily";
 
 class Revenue extends Component {
-  state = {};
-  render() {
-    return (
-      <div className="row">
-        <div className="col-md-6 col-sm-12">
-          <Card bg="danger" text="white">
-            <Card.Header>Monthly Revenue</Card.Header>
-            <Card.Body>
-              {/* <Card.Title>Primary Card Title</Card.Title> */}
-              <Card.Text>
-                <Monthly />
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+    state = {};
+    render() {
+        return (
+            <div className="row">
+                <div className="col-md-6 col-sm-12">
+                    <Card className="revenuecard">
+                        <Card.Header>Monthly Revenue</Card.Header>
+                        <Card.Body>
+                            <Card.Text>
+                                <Monthly />
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </div>
 
-        <div className="col-md-6 col-sm-12">
-          <Card bg="danger" text="white">
-            <Card.Header>Daily Revenue</Card.Header>
-            <Card.Body>
- <Daily/>
-              <Card.Text />
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
-    );
-  }
+                <div className="col-md-6 col-sm-12">
+                    <Card className="revenuecard">
+                        <Card.Header>Daily Revenue</Card.Header>
+                        <Card.Body>
+                            <Daily />
+                            <Card.Text />
+                        </Card.Body>
+                    </Card>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Revenue;

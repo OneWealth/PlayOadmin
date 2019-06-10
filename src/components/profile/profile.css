@@ -1,34 +1,45 @@
 .profile p {
-  font-size: 16px;
-  color: #7c7880;
-  /* padding-top: 0px; */
+    font-size: 16px;
+    color: #7c7880;
+    /* padding-top: 0px; */
 }
+
 .profile h1 {
-  font-size: 24px;
-  text-transform: capitalize;
-  color: #54575d;
-  font-weight: 600;
+    font-size: 24px;
+    text-transform: capitalize;
+    color: #54575d;
+    font-weight: 200;
+    margin-top: 30px;
 }
+
+.profile h1 span {
+    color: #0E2DA5;
+    font-weight: 600;
+}
+
+
 .profile {
-  padding: 30px;
-  background: #faf6fe;
-  margin-bottom: 20px;
-  margin-left: 15px;
+    /* background: #faf6fe; */
+    margin-bottom: 20px;
+    margin-top: 50px;
 }
+
 .profile {
-  padding: 30px;
-  background: #faf6fe;
-  margin-bottom: 20px;
+    padding: 30px;
+    margin-bottom: 20px;
 }
+
 .profile ul li {
-  display: block;
-  font-size: 16px;
-  margin: 10px 0px;
-  color: #acb3bf;
+    display: block;
+    font-size: 16px;
+    margin: 10px 0px;
+    color: #acb3bf;
 }
+
 .profile ul li i {
-  padding-right: 5px;
+    padding-right: 5px;
 }
+
 .profile img {
-  width: 100%;
+    width: 100%;
 }

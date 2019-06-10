@@ -156,7 +156,7 @@ class PackageContent extends Component {
                 <div className="col-md-12 main-heading">
                     <h2>packages</h2>
                 </div>
-                <div className="col-md-7 offset-md-2">
+                <div className="col-md-10 ">
                     <div className="col-md-12 add">
                         <a href="#" onClick={this.show}>+ add package</a>
                     </div>

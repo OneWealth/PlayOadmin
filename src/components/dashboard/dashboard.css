@@ -1,3 +1,11 @@
 .main {
     min-height: 100vh !important;
 }
+
+.sidenavbar {
+    position: fixed;
+}
+
+.rightbar {
+    margin-left: 300px;
+}
