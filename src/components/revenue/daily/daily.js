@@ -10,7 +10,7 @@ class Daily extends Component {
     this.state = {     
       allDailyRevenue :[],
       range:0,
-      date:'2019-06-07'
+      date: this.props.daystart
     };
   }  
 
@@ -26,14 +26,13 @@ class Daily extends Component {
         daystart: this.state.date
       })
       .then(() => {      
-       this.setState({allDailyRevenue : this.props.allrevenues.dailyrevenue});
-        console.log(this.props.allrevenues.dailyrevenue);
+       this.setState({allDailyRevenue : this.props.allrevenues.dailyrevenue});        
       });    
   }  
   render() {
 
     const allrevenue = this.state.allDailyRevenue;
-console.log(allrevenue);
+
     return (
       <RevnueTable revenuedata={{allrevenue}} />
     );

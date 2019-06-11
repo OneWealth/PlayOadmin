@@ -11,7 +11,7 @@ export default class RevnueTable extends React.PureComponent {
     showrevneuerows = ()=>{
 
         const allrevenue = this.props.revenuedata.allrevenue;
-        if(allrevenue === undefined || allrevenue.length === undefined || allrevenue.length === 0) return;
+        if(allrevenue === null ||allrevenue === undefined || allrevenue.length === undefined || allrevenue.length === 0) return;
         return allrevenue.map(
             (item, index) => (
                 <tr>
