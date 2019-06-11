@@ -13,6 +13,16 @@ class Downloads extends Component {
                 display: 'none',
             },
             packageID: "",
+            VenueTyp: 1,
+            ProductTyp: 0,
+            ProductId: null,
+            PackageTyp: 0,
+            PackageId: null,
+            Range: 1,
+            DayStart: "2019-06-06",
+            DayEnd: null,
+            Month: 6,
+            Year: 2019
         };
     }
 
@@ -97,6 +107,19 @@ class Downloads extends Component {
 
 
 
+    getreport = async (evt) => {
+        evt.preventDefault();
+        await this.props.getreport({
+            venueID: this.state.venueID,
+            ProductId: this.state.ProductId,
+            PackageId: this.state.PackageId,
+            DayStart: this.state.DayStart,
+            DayEnd: this.state.DayEnd,
+            Month: this.state.Month,
+            Year: this.state.Year
+        })
+    };
+
 
 
     render() {
@@ -136,7 +159,7 @@ class Downloads extends Component {
 
                                 <div className="row sl-3" id="products">
                                     <label className="col-md-3">Product</label>
-                                    <select id="choose-packages" className="col-md-9" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
+                                    <select id="choose-packages" className="col-md-9" value={this.state.ProductId} onChange={(e) => this.setState({ ProductId: e.target.value, showPackageTable: { display: 'none' } })}>
                                         <option selected>Choose Product Name </option>
                                         {this.props.customAllProducts.map((Allproducts, index) => (
 
@@ -149,7 +172,7 @@ class Downloads extends Component {
 
                                 <div className="row sl-3" id="packages1">
                                     <label className="col-md-3">Package</label>
-                                    <select className="col-md-9">
+                                    <select className="col-md-9" value={this.state.PackageId} onChange={(e) => this.setState({ PackageId: e.target.value })} >
                                         <option selected>Choose...</option>
                                         {packages.map((p, index) => (
                                             <option value={p.packageID}>{p.name}</option>
@@ -171,7 +194,10 @@ class Downloads extends Component {
                                             <option value="Custom">Custom</option>
                                         </select>
 
-                                        <select className="col-md-3 offset-md-1" id="year" style={{ display: "none" }}>
+                                        <select className="col-md-3 offset-md-1" id="year" style={{ display: "none" }}
+                                            value={this.state.Year} onChange={(e) => this.setState({ Year: e.target.value })}
+
+                                        >
                                             <option selected>2019</option>
                                             <option selected>2020</option>
                                             <option selected>2021</option>
@@ -182,7 +208,9 @@ class Downloads extends Component {
 
                                         </select>
 
-                                        <select className="col-md-3 offset-md-1" id="month" style={{ display: "none" }}>
+                                        <select className="col-md-3 offset-md-1" id="month" style={{ display: "none" }}
+                                            value={this.state.Month} onChange={(e) => this.setState({ Month: e.target.value })}
+                                        >
                                             <option selected>Jan</option>
                                             <option selected>Feb</option>
                                             <option selected>Mar</option>
@@ -202,8 +230,8 @@ class Downloads extends Component {
                                             type="date"
                                             class="form-control col-md-12 "
                                             placeholder="Choose Date"
-                                            value={this.state.custom} onChange={evt => {
-                                                this.setState({ custom: evt.target.value });
+                                            value={this.state.DayStart} onChange={evt => {
+                                                this.setState({ DayStart: evt.target.value });
                                             }}
                                             id="day"
                                             required style={{ display: "none", marginTop: "10px" }} />
@@ -214,8 +242,8 @@ class Downloads extends Component {
                                             type="date"
                                             class="form-control col-md-12 "
                                             placeholder="Start Date"
-                                            value={this.state.custom} onChange={evt => {
-                                                this.setState({ custom: evt.target.value });
+                                            value={this.state.DayStart} onChange={evt => {
+                                                this.setState({ DayStart: evt.target.value });
                                             }}
                                             id="startdate"
                                             required style={{ display: "none", marginTop: "10px" }} />
@@ -225,8 +253,8 @@ class Downloads extends Component {
                                             type="date"
                                             class="form-control col-md-12"
                                             placeholder="End Date"
-                                            value={this.state.custom} onChange={evt => {
-                                                this.setState({ custom: evt.target.value });
+                                            value={this.state.DayEnd} onChange={evt => {
+                                                this.setState({ DayEnd: evt.target.value });
                                             }}
                                             id="enddate"
                                             required style={{ display: "none", marginTop: "10px" }} />
