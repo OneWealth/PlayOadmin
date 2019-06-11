@@ -16,7 +16,7 @@ class RightDashboard extends Component {
         return (
             <div className="row mainbox">
                 <div className="col-md-11">
-                    <Profile />
+                    {/* <Profile /> */}
                     <Revenue />
                 </div>
             </div>

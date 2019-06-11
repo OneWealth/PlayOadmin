@@ -25,6 +25,7 @@ export const createvanue = values => dispatch => {
         .then(res => {
             dispatch(CREATE_VENUE(res.data));
             alert("Created Successfully");
+            window.location.reload();
         })
         .catch(error => {
             alert("Something Went Wrong");
@@ -66,6 +67,7 @@ export const updatedata = values => dispatch => {
         .then(res => {
             dispatch(UPDATE_VENUE(res.data));
             alert("successfully Updated");
+            window.location.reload();
         })
         .catch(error => {
             alert("Something Went Wrong");

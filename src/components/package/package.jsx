@@ -174,7 +174,7 @@ class PackageContent extends Component {
                                 </div>
                             </div>
                             <div className="col-md-4">
-                                <div className="row sl-3">
+                                <div className="row sl-12">
                                     <select id="choose-packages" className="col-md-10" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
                                         <option selected>Choose Product Name </option>
                                         {this.props.customAllProducts.map((Allproducts, index) => (

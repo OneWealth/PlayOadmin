@@ -15,7 +15,6 @@ export const products = values => dispatch => {
         }
     }).then(res => {
         dispatch(GET_PRODUCTS(res.data.items));
-        window.location.reload();
     }).catch(error => {
         return Promise.reject();
     });
@@ -71,8 +70,9 @@ export const updateproduct = values => dispatch => {
         window.location.reload();
     })
         .catch(error => {
-            return Promise.reject();
             alert("Something Went Wrong");
+            return Promise.reject();
+
         });
 };
 

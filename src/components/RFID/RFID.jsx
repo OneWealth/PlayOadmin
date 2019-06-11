@@ -76,7 +76,6 @@ class RFID extends Component {
                                         <th>RfidCd</th>
                                         <th>FriendlyRFID</th>
                                         <th>Venue Name</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,11 +86,6 @@ class RFID extends Component {
                                                 <td> {paymentmode.rfidCd}</td>
                                                 <td> {paymentmode.friendlyRFID}</td>
                                                 <td> {paymentmode.venueName}</td>
-                                                <td>
-                                                    <a href="#" title="Update/Edit">
-                                                        <i class="fa fa-pencil" aria-hidden="true" />
-                                                    </a>
-                                                </td>
                                             </tr>
                                         )
                                     })}

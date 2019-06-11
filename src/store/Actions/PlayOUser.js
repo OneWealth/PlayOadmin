@@ -59,7 +59,6 @@ export const rfid = values => dispatch => {
         },
     ).then(res => {
         dispatch(RFID(res.data));
-        console.log(res.data);
     })
         .catch(error => {
         });

@@ -1,7 +1,21 @@
 import React, { Component } from "react";
-
+import { connect } from "react-redux";
+import actions from "../../store/Actions/Index";
+import { withRouter } from "react-router";
 class Downloads extends Component {
-    state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+            venueID: null,
+            selectedProduct: null,
+            linkedPackages: [],
+            showPackageTable: {
+                display: 'none',
+            },
+            packageID: "",
+        };
+    }
+
     async  componentDidMount() {
         if (!localStorage.getItem("token")) {
             this.props.history.push({
@@ -10,11 +24,97 @@ class Downloads extends Component {
         }
 
     }
+
+
+
+
+    handleChange(evt) {
+        if (evt.target.value === "All") {
+            document.getElementById("alldate").style.display = "block";
+            document.getElementById("packages1").style.display = "none";
+            document.getElementById("products").style.display = "none";
+        }
+
+
+        else {
+            document.getElementById("alldate").style.display = "none";
+            document.getElementById("packages1").style.display = "block";
+            document.getElementById("products").style.display = "block";
+
+            this.getproducts(evt.target.value);
+            this.setState({ venueID: evt.target.value, productID: '' });
+        }
+    }
+
+    getproducts = async (id) => {
+        this.props.products({
+            id
+        })
+    };
+
+
+
+    show = async (id) => {
+
+        if (document.getElementById("selectone").value == "Year") {
+            document.getElementById("year").style.display = "inline-block";
+            document.getElementById("month").style.display = "none";
+            document.getElementById("startdate").style.display = "none";
+            document.getElementById("enddate").style.display = "none";
+            document.getElementById("day").style.display = "none";
+        }
+
+        else if (document.getElementById("selectone").value == "Month") {
+            document.getElementById("month").style.display = "inline-block";
+            document.getElementById("year").style.display = "inline-block";
+            document.getElementById("startdate").style.display = "none";
+            document.getElementById("enddate").style.display = "none";
+            document.getElementById("day").style.display = "none";
+        }
+
+        else if (document.getElementById("selectone").value == "Date") {
+            document.getElementById("day").style.display = "inline-block";
+            document.getElementById("year").style.display = "none";
+            document.getElementById("month").style.display = "none";
+            document.getElementById("startdate").style.display = "none";
+            document.getElementById("enddate").style.display = "none";
+        }
+        else if (document.getElementById("selectone").value == "Custom") {
+            document.getElementById("year").style.display = "none";
+            document.getElementById("month").style.display = "none";
+            document.getElementById("day").style.display = "none";
+            document.getElementById("startdate").style.display = "inline-block";
+            document.getElementById("enddate").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("year").style.display = "none";
+            document.getElementById("month").style.display = "none";
+            document.getElementById("day").style.display = "none";
+            document.getElementById("startdate").style.display = "none";
+            document.getElementById("enddate").style.display = "none";
+        }
+    };
+
+
+
+
+
     render() {
+        if (this.props.customAllProducts.length > 0) {
+
+        }
+        let { customAllProducts } = this.props;
+        let packages = [];
+
+        if (customAllProducts.length > 0 && parseInt(this.state.productID)) {
+            let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
+            packages = _c[0].linkedPackages;
+        }
+
         return (
             <div className="row mg-top">
                 <div className="col-md-12 main-heading">
-                    <h2>downloads</h2>
+                    <h2>Reports</h2>
                 </div>
                 <div className="col-md-6 ">
                     <div className="row">
@@ -22,56 +122,118 @@ class Downloads extends Component {
                             <form className="frm">
                                 <div className="row sl-3">
                                     <label className="col-md-3">Venue</label>
-                                    <select className="col-md-9">
-                                        <option selected>Choose...</option>
-                                        <option value="1">All</option>
-                                        <option value="2">Venue</option>
-                                    </select>
-                                </div>
-                                <div className="row sl-3">
-                                    <label className="col-md-3">Venues</label>
-                                    <select className="col-md-9">
-                                        <option selected>Choose...</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
+                                    <select className="col-md-9" value={this.state.venueid}
+                                        // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
+                                        onChange={this.handleChange.bind(this)}>
+                                        <option >Choose</option>
+                                        <option value="All">All</option>
+                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                            < option value={allvanues.venueID} > {allvanues.name}</option>
+                                        ))}
                                     </select>
                                 </div>
 
-                                <div className="row sl-3">
+
+                                <div className="row sl-3" id="products">
                                     <label className="col-md-3">Product</label>
-                                    <select className="col-md-9">
-                                        <option selected>Choose...</option>
-                                        <option value="1">All</option>
-                                        <option value="2">Product</option>
+                                    <select id="choose-packages" className="col-md-9" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
+                                        <option selected>Choose Product Name </option>
+                                        {this.props.customAllProducts.map((Allproducts, index) => (
+
+                                            <option value={Allproducts.productID}>{Allproducts.name}</option>
+                                        ))}
+
                                     </select>
                                 </div>
 
-                                <div className="row sl-3">
-                                    <label className="col-md-3">Products</label>
-                                    <select className="col-md-9">
-                                        <option selected>Choose...</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
-                                </div>
 
-                                <div className="row sl-3">
+                                <div className="row sl-3" id="packages1">
                                     <label className="col-md-3">Package</label>
                                     <select className="col-md-9">
                                         <option selected>Choose...</option>
-                                        <option value="1">All</option>
-                                        <option value="2">Package</option>
+                                        {packages.map((p, index) => (
+                                            <option value={p.packageID}>{p.name}</option>
+                                        ))}
                                     </select>
                                 </div>
 
-                                <div className="row sl-3">
-                                    <label className="col-md-3">Packages</label>
-                                    <select className="col-md-9">
-                                        <option selected>Choose...</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
+
+                                <div className="row sl-3" id="alldate" >
+                                    <div className="row">
+                                        <label className="col-md-12">Filter by Year/Month/Day</label>
+
+                                        <select className="col-md-3" value={this.state.venueid}
+                                            onChange={this.show} id="selectone">
+                                            <option selected>Choose...</option>
+                                            <option value="Year" >Year</option>
+                                            <option value="Month">Month</option>
+                                            <option value="Date">Date</option>
+                                            <option value="Custom">Custom</option>
+                                        </select>
+
+                                        <select className="col-md-3 offset-md-1" id="year" style={{ display: "none" }}>
+                                            <option selected>2019</option>
+                                            <option selected>2020</option>
+                                            <option selected>2021</option>
+                                            <option selected>2022</option>
+                                            <option selected>2023</option>
+                                            <option selected>2024</option>
+                                            <option selected>2025</option>
+
+                                        </select>
+
+                                        <select className="col-md-3 offset-md-1" id="month" style={{ display: "none" }}>
+                                            <option selected>Jan</option>
+                                            <option selected>Feb</option>
+                                            <option selected>Mar</option>
+                                            <option selected>Apr</option>
+                                            <option selected>May</option>
+                                            <option selected>Jun</option>
+                                            <option selected>Jul</option>
+                                            <option selected>Aug</option>
+                                            <option selected>Sep</option>
+                                            <option selected>Oct</option>
+                                            <option selected>Nov</option>
+                                            <option selected>Dec</option>
+                                        </select>
+
+
+                                        <input
+                                            type="date"
+                                            class="form-control col-md-12 "
+                                            placeholder="Choose Date"
+                                            value={this.state.custom} onChange={evt => {
+                                                this.setState({ custom: evt.target.value });
+                                            }}
+                                            id="day"
+                                            required style={{ display: "none", marginTop: "10px" }} />
+
+
+
+                                        <input
+                                            type="date"
+                                            class="form-control col-md-12 "
+                                            placeholder="Start Date"
+                                            value={this.state.custom} onChange={evt => {
+                                                this.setState({ custom: evt.target.value });
+                                            }}
+                                            id="startdate"
+                                            required style={{ display: "none", marginTop: "10px" }} />
+
+
+                                        <input
+                                            type="date"
+                                            class="form-control col-md-12"
+                                            placeholder="End Date"
+                                            value={this.state.custom} onChange={evt => {
+                                                this.setState({ custom: evt.target.value });
+                                            }}
+                                            id="enddate"
+                                            required style={{ display: "none", marginTop: "10px" }} />
+                                    </div>
                                 </div>
+
+
 
                                 <button type="submit" class="btn">
                                     Download Data
@@ -85,4 +247,23 @@ class Downloads extends Component {
     }
 }
 
-export default Downloads;
+
+
+
+
+const mapStateToProps = state => ({
+    allvenues: state.venue,
+    customAllProducts: state.products.allproducts,
+    allvenues: state.venue,
+});
+const mapDispatchToProps = dispatch => ({
+    products: v => dispatch(actions.products(v)),
+    verifyvenue: v => dispatch(actions.verifyvenue(v))
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Downloads)
+);
