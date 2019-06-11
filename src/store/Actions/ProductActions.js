@@ -15,6 +15,7 @@ export const products = values => dispatch => {
         }
     }).then(res => {
         dispatch(GET_PRODUCTS(res.data.items));
+        window.location.reload();
     }).catch(error => {
         return Promise.reject();
     });
@@ -39,8 +40,11 @@ export const createproduct = values => dispatch => {
     ).then(res => {
         dispatch(CREATE_PRODUCT(res.data));
         document.getElementById("packages").style.display = "none";
+        alert("Created Successfully");
+        window.location.reload();
     })
         .catch(error => {
+            alert("Something Went Wrong");
             return Promise.reject();
         });
 };
@@ -63,9 +67,12 @@ export const updateproduct = values => dispatch => {
     ).then(res => {
         dispatch(UPDATE_PRODUCT(res.data));
         document.getElementById("product").style.display = "none";
+        alert("Created Updated");
+        window.location.reload();
     })
         .catch(error => {
             return Promise.reject();
+            alert("Something Went Wrong");
         });
 };
 

@@ -24,13 +24,12 @@ export const playosuer = values => dispatch => {
         )
         .then(res => {
             document.getElementById("error").innerHTML = "";
-            //document.getElementById("success").innerHTML = "Done";
             alert("Create Successfull");
             dispatch(PLAYO_USER());
+            window.location.reload();
         })
         .catch(error => {
-            document.getElementById("error").innerHTML =
-                error.response.data.errorMessage;
+            alert(error.response.data.errorMessage)
             return Promise.reject();
         });
 };
