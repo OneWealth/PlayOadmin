@@ -10,8 +10,10 @@ class Daily extends Component {
     this.state = {     
       allDailyRevenue :[],
       range:0,
-      date:'2019-06-07'
+      date: this.props.daystart
     };
+
+    console.log(this.props.daystart);
   }  
 
   async componentDidMount() {

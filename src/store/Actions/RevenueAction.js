@@ -11,10 +11,10 @@ export const monthlyrevenue = values => dispatch => {
       BACKEND_URL +
         "billing/Information/revenue?Range=" +
         values.range +
-        "&Month=" +
-        values.month +
-        "&Year=" +
-        values.year,
+        "&daystart=" +
+        values.daystart, //+
+        // "&Year=" +
+        // values.year,
       {
         headers: {
           Authorization: localStorage.getItem("token")
