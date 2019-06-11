@@ -5,7 +5,8 @@ import { BACKEND_URL } from "../../config.js";
 
 
 const CREATERFID = createAction("CREATERFID");
-const GETREPORT = createAction("GETREPORT");
+const getReport = createAction("GETREPORT");
+
 export const createRFID = values => dispatch => {
     return axios
         .post(
@@ -35,7 +36,6 @@ export const createRFID = values => dispatch => {
 
 
 export const getreport = values => dispatch => {
-    console.log(values);
     return axios
         .post(
             BACKEND_URL + "billing/Information/",
@@ -57,10 +57,10 @@ export const getreport = values => dispatch => {
         )
         .then(res => {
             alert("Report Created Successfull");
-            dispatch(GETREPORT(res.data.items));
+            dispatch(getReport(res.data.items));
         })
         .catch(error => {
-            alert(error.data.errorMessage);
+            // alert(error.data.errorMessage);
             return Promise.reject();
         });
 };

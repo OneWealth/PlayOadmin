@@ -22,6 +22,7 @@ class Downloads extends Component {
             Month: null,
             Year: null
         };
+        this.getdownloadlink = this.getdownloadlink.bind(this);
     }
 
     async  componentDidMount() {
@@ -78,20 +79,16 @@ class Downloads extends Component {
     };
 
 
-    getdownloadlink = async () => {
-        console.log(this.props);
-        if (this.props.RESULT.length == 0 || "undefined") {
+    getdownloadlink = () => {
+        if (this.props.RESULT.result.length == 0) {
             return (
-                <div></div>
+                ""
             )
         }
-        return (<CSVDownload data={this.props.RESULT.resultrecieved} target="_blank" id="csvresult" />);
+        return (<CSVDownload data={this.props.RESULT.result} target="_blank" id="csvresult" />);
     }
 
     render() {
-        if (this.props.customAllProducts.length > 0) {
-
-        }
         let { customAllProducts } = this.props;
         let packages = [];
 
@@ -234,7 +231,7 @@ class Downloads extends Component {
                                     Download Data
                                 </button>
 
-                                {this.props.RESULT.resultrecieved ? this.getdownloadlink() : null}
+                                {this.props.RESULT.result ? this.getdownloadlink() : null}
                             </form>
                         </div>
                     </div>
@@ -248,12 +245,14 @@ class Downloads extends Component {
 
 
 
-const mapStateToProps = state => ({
-    allvenues: state.venue,
-    customAllProducts: state.products.allproducts,
-    allvenues: state.venue,
-    RESULT: state.Rfid
-});
+const mapStateToProps = state => {
+    return ({
+        allvenues: state.venue,
+        customAllProducts: state.products.allproducts,
+        allvenues: state.venue,
+        RESULT: state.Rfid
+    })
+};
 const mapDispatchToProps = dispatch => ({
     products: v => dispatch(actions.products(v)),
     verifyvenue: v => dispatch(actions.verifyvenue(v)),
