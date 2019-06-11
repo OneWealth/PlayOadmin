@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import actions from "../../../store/Actions/Index";
 import { withRouter } from "react-router";
-import RevnueTable from '../revnuetable';
+import RevenueDetailTable from '../revenuedetailtable';
 
-class Monthly extends Component {
+class MonthlyDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {     
-      allmonthlyrevenue :[],
+      monlthyDetailRevenue :[],
       range:1,
-      daystart : this.props.daystart
+      daystart : this.props.daystart,
+      venueid:0,
     };
   }
 
@@ -23,22 +24,23 @@ class Monthly extends Component {
       });
     }
 
-
     this.props
-      .monthlyrevenue({
+      .monthlydetailrevenue({
         range: this.state.range,
-        daystart: this.state.daystart
+        daystart: this.state.daystart,
+        venueid : this.state.venueid
       })
       .then(() => {      
-        this.setState({allmonthlyrevenue : this.props.allrevenues.revenues});
-        
+        this.setState({monlthyDetailRevenue : this.props.allrevenues.monthlydetailrevenue});
+        console.log(this.props.allrevenues.monthlydetailrevenue);
       });    
   }  
   render() {
 
-    const allrevenue = this.state.allmonthlyrevenue;
+    const allrevenue = this.state.monlthyDetailRevenue;
+console.log(allrevenue);
     return (
-      <RevnueTable revenuedata={{allrevenue}} />
+      <RevenueDetailTable revenuedata={{allrevenue}} />
     );
   }
 }
@@ -49,12 +51,12 @@ const mapStateToProps = state => {
   };
 };
 const mapDispatchToProps = dispatch => ({
-  monthlyrevenue: v => dispatch(actions.monthlyrevenue(v))
+  monthlydetailrevenue: v => dispatch(actions.monthlydetailrevenue(v))
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Monthly)
+  )(MonthlyDetail)
 );

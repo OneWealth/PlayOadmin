@@ -2,7 +2,8 @@ import { handleActions } from "redux-actions";
 
 const INITIAL_STATE = {
   revenues: {},
-  dailyrevenue:{}
+  dailyrevenue:{},
+  monthlydetailrevenue:{}
 };
 const RevenueReducer = handleActions(
   {
@@ -11,7 +12,11 @@ const RevenueReducer = handleActions(
     },
     DAILY_REVENUE: (state, action) => {
       return { ...state,  dailyrevenue: action.payload };
+    },
+    MONTHLY_DETAIL_REVENUE: (state, action) => {
+      return { ...state,  monthlydetailrevenue: action.payload };
     }
+    
   },
   INITIAL_STATE
 );
