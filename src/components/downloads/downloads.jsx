@@ -55,44 +55,12 @@ class Downloads extends Component {
 
 
     show = async (id) => {
-
-        if (document.getElementById("selectone").value == "Year") {
-            document.getElementById("year").style.display = "inline-block";
-            document.getElementById("month").style.display = "none";
-            document.getElementById("startdate").style.display = "none";
-            document.getElementById("enddate").style.display = "none";
-            document.getElementById("day").style.display = "none";
-        }
-
-        else if (document.getElementById("selectone").value == "Month") {
-            document.getElementById("month").style.display = "inline-block";
-            document.getElementById("year").style.display = "inline-block";
-            document.getElementById("startdate").style.display = "none";
-            document.getElementById("enddate").style.display = "none";
-            document.getElementById("day").style.display = "none";
-        }
-
-        else if (document.getElementById("selectone").value == "Date") {
-            document.getElementById("day").style.display = "inline-block";
-            document.getElementById("year").style.display = "none";
-            document.getElementById("month").style.display = "none";
-            document.getElementById("startdate").style.display = "none";
-            document.getElementById("enddate").style.display = "none";
-        }
-        else if (document.getElementById("selectone").value == "Custom") {
-            document.getElementById("year").style.display = "none";
-            document.getElementById("month").style.display = "none";
-            document.getElementById("day").style.display = "none";
-            document.getElementById("startdate").style.display = "inline-block";
-            document.getElementById("enddate").style.display = "inline-block";
-        }
-        else {
-            document.getElementById("year").style.display = "none";
-            document.getElementById("month").style.display = "none";
-            document.getElementById("day").style.display = "none";
-            document.getElementById("startdate").style.display = "none";
-            document.getElementById("enddate").style.display = "none";
-        }
+        var selectedVal = parseInt(document.getElementById("selectone").value);
+        document.getElementById("year").style.display = selectedVal==1 || selectedVal==2? "inline-block":"none";
+        document.getElementById("month").style.display =  selectedVal==1? "inline-block":"none";
+        document.getElementById("startdate").style.display =selectedVal==3? "inline-block":"none";
+        document.getElementById("enddate").style.display = selectedVal==3? "inline-block":"none";
+        document.getElementById("day").style.display = selectedVal==0? "inline-block":"none";
     };
 
 
@@ -164,37 +132,37 @@ class Downloads extends Component {
 
                                         <select className="col-md-3" value={this.state.venueid}
                                             onChange={this.show} id="selectone">
-                                            <option selected>Choose...</option>
-                                            <option value="Year" >Year</option>
-                                            <option value="Month">Month</option>
-                                            <option value="Date">Date</option>
-                                            <option value="Custom">Custom</option>
+                                            <option selected value="-1">Choose...</option>
+                                            <option value="2" >Year</option>
+                                            <option value="1">Month</option>
+                                            <option value="0">Date</option>
+                                            <option value="3">Custom</option>
                                         </select>
 
                                         <select className="col-md-3 offset-md-1" id="year" style={{ display: "none" }}>
                                             <option selected>2019</option>
-                                            <option selected>2020</option>
-                                            <option selected>2021</option>
-                                            <option selected>2022</option>
-                                            <option selected>2023</option>
-                                            <option selected>2024</option>
-                                            <option selected>2025</option>
+                                            <option >2020</option>
+                                            <option >2021</option>
+                                            <option >2022</option>
+                                            <option >2023</option>
+                                            <option >2024</option>
+                                            <option >2025</option>
 
                                         </select>
 
                                         <select className="col-md-3 offset-md-1" id="month" style={{ display: "none" }}>
                                             <option selected>Jan</option>
-                                            <option selected>Feb</option>
-                                            <option selected>Mar</option>
-                                            <option selected>Apr</option>
-                                            <option selected>May</option>
-                                            <option selected>Jun</option>
-                                            <option selected>Jul</option>
-                                            <option selected>Aug</option>
-                                            <option selected>Sep</option>
-                                            <option selected>Oct</option>
-                                            <option selected>Nov</option>
-                                            <option selected>Dec</option>
+                                            <option >Feb</option>
+                                            <option >Mar</option>
+                                            <option >Apr</option>
+                                            <option >May</option>
+                                            <option >Jun</option>
+                                            <option >Jul</option>
+                                            <option >Aug</option>
+                                            <option >Sep</option>
+                                            <option >Oct</option>
+                                            <option >Nov</option>
+                                            <option >Dec</option>
                                         </select>
 
 
