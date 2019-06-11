@@ -35,7 +35,7 @@ class Revenue extends Component {
 
     const todayRevenue = this.state.todayRevenue;
     const monthRevenue = this.state.monthRevenue;
-    console.log("todayRevenue" + todayRevenue);
+    
 
     return (
       <div>

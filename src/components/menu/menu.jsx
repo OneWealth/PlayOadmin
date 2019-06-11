@@ -31,15 +31,17 @@ class Menu extends Component {
                         <Nav.Item>
                             <Nav.Link eventKey="fifth">Packages</Nav.Link>
                         </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="sixth">Downloads</Nav.Link>
-                        </Nav.Item>
+
                         <Nav.Item>
                             <Nav.Link eventKey="seventh">Mode of Payment</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link eventKey="eight">RFID</Nav.Link>
                         </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="sixth">Reports</Nav.Link>
+                        </Nav.Item>
+
                         <Nav.Item>
                             <Nav.Link eventKey="ninth" onClick={this.logout}>
                                 logout
