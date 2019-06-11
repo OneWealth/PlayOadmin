@@ -3,7 +3,9 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config.js";
 
 
+
 const CREATERFID = createAction("CREATERFID");
+const GETREPORT = createAction("GETREPORT");
 export const createRFID = values => dispatch => {
     return axios
         .post(
@@ -30,3 +32,38 @@ export const createRFID = values => dispatch => {
             return Promise.reject();
         });
 };
+
+
+export const getreport = values => dispatch => {
+    console.log(values);
+    return axios
+        .post(
+            BACKEND_URL + "billing/Information/",
+            {
+                venueID: values.venueID,
+                ProductId: values.ProductId,
+                PackageId: values.PackageId,
+                DayStart: values.DayStart,
+                DayEnd: values.DayEnd,
+                Month: values.Month,
+                Year: values.Year,
+                Range: values.Range
+            },
+            {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            }
+        )
+        .then(res => {
+            alert("Report Created Successfull");
+            dispatch(GETREPORT(res.data.items));
+        })
+        .catch(error => {
+            alert(error.data.errorMessage);
+            return Promise.reject();
+        });
+};
+
+
+

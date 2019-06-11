@@ -4,14 +4,11 @@ export default class RevnueTable extends React.PureComponent {
 
     constructor(props) {
         super(props);
-
     }
 
-
-    showrevneuerows = ()=>{
-
+    showrevneuerows = () => {
         const allrevenue = this.props.revenuedata.allrevenue;
-        if(allrevenue === null ||allrevenue === undefined || allrevenue.length === undefined || allrevenue.length === 0) return;
+        if (allrevenue === null || allrevenue === undefined || allrevenue.length === undefined || allrevenue.length === 0) return;
         return allrevenue.map(
             (item, index) => (
                 <tr>
@@ -24,9 +21,6 @@ export default class RevnueTable extends React.PureComponent {
     }
 
     render() {
-
-        
-
         return (
             <table class="table">
                 <thead>
@@ -39,7 +33,6 @@ export default class RevnueTable extends React.PureComponent {
                 <tbody>
                     {
                         this.showrevneuerows()
-                        
                     }
                 </tbody>
             </table>

@@ -1,7 +1,6 @@
 .revenuecard {
     background: #fff;
     border-radius: 2px;
-    height: 300px;
     margin: 1rem;
     position: relative;
 }
@@ -41,4 +40,10 @@ tr td {
 
 .mg-top {
     padding-left: 20px;
+}
+
+
+#date {
+    background-color: #fff;
+    padding: 5px;
 }
