@@ -2,7 +2,8 @@ import { handleActions } from "redux-actions";
 
 const INITIAL_STATE = {
     allproducts: [],
-    mailSent: false
+    mailSent: false,
+    modeofpayment: []
 };
 const ProductReducer = handleActions(
     {
@@ -11,7 +12,10 @@ const ProductReducer = handleActions(
         },
         CREATE_PRODUCT: (state, action) => {
             return { ...state, mailSent: true, ...action.payload };
-        }
+        },
+        MODEOFPAYMENT: (state, action) => {
+            return { ...state, mailSent: true, modeofpayment: action.payload };
+        },
     },
     INITIAL_STATE
 );

@@ -36,20 +36,20 @@ class Product extends Component {
             timeDependentFlag: this.state.timeDependentFlag
         }).then(() => {
             this.clearText();
-        document.getElementById("name").value = "";
-        document.getElementById("description").value = "";
-        document.getElementById("venueID").value = "";
-        return;
+            document.getElementById("name").value = "";
+            document.getElementById("description").value = "";
+            document.getElementById("venueID").value = "";
+            return;
         });
     };
 
     clearText = () => {
         this.setState({
-          name: "",
-          description: "",
-          venueID: ""
+            name: "",
+            description: "",
+            venueID: ""
         });
-      };
+    };
 
     Createproject = async (evt) => {
         evt.preventDefault();
@@ -63,7 +63,7 @@ class Product extends Component {
             // this.state.description = "";
             // this.state.venueID = "";
             // this.props.history.push("");
-            document.getElementById("venuename").innerHTML="";
+            document.getElementById("venuename").innerHTML = "";
             return;
         });
     };
@@ -137,7 +137,7 @@ class Product extends Component {
                 <div className="col-md-12 main-heading">
                     <h2>products</h2>
                 </div>
-                <div className="col-md-7 offset-md-2">
+                <div className="col-md-10">
                     <div className="col-md-12 add">
                         <a href="#" onClick={this.addnew}>+ add Product</a>
                     </div>
@@ -207,7 +207,7 @@ class Product extends Component {
                                     <select className="col-md-12 form-control" value={this.state.venueid}
                                         onChange={evt => {
                                             this.setState({ venueid: evt.target.value });
-                                        }}required>
+                                        }} required>
                                         <option selected>Choose Venue Name </option>
                                         {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
                                             <option value={allvanues.venueID} >{allvanues.name}</option>
@@ -226,7 +226,7 @@ class Product extends Component {
                                         onChange={evt => {
                                             this.setState({ name: evt.target.value });
                                         }}
-                                    required/>
+                                        required />
                                 </div>
                                 <div class="form-group">
                                     <label for="description">description</label>
@@ -239,7 +239,7 @@ class Product extends Component {
                                         onChange={evt => {
                                             this.setState({ description: evt.target.value });
                                         }}
-                                   required />
+                                        required />
                                 </div>
                                 <div class="form-group">
                                     <label for="dependent">

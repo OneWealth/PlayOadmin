@@ -1,0 +1,49 @@
+.revenuecard {
+    background: #fff;
+    border-radius: 2px;
+    margin: 1rem;
+    position: relative;
+}
+
+.table th,
+.table td {
+    border-top: none;
+}
+
+.card-body {
+    padding: 0px;
+    border: none;
+}
+
+.card-header {
+    padding-left: 10px;
+    font-weight: 600;
+}
+
+tr td {
+    border-bottom: 1px solid #f0f0f0;
+    margin-top: 20px;
+}
+
+.card-header,
+.card {
+    border: none;
+}
+
+.table thead th {
+    background-color: #0e2da5;
+    font-size: 16px;
+    margin: 10px 0px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.mg-top {
+    padding-left: 20px;
+}
+
+
+#date {
+    background-color: #fff;
+    padding: 5px;
+}

@@ -4,10 +4,12 @@ import VenueReducer from "./VenueReducer";
 import ProductReducer from "./ProductReducers";
 import PlayOUserReducer from "./PlayOUserReducer";
 import RevenueReducer from "./RevenueReducer";
+import RfidReducer from "./RfidReducer";
 export default combineReducers({
-  auth: AdminAuthReducer,
-  venue: VenueReducer,
-  products: ProductReducer,
-  playouser: PlayOUserReducer,
-  revenue: RevenueReducer
+    auth: AdminAuthReducer,
+    venue: VenueReducer,
+    products: ProductReducer,
+    playouser: PlayOUserReducer,
+    revenue: RevenueReducer,
+    Rfid: RfidReducer
 });

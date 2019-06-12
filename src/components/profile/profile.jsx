@@ -7,22 +7,10 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "admin name",
-            des:
-                "Stay positive and happy. Work hard and don't give up hope. Be open to criticism and keep learning. Surround yourself with happy, warm and genuine people."
+            username: "Mukesh Sharma",
+            emailid: "bhardwaj.mukesh91@gmail.com"
         };
     }
-
-
-    // async  componentDidMount() {
-    //     if (!localStorage.getItem("token")) {
-    //         this.props.history.push({
-    //             pathname: '/',
-    //         });
-    //     }
-
-    // }
-
     render() {
         return (
             <div className="row">
@@ -36,21 +24,10 @@ class Profile extends Component {
                             />
                         </div>
                         <div className="col-md-7">
-                            <h1> {this.state.name} </h1>
-                            <p> {this.state.des}</p>
+                            <h1> Welcome Back <span>{this.state.username} </span></h1>
+                            <p> {this.state.emailid}</p>
                         </div>
-                        <div className="col-md-3">
-                            <ul>
-                                <li>
-                                    <i class="fa fa-envelope" aria-hidden="true" />{" "}
-                                    playo@plauo.com
-                </li>
-                                <li>
-                                    <i class="fa fa-phone" aria-hidden="true" />
-                                    1234567890
-                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             </div>

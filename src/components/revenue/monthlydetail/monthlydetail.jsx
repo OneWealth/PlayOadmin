@@ -2,17 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import actions from "../../../store/Actions/Index";
 import { withRouter } from "react-router";
-import RevnueTable from '../revnuetable';
+import RevenueDetailTable from '../revenuedetailtable';
 
-class Daily extends Component {
+class MonthlyDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            allDailyRevenue: [],
-            range: 0,
-            date: this.props.daystart
+            monlthyDetailRevenue: [],
+            range: 1,
+            daystart: this.props.daystart,
+            venueid: 0,
         };
     }
+
+
 
     async componentDidMount() {
         if (!localStorage.getItem("token")) {
@@ -20,21 +23,24 @@ class Daily extends Component {
                 pathname: "/"
             });
         }
+
         this.props
-            .dailyrevenue({
+            .monthlydetailrevenue({
                 range: this.state.range,
-                daystart: this.state.date
+                daystart: this.state.daystart,
+                venueid: this.state.venueid
             })
             .then(() => {
-                this.setState({ allDailyRevenue: this.props.allrevenues.dailyrevenue });
+                this.setState({ monlthyDetailRevenue: this.props.allrevenues.monthlydetailrevenue });
+                console.log(this.props.allrevenues.monthlydetailrevenue);
             });
     }
     render() {
 
-        const allrevenue = this.state.allDailyRevenue;
-
+        const allrevenue = this.state.monlthyDetailRevenue;
+        console.log(allrevenue);
         return (
-            <RevnueTable revenuedata={{ allrevenue }} />
+            <RevenueDetailTable revenuedata={{ allrevenue }} />
         );
     }
 }
@@ -45,12 +51,12 @@ const mapStateToProps = state => {
     };
 };
 const mapDispatchToProps = dispatch => ({
-    dailyrevenue: v => dispatch(actions.dailyrevenue(v))
+    monthlydetailrevenue: v => dispatch(actions.monthlydetailrevenue(v))
 });
 
 export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    )(Daily)
+    )(MonthlyDetail)
 );

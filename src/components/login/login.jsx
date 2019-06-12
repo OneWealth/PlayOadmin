@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-
 import "./login.css";
-
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
@@ -37,7 +35,6 @@ class AdminLogin extends Component {
                 })
                 .then(() => {
                     this.props.history.push("/profile");
-
                     return;
                 });
             return;
@@ -58,30 +55,28 @@ class AdminLogin extends Component {
         return (
             <div className="row">
                 <div className="col-md-12 admin">
-                    <div className="circle" />
-                    <div className="row main">
-                        <div className="col-md-4 adminlogin">
+                    <div className="row main" >
+                        <div className="col-md-4 adminlogin" style={{ paddingBottom: "50px" }}>
                             <div className="row">
                                 <div className="col-md-12 logo">
-                                    <h1>playo admin</h1>
+                                    <h1>PlayO Admin</h1>
                                 </div>
-                                <div className="col-md-12 logheading">
-                                    <h4>sign in</h4>
+                                <div className="col-md-12 logheading" style={{ marginTop: "20px" }}>
                                     <p>
                                         Enter your email address and password to access admin panel.
-                  </p>
+                                    </p>
                                 </div>
-                                <div className="col-md-12">
-                                    <form onSubmit={this.onSubmit}>
+                                <div className="col-md-12" >
+                                    <form onSubmit={this.onSubmit} >
                                         <div className="form-group col-md-12">
-                                            <label>email id</label>
+                                            <label>Enter UserName</label>
                                             <input
                                                 type="email"
                                                 value={this.state.username}
                                                 onChange={evt => {
                                                     this.setState({ username: evt.target.value });
                                                 }}
-                                                placeholder="Enter Username"
+                                                placeholder="Enter UserName"
                                                 className="form-control"
                                                 id="username"
                                             />
@@ -112,17 +107,13 @@ class AdminLogin extends Component {
                                                 id="RequestedAt"
                                                 disabled
                                             />
-
-                                            {/* <label className="text-danger" id="passworderror"></label> */}
                                         </div>
                                         <p id="emailerror" className="text-danger" />
-                                        <button className="btn btn-block col-md-3" type="submit">
+                                        <button className="btn btn-block col-md-3" type="submit" >
                                             login
-                    </button>
+                                        </button>
 
-                                        <div className="col-md-12 forgot">
-                                            <a href="#">forgot password?</a>
-                                        </div>
+
                                     </form>
                                 </div>
                             </div>

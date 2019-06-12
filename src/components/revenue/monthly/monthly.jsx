@@ -10,8 +10,7 @@ class Monthly extends Component {
     this.state = {     
       allmonthlyrevenue :[],
       range:1,
-      month:6,
-      year:2019
+      daystart : this.props.daystart
     };
   }
 
@@ -23,23 +22,21 @@ class Monthly extends Component {
         pathname: "/"
       });
     }
-console.log('hello');
+
 
     this.props
       .monthlyrevenue({
         range: this.state.range,
-        month: this.state.month,
-        year: this.state.year
+        daystart: this.state.daystart
       })
       .then(() => {      
         this.setState({allmonthlyrevenue : this.props.allrevenues.revenues});
-        console.log(this.props.allrevenues.revenues);
+        
       });    
   }  
   render() {
 
     const allrevenue = this.state.allmonthlyrevenue;
-console.log(allrevenue);
     return (
       <RevnueTable revenuedata={{allrevenue}} />
     );

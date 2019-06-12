@@ -1,14 +1,20 @@
 import { handleActions } from "redux-actions";
 
 const INITIAL_STATE = {
-    zxc: "asds",
-    mailSent: false
+    modeofpayment: [],
+    rfid: []
 };
 const PlayOUserReducer = handleActions(
     {
         PLAYO_USER: (state, action) => {
-            return { ...state, mailSent: true, ...action.payload };
-        }
+            return { ...state, ...action.payload };
+        },
+        MODEOFPAYMENT: (state, action) => {
+            return { ...state, modeofpayment: action.payload };
+        },
+        RFID: (state, action) => {
+            return { ...state, rfid: action.payload };
+        },
     },
     INITIAL_STATE
 );
