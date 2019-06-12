@@ -149,7 +149,7 @@ class Downloads extends Component {
                                     <div className="row">
                                         <label className="col-md-12">Filter by Year/Month/Day</label>
 
-                                        <select className="col-md-3" value={this.state.Range}
+                                        <select className="col-md-12" value={this.state.Range}
                                             onChange={this.show} id="selectone">
                                             <option selected value="-1">Choose...</option>
                                             <option value="2" >Year</option>
@@ -158,7 +158,7 @@ class Downloads extends Component {
                                             <option value="3">Custom</option>
                                         </select>
 
-                                        <select className="col-md-3 offset-md-1" id="year" style={{ display: "none" }}
+                                        <select className="col-md-5" id="year" style={{ display: "none", marginTop: "10px"  }}
                                             value={this.state.Year} onChange={(e) => this.setState({ Year: e.target.value })}
 
                                         >
@@ -173,7 +173,7 @@ class Downloads extends Component {
 
                                         </select>
 
-                                        <select className="col-md-3 offset-md-1" id="month" style={{ display: "none" }}
+                                        <select className="col-md-5 offset-md-1" id="month" style={{ display: "none", marginTop: "10px"  }}
                                             value={this.state.Month} onChange={(e) => this.setState({ Month: e.target.value })}
                                         >
                                             <option selected value="0">Select Month</option>
@@ -200,7 +200,7 @@ class Downloads extends Component {
                                                 this.setState({ DayStart: evt.target.value });
                                             }}
                                             id="day"
-                                            required style={{ display: "none", marginTop: "10px" }} />
+                                            required style={{ display: "none", marginTop: "10px", marginTop: "10px"  }} />
 
 
 

@@ -18,7 +18,7 @@ class AdminLogin extends Component {
     onSubmit = evt => {
         evt.preventDefault();
         if (this.state.username === "") {
-            document.getElementById("usernamerror").innerHTML = "Email Required";
+            document.getElementById("usernamerror").innerHTML = "Username Required";
             document.getElementById("username").style.borderColor = "red";
         } else if (this.state.password === "") {
             document.getElementById("usernamerror").innerHTML = "";
@@ -63,7 +63,7 @@ class AdminLogin extends Component {
                                 </div>
                                 <div className="col-md-12 logheading" style={{ marginTop: "20px" }}>
                                     <p>
-                                        Enter your email address and password to access admin panel.
+                                        Enter your Username and password to access admin panel.
                                     </p>
                                 </div>
                                 <div className="col-md-12" >
@@ -71,7 +71,7 @@ class AdminLogin extends Component {
                                         <div className="form-group col-md-12">
                                             <label>Enter UserName</label>
                                             <input
-                                                type="email"
+                                                type="text"
                                                 value={this.state.username}
                                                 onChange={evt => {
                                                     this.setState({ username: evt.target.value });
