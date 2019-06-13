@@ -1,0 +1,23 @@
+.sidebar {
+  background-color: #0e2da5;
+  height: 100vh;
+}
+.sidebar ul li a {
+  padding: 15px 0px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+}
+.sidebar ul li {
+  list-style: none;
+}
+.sidebar ul {
+  margin-top: 40px;
+}
+.sidebar ul li a:hover {
+  text-decoration: none;
+}
+.outputonclick {
+  padding: 0px 50px;
+}
