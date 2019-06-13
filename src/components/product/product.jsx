@@ -84,21 +84,21 @@ class Product extends Component {
     };
     onClick = async (evt) => {
         evt.preventDefault();
-        document.getElementById("product").style.display = "block";
+        document.getElementById("editproduct").style.display = "block";
     }
     show = async (Allproducts) => {
-        console.log(Allproducts);
+
         document.getElementById("venue").style.display = "block";
     };
     addnew = async (allvanues) => {
-        console.log(allvanues);
+
         document.getElementById("newvenue").style.display = "block";
         document.getElementById("venue").style.display = "none";
     };
     show = async (Allproducts) => {
-        console.log(Allproducts);
-        document.getElementById("product").style.display = "block";
+        document.getElementById("editproduct").style.display = "block";
         document.getElementById("createproduct").style.display = "none";
+        document.getElementById("productapiresult").style.display = "none";
         document.getElementById("venueid").value = Allproducts.productID || "";
         this.setState({ productID: Allproducts.productID })
         this.setState({ name: Allproducts.name })
@@ -115,15 +115,22 @@ class Product extends Component {
     };
     addnew = async () => {
         document.getElementById("createproduct").style.display = "block";
-        document.getElementById("product").style.display = "none";
+        document.getElementById("editproduct").style.display = "none";
         document.getElementById("productapiresult").style.display = "none";
         this.clearText();
     };
-    unshowproduct = async () => {
+    unshoweditproduct = async () => {
         document.getElementById("createproduct").style.display = "none";
-        document.getElementById("product").style.display = "none";
+        document.getElementById("editproduct").style.display = "none";
         document.getElementById("productapiresult").style.display = "inline-block";
     }
+
+    unshowproducts = async () => {
+        document.getElementById("createproduct").style.display = "none";
+        document.getElementById("editproduct").style.display = "none";
+        document.getElementById("productapiresult").style.display = "inline-block";
+    }
+
 
     render() {
         let style = {
@@ -253,9 +260,9 @@ class Product extends Component {
                                 <button type="submit" class="btn">
                                     add
                                  </button>
-                                <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
+                                <a style={{ float: "right" }} onClick={this.unshowproducts}>
                                     Cancel
-                                </button>
+                                </a>
                             </form>
                         </div>
                         {/* Create Product Form */}
@@ -264,7 +271,7 @@ class Product extends Component {
 
 
                         {/* Edit Product Form */}
-                        <div className="col-md-12 venuefrm" id="product" style={{ display: "none" }}>
+                        <div className="col-md-12 venuefrm" id="editproduct" style={{ display: "none" }}>
                             <form className="frm" onSubmit={this.updateproduct}>
                                 <h2>Update product</h2>
                                 <div class="form-group">
@@ -317,9 +324,9 @@ class Product extends Component {
                                 <button type="submit" class="btn" >
                                     add
                                  </button>
-                                <button class="btn" style={{ float: "right" }} onClick={this.unshoweditproduct}>
+                                <a style={{ float: "right" }} onClick={this.unshoweditproduct}>
                                     Cancel
-                                </button>
+                                </a>
                             </form>
                         </div>
                         {/* Edit Product Form */}

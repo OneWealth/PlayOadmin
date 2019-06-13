@@ -80,7 +80,7 @@ class Downloads extends Component {
 
 
     getdownloadlink = () => {
-        if (this.props.RESULT.result.length == 0) {
+        if (this.props.RESULT.result.length >= 0) {
             return (
                 ""
             )
@@ -158,7 +158,7 @@ class Downloads extends Component {
                                             <option value="3">Custom</option>
                                         </select>
 
-                                        <select className="col-md-5" id="year" style={{ display: "none", marginTop: "10px"  }}
+                                        <select className="col-md-5" id="year" style={{ display: "none", marginTop: "10px" }}
                                             value={this.state.Year} onChange={(e) => this.setState({ Year: e.target.value })}
 
                                         >
@@ -173,7 +173,7 @@ class Downloads extends Component {
 
                                         </select>
 
-                                        <select className="col-md-5 offset-md-1" id="month" style={{ display: "none", marginTop: "10px"  }}
+                                        <select className="col-md-5 offset-md-1" id="month" style={{ display: "none", marginTop: "10px" }}
                                             value={this.state.Month} onChange={(e) => this.setState({ Month: e.target.value })}
                                         >
                                             <option selected value="0">Select Month</option>
@@ -200,7 +200,7 @@ class Downloads extends Component {
                                                 this.setState({ DayStart: evt.target.value });
                                             }}
                                             id="day"
-                                            required style={{ display: "none", marginTop: "10px", marginTop: "10px"  }} />
+                                            required style={{ display: "none", marginTop: "10px", marginTop: "10px" }} />
 
 
 
