@@ -3,6 +3,7 @@ import "./product.css";
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
+import SideBar from "../sidebar/sidebar";
 import { async } from "q";
 
 
@@ -141,18 +142,25 @@ class Product extends Component {
         }
         return (
             <div className="row">
-                <div className="col-md-12 main-heading">
-                    <h2>products</h2>
-                </div>
-                <div className="col-md-10">
-                    <div className="col-md-12 add">
-                        <a href="#" onClick={this.addnew}>+ add Product</a>
-                    </div>
-                    <form onSubmit={this.getproducts}>
-                        <div className="row venuetbl">
-                            <div className="col-md-7">
-                                <div className="row sl-3">
-                                    <select className="col-md-12" value={this.state.venueid}
+                <div className="col-md-12">
+                    <div className="row">
+                        <div className="col-md-2">
+                            <SideBar />
+                        </div>
+                        <div className="col-md-10 outputonclick">
+                            <div className="row">
+                            <div className="col-md-12 main-heading">
+                                <h2>products</h2>
+                             </div>
+                             <div className="col-md-12 add">
+                                <a href="#" onClick={this.addnew}>+ add Product</a>
+                             </div>
+                             <div className="col-md-12">
+                             <form onSubmit={this.getproducts}>
+                                 <div className="row venuetbl">
+                                    <div className="col-md-7">
+                                <       div className="row sl-3">
+                                        <select className="col-md-12" value={this.state.venueid}
                                         onChange={evt => {
                                             this.setState({ venueid: evt.target.value });
                                         }}>
@@ -171,9 +179,9 @@ class Product extends Component {
                         </div>
                     </form>
 
-                    <div className="row">
-
-                        <div className="col-md-12 venuetbl" style={style} id="productapiresult">
+                             </div>
+                         {/* Create Product Form */}
+                             <div className="col-md-12 venuetbl" style={style} id="productapiresult">
                             <table className="table tbl">
                                 <thead>
                                     <tr>
@@ -206,6 +214,7 @@ class Product extends Component {
 
 
                         {/* Create Product Form */}
+
                         <div className="col-md-12 venuefrm" id="createproduct" style={{ display: "none" }}>
                             <form className="frm" onSubmit={this.Createproject}>
                                 <h2>new product</h2>
@@ -260,18 +269,15 @@ class Product extends Component {
                                 <button type="submit" class="btn">
                                     add
                                  </button>
-                                <a style={{ float: "right" }} onClick={this.unshowproducts}>
+                                <a style={{ float: "right" }} onClick={this.unshowproducts} className="butn btn">
                                     Cancel
                                 </a>
                             </form>
                         </div>
                         {/* Create Product Form */}
 
-
-
-
-                        {/* Edit Product Form */}
-                        <div className="col-md-12 venuefrm" id="editproduct" style={{ display: "none" }}>
+                           {/* Edit Product Form */}
+                           <div className="col-md-12 venuefrm" id="editproduct" style={{ display: "none" }}>
                             <form className="frm" onSubmit={this.updateproduct}>
                                 <h2>Update product</h2>
                                 <div class="form-group">
@@ -322,20 +328,20 @@ class Product extends Component {
                                 </div>
 
                                 <button type="submit" class="btn" >
-                                    add
+                                    update
                                  </button>
-                                <a style={{ float: "right" }} onClick={this.unshoweditproduct}>
+                                <a style={{ float: "right" }} onClick={this.unshoweditproduct} className="butn btn">
                                     Cancel
                                 </a>
                             </form>
                         </div>
                         {/* Edit Product Form */}
-
-
-
-
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
+                
             </div>
         );
     }

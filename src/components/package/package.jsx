@@ -4,6 +4,7 @@ import "./package.css";
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
+import SideBar from "../sidebar/sidebar";
 
 
 class PackageContent extends Component {
@@ -117,7 +118,8 @@ class PackageContent extends Component {
     };
     showupdate = async (p) => {
         document.getElementById("updatepackages").style.display = "block";
-        document.getElementById("packages").style.display = "none";
+        document.getElementById("newpackages").style.display = "none";
+        document.getElementById("packagesapiresult").style.display = "none";
         this.setState({ PackageID: p.packageID })
         this.setState({ name: p.name })
         this.setState({ description: p.description })
@@ -125,16 +127,23 @@ class PackageContent extends Component {
         this.setState({ money: p.money })
     };
     show = async (evt) => {
-        document.getElementById("packages").style.display = "block";
+        document.getElementById("newpackages").style.display = "block";
         document.getElementById("updatepackages").style.display = "none";
         document.getElementById("packagesapiresult").style.display = "none";
         this.clearText();
     };
     unshowproduct = async () => {
-        document.getElementById("packages").style.display = "none";
+        document.getElementById("newpackages").style.display = "none";
         document.getElementById("updatepackages").style.display = "none";
-        document.getElementById("packagesapiresult").style.display = "inline-block";
+        document.getElementById("packagesapiresult").style.display = "block";
     }
+
+    // deletepackage = async (p) => {
+    //     this.props.deletepackages({
+    //         id : p.packageID,    
+    //     })   
+    // };
+
 
     render() {
         console.log("Here ", this.props.customAllProducts);
@@ -152,13 +161,21 @@ class PackageContent extends Component {
 
         return (
             <div className="row">
-                <div className="col-md-12 main-heading">
-                    <h2>packages</h2>
-                </div>
-                <div className="col-md-10 ">
-                    <div className="col-md-12 add">
-                        <a href="#" onClick={this.show}>+ add package</a>
-                    </div>
+                <div className="col-md-12">
+                    <div className="row">
+                        <div className="col-md-2">
+                            <SideBar />
+                        </div>
+                        <div className="col-md-10 outputonclick">
+                            <div className="row">
+                            <div className="col-md-12 main-heading">
+                                <h2>packages</h2>
+                            </div>
+                            <div className="col-md-12 add">
+                                <a href="#" onClick={this.show}>+ add package</a>
+                            </div>
+                            <div className="col-md-12">
+                                
                     <form >
                         <div className="row venuetbl">
                             <div className="col-md-4">
@@ -192,143 +209,133 @@ class PackageContent extends Component {
                             </div>
                         </div>
                     </form>
+                                    </div>
 
+                                    <div className="col-md-12 venuetbl" style={this.state.showPackageTable} id="packagesapiresult">
 
-                    {/* Package Table */}
-                    <div className="row">
+                                    <table className="table tbl">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>description</th>
+                                                <th>duration</th>
+                                                <th>money</th>
+                                                <th>Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {packages.map((p, index) => (
+                                                <tr>
+                                                    <td>{p.packageID}</td>
+                                                    <td>{p.name}</td>
+                                                    <td>{p.description}</td>
+                                                    <td>{p.duration}</td>
+                                                    <td>{p.money}</td>
+                                                    <td>
+                                                        <a href="#" title="Update/Edit">
+                                                            <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.showupdate(p)} />
+                                                        </a>
+                                                        <a href="#" title="Delete">
+                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.deletepackage(p)} />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                    {/* Package Table */}
+                                        {/* Create Package Form */}
 
-                        <div className="col-md-12 venuetbl" style={this.state.showPackageTable} id="packagesapiresult">
+                                <div className="col-md-12 venuefrm" id="newpackages" style={{ display: "none" }}  >
+                                    <form className="frm" onSubmit={this.createpackage}>
+                                        <h2>new package</h2>
+                                        <div className="row sl-3">
+                                            <label className="col-md-12">Select venue</label>
+                                            <select className="col-md-10" value={this.state.venueid}
+                                                // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
+                                                onChange={this.handleChange.bind(this)} required>
+                                                <option >Choose Venue Name </option>
+                                                {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                                    < option value={allvanues.venueID} > {allvanues.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="row sl-3">
+                                            <label className="col-md-12">Select Product</label>
+                                            <select id="choose-packages" className="col-md-10" value={this.state.ProductID} onChange={evt => {
+                                                this.setState({ ProductID: evt.target.value });
+                                            }} required >
+                                                <option >Choose Packages Name </option>
+                                                {this.props.customAllProducts.map((Allproducts, index) => (
+                                                    <option value={Allproducts.productID}>{Allproducts.name}  ---- {Allproducts.description}</option>
+                                                ))}
 
-                            <table className="table tbl">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>description</th>
-                                        <th>duration</th>
-                                        <th>money</th>
-                                        <th>Link</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {packages.map((p, index) => (
-                                        <tr>
-                                            <td>{p.packageID}</td>
-                                            <td>{p.name}</td>
-                                            <td>{p.description}</td>
-                                            <td>{p.duration}</td>
-                                            <td>{p.money}</td>
-                                            <td>
-                                                <a href="#" title="Update/Edit">
-                                                    <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.showupdate(p)} />
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    {/* Package Table */}
-
-
-
-                    {/* Create Package Form */}
-                    <div className="row" id="packages" style={{ display: "none" }}>
-                        <div className="col-md-12 venuefrm"  >
-                            <form className="frm" onSubmit={this.createpackage}>
-                                <h2>new package</h2>
-                                <div className="row sl-3">
-                                    <label className="col-md-12">Select venue</label>
-                                    <select className="col-md-10" value={this.state.venueid}
-                                        // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
-                                        onChange={this.handleChange.bind(this)} required>
-                                        <option >Choose Venue Name </option>
-                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                            < option value={allvanues.venueID} > {allvanues.name}</option>
-                                        ))}
-                                    </select>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">name</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="venuename"
+                                                placeholder="package name"
+                                                value={this.state.name} onChange={evt => {
+                                                    this.setState({ name: evt.target.value });
+                                                }}
+                                                required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">description</label>
+                                            <textarea
+                                                type="address"
+                                                class="form-control"
+                                                id="address"
+                                                placeholder="description"
+                                                value={this.state.description} onChange={evt => {
+                                                    this.setState({ description: evt.target.value });
+                                                }}
+                                                required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="duration">time duration</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="contact"
+                                                placeholder="duration"
+                                                value={this.state.duration} onChange={evt => {
+                                                    this.setState({ duration: evt.target.value });
+                                                }}
+                                                required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="money">money</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="contact"
+                                                placeholder="money"
+                                                value={this.state.money} onChange={evt => {
+                                                    this.setState({ money: evt.target.value });
+                                                }}
+                                                required />
+                                        </div>
+                                        <button type="submit" class="btn">
+                                            add
+                                        </button>
+                                        <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
+                                            Cancel
+                                        </button>
+                                    </form>
                                 </div>
-                                <div className="row sl-3">
-                                    <label className="col-md-12">Select Product</label>
-                                    <select id="choose-packages" className="col-md-10" value={this.state.ProductID} onChange={evt => {
-                                        this.setState({ ProductID: evt.target.value });
-                                    }} required >
-                                        <option >Choose Packages Name </option>
-                                        {this.props.customAllProducts.map((Allproducts, index) => (
-                                            <option value={Allproducts.productID}>{Allproducts.name}  ---- {Allproducts.description}</option>
-                                        ))}
+                                    {/* Create Package Form */}
 
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">name</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="venuename"
-                                        placeholder="package name"
-                                        value={this.state.name} onChange={evt => {
-                                            this.setState({ name: evt.target.value });
-                                        }}
-                                        required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">description</label>
-                                    <textarea
-                                        type="address"
-                                        class="form-control"
-                                        id="address"
-                                        placeholder="description"
-                                        value={this.state.description} onChange={evt => {
-                                            this.setState({ description: evt.target.value });
-                                        }}
-                                        required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="duration">time duration</label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="contact"
-                                        placeholder="duration"
-                                        value={this.state.duration} onChange={evt => {
-                                            this.setState({ duration: evt.target.value });
-                                        }}
-                                        required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="money">money</label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="contact"
-                                        placeholder="money"
-                                        value={this.state.money} onChange={evt => {
-                                            this.setState({ money: evt.target.value });
-                                        }}
-                                        required />
-                                </div>
-                                <button type="submit" class="btn">
-                                    add
-                                </button>
-                                <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
-                                    Cancel
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    {/* Create Package Form */}
-
-
-
-
-
-
-
-                    {/* Update Package Form */}
-                    <div className="row" id="updatepackages" style={{ display: "none" }}>
-                        <div className="col-md-12 venuefrm"  >
+                                    
+                            {/* Update Package Form */}
+                   
+                        <div className="col-md-12 venuefrm" id="updatepackages" style={{ display: "none" }} >
                             <form className="frm" onSubmit={this.updatepackage}>
                                 <h2>Update package</h2>
 
@@ -392,20 +399,20 @@ class PackageContent extends Component {
                                     />
                                 </div>
                                 <button type="submit" class="btn">
-                                    add
+                                    update
                                 </button>
                                 <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
                                     Cancel
                                 </button>
                             </form>
                         </div>
-                    </div>
+                
                     {/* Update Package Form */}
-
-
-
-
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         );
     }
@@ -423,7 +430,8 @@ const mapDispatchToProps = dispatch => ({
     createpackage: v => dispatch(actions.createpackage(v)),
     updatepackagenew: v => dispatch(actions.updatepackagenew(v)),
     products: v => dispatch(actions.products(v)),
-    verifyvenue: v => dispatch(actions.verifyvenue(v))
+    verifyvenue: v => dispatch(actions.verifyvenue(v)),
+    deletepackages: v => dispatch(actions.deletepackages(v))
 });
 
 export default withRouter(

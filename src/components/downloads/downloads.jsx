@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 import { CSVLink, CSVDownload } from "react-csv";
+import SideBar from "../sidebar/sidebar";
 import { async } from "q";
 class Downloads extends Component {
     constructor(props) {
@@ -98,12 +99,17 @@ class Downloads extends Component {
         }
 
         return (
-            <div className="row mg-top">
-                <div className="col-md-12 main-heading">
-                    <h2>Reports</h2>
-                </div>
-                <div className="col-md-6 ">
+            <div className="row">
+                <div className="col-md-12">
                     <div className="row">
+                        <div className="col-md-2">
+                            <SideBar />
+                        </div>
+                        <div className="col-md-10 outputonclick">
+                        <div className="col-md-12 main-heading">
+                             <h2>Reports</h2>
+                        </div>
+
                         <div className="col-md-12 venuefrm">
                             <form className="frm" >
                                 <div className="row sl-3">
@@ -233,6 +239,8 @@ class Downloads extends Component {
 
                                 {this.props.RESULT.result ? this.getdownloadlink() : null}
                             </form>
+                        </div>
+
                         </div>
                     </div>
                 </div>
