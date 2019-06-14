@@ -73,7 +73,13 @@ class AddUser extends Component {
     document.getElementById("apiresult").style.display = "inline-table";
     document.getElementById("addnew").style.display = "none";
   };
-
+  confirmPass() {
+    var pass = document.getElementById("password").value;
+    var confPass = document.getElementById("contact").value;
+    if (pass != confPass) {
+      alert("Wrong confirm password !");
+    }
+  }
   render() {
     return (
       <div className="row">
@@ -230,6 +236,7 @@ class AddUser extends Component {
                         onChange={evt => {
                           this.setState({ confirmpassword: evt.target.value });
                         }}
+                        onBlur={this.confirmPass}
                         required
                       />
                     </div>

@@ -23,7 +23,7 @@ class PackageContent extends Component {
             showPackageTable: {
                 display: 'none',
             },
-            packageID: "",
+            packageID: ""
         };
     }
 
@@ -138,13 +138,13 @@ class PackageContent extends Component {
         document.getElementById("packagesapiresult").style.display = "block";
     }
 
-    // deletepackage = async (p) => {
-    //     this.props.deletepackages({
-    //         id : p.packageID,    
-    //     })   
-    // };
+    deletepackage = (pkgIndex) => {
+        
+    };
 
 
+
+    
     render() {
         console.log("Here ", this.props.customAllProducts);
 
@@ -237,7 +237,7 @@ class PackageContent extends Component {
                                                             <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.showupdate(p)} />
                                                         </a>
                                                         <a href="#" title="Delete">
-                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.deletepackage(p)} />
+                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.deletepackage(index)} />
                                                         </a>
                                                     </td>
                                                 </tr>

@@ -218,7 +218,7 @@ class Product extends Component {
                         <div className="col-md-12 venuefrm" id="createproduct" style={{ display: "none" }}>
                             <form className="frm" onSubmit={this.Createproject}>
                                 <h2>new product</h2>
-                                <div className="form-group">
+                                <div className="form-group sl-3">
                                     <label>Select Venue</label>
                                     <select className="col-md-12 form-control" value={this.state.venueid}
                                         onChange={evt => {

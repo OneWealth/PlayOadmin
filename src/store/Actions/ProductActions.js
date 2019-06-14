@@ -104,8 +104,11 @@ export const createpackage = values => dispatch => {
     .then(res => {
       dispatch(CREATE_PACKAGE(res.data));
       //document.getElementById("packages").style.display = "none";
+      alert("Created Successfully");
+      window.location.reload();
     })
     .catch(error => {
+      alert("Something Went Wrong");
       return Promise.reject();
     });
 };
@@ -130,24 +133,27 @@ export const updatepackagenew = values => dispatch => {
     .then(res => {
       dispatch(UPDATE_PACKAGE(res.data));
       // document.getElementById("updatepackages").style.display = "none";
+      alert("Created Updated");
+      window.location.reload();
     })
     .catch(error => {
+      alert("Something Went Wrong");
       return Promise.reject();
     });
 };
 
-export const deletepackages = values => dispatch => {
-  alert(values.id);
-  return axios
-    .delete(BACKEND_URL + "tableapi/Packages/" + values.id, {
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    })
-    .then(res => {
-      dispatch(DELETE_PACKAGE(res.data));
-    })
-    .catch(error => {
-      return Promise.reject();
-    });
-};
+// export const deletepackages = values => dispatch => {
+//   alert(values.id);
+//   return axios
+//     .delete(BACKEND_URL + "tableapi/Packages/" + values.id, {
+//       headers: {
+//         Authorization: localStorage.getItem("token")
+//       }
+//     })
+//     .then(res => {
+//       dispatch(DELETE_PACKAGE(res.data));
+//     })
+//     .catch(error => {
+//       return Promise.reject();
+//     });
+// };
