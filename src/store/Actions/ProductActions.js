@@ -93,7 +93,8 @@ export const createpackage = values => dispatch => {
         Description: values.Description,
         Duration: values.Duration,
         Money: values.Money,
-        ProductID: values.ProductID
+        ProductID: values.ProductID,
+        isActive: "true"
       },
       {
         headers: {
