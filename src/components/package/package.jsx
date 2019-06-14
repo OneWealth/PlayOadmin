@@ -138,10 +138,10 @@ class PackageContent extends Component {
         document.getElementById("packagesapiresult").style.display = "block";
     }
 
-    deletepackage = (pkgIndex) => {
-        
-    };
-
+    // deleteRow(r) {
+    //     var i = r.parentNode.parentNode.rowIndex;
+    //     document.getElementById("packagesapiresult").deleteRow(i);
+    //   }
 
 
     

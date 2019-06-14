@@ -22,6 +22,7 @@ class Daily extends Component {
     }
     this.fetchRevenue();
   }
+
   fetchRevenue = () => {
     this.props
       .dailyrevenue({

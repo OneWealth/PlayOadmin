@@ -41,27 +41,34 @@ class AddUser extends Component {
 
   onSubmit = async evt => {
     evt.preventDefault();
-    await this.props
-      .playosuer({
-        Username: this.state.username,
-        Password: this.state.password,
-        Email: this.state.emailid,
-        VenueId: this.state.venueid
-      })
-      .then(() => {
-        this.setState({
-          username: "",
-          password: "",
-          emailid: "",
-          confirmpassword: ""
-        });
 
-        document.getElementById("username").value = "";
-        document.getElementById("password").value = "";
-        document.getElementById("contact").value = "";
-        document.getElementById("email").value = "";
-        return;
-      });
+    var pass = document.getElementById("password").value;
+    var confPass = document.getElementById("contact").value;
+    if (pass != confPass) {
+      alert("Wrong confirm password !");
+    } else {
+      await this.props
+        .playosuer({
+          Username: this.state.username,
+          Password: this.state.password,
+          Email: this.state.emailid,
+          VenueId: this.state.venueid
+        })
+        .then(() => {
+          this.setState({
+            username: "",
+            password: "",
+            emailid: "",
+            confirmpassword: ""
+          });
+
+          document.getElementById("username").value = "";
+          document.getElementById("password").value = "";
+          document.getElementById("contact").value = "";
+          document.getElementById("email").value = "";
+          return;
+        });
+    }
   };
 
   show = async evt => {
@@ -73,13 +80,7 @@ class AddUser extends Component {
     document.getElementById("apiresult").style.display = "inline-table";
     document.getElementById("addnew").style.display = "none";
   };
-  confirmPass() {
-    var pass = document.getElementById("password").value;
-    var confPass = document.getElementById("contact").value;
-    if (pass != confPass) {
-      alert("Wrong confirm password !");
-    }
-  }
+  confirmPass() {}
   render() {
     return (
       <div className="row">
