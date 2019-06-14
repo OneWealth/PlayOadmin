@@ -236,9 +236,9 @@ class PackageContent extends Component {
                                                         <a href="#" title="Update/Edit">
                                                             <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.showupdate(p)} />
                                                         </a>
-                                                        <a href="#" title="Delete">
+                                                        {/* <a href="#" title="Delete">
                                                             <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.deleteRow(this)} />
-                                                        </a>
+                                                        </a> */}
                                                     </td>
                                                 </tr>
                                             ))}

@@ -24,6 +24,18 @@ class AddUser extends Component {
         pathname: "/"
       });
     }
+    await this.props.verifyvenue();
+    let allvanues = [];
+    for (var i = 0; i < allvanues; i++) {
+      this.setState({ venueID: this.props.allvenues.vanues.items[i].venueID });
+      this.setState({ name: this.props.allvenues.vanues.items[i].name });
+      this.setState({
+        adderess: this.props.allvenues.vanues.items[i].adderess
+      });
+      this.setState({
+        contactNcr: this.props.allvenues.vanues.items[i].contactNbr
+      });
+    }
     //console.log(this.props.alluser.getuser.items);
     let allusers = [];
     for (var i = 0; i < allusers; i++) {}

@@ -200,7 +200,7 @@ class Downloads extends Component {
 
                                         <input
                                             type="date"
-                                            class="form-control col-md-12 "
+                                            className="form-control col-md-12 small"
                                             placeholder="Choose Date"
                                             value={this.state.DayStart} onChange={evt => {
                                                 this.setState({ DayStart: evt.target.value });
@@ -208,28 +208,32 @@ class Downloads extends Component {
                                             id="day"
                                             required style={{ display: "none", marginTop: "10px", marginTop: "10px" }} />
 
-
-
+                                        
+                                        <div className="startdate col-md-12" id="startdate" style={{ display: "none", marginTop: "10px" }}>
+                                            <label>Start Date</label>
                                         <input
                                             type="date"
-                                            class="form-control col-md-12 "
+                                            className="form-control col-md-12 small"
                                             placeholder="Start Date"
                                             value={this.state.DayStart} onChange={evt => {
                                                 this.setState({ DayStart: evt.target.value });
                                             }}
-                                            id="startdate"
-                                            required style={{ display: "none", marginTop: "10px" }} />
-
-
+                                            id=""
+                                            required  />
+                                        </div>
+                                     
+                                        <div className="enddate col-md-12" id="enddate" style={{ display: "none", marginTop: "10px" }}>
+                                            <label>End Date</label>
                                         <input
                                             type="date"
-                                            class="form-control col-md-12"
+                                            className="form-control col-md-12 small"
                                             placeholder="End Date"
                                             value={this.state.DayEnd} onChange={evt => {
                                                 this.setState({ DayEnd: evt.target.value });
                                             }}
-                                            id="enddate"
-                                            required style={{ display: "none", marginTop: "10px" }} />
+                                            id=""
+                                            required />
+                                            </div>
                                     </div>
                                 </div>
 

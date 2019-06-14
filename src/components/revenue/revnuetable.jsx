@@ -36,6 +36,17 @@ export default class RevnueTable extends React.PureComponent {
   //   ));
   // };
 
+  async componentDidMount() {
+    if (!localStorage.getItem("token")) {
+      this.props.history.push({
+        pathname: "/"
+      });
+    }
+    setInterval(() => {
+      this.showrevneuerows();
+    }, 5000);
+  }
+
   showrevneuerows = () => {
     const allrevenue = this.props.revenuedata.allrevenue;
     if (
