@@ -401,9 +401,9 @@ class PackageContent extends Component {
                                 <button type="submit" class="btn">
                                     update
                                 </button>
-                                <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
+                                <a class="btn butn" style={{ float: "right" }} onClick={this.unshowproduct}>
                                     Cancel
-                                </button>
+                                </a>
                             </form>
                         </div>
                 
