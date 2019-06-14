@@ -138,10 +138,10 @@ class PackageContent extends Component {
         document.getElementById("packagesapiresult").style.display = "block";
     }
 
-    // deleteRow(r) {
-    //     var i = r.parentNode.parentNode.rowIndex;
-    //     document.getElementById("packagesapiresult").deleteRow(i);
-    //   }
+    deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("packagesapiresult").deleteRow(i);
+      }
 
 
     
@@ -237,7 +237,7 @@ class PackageContent extends Component {
                                                             <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.showupdate(p)} />
                                                         </a>
                                                         <a href="#" title="Delete">
-                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.deletepackage(index)} />
+                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.deleteRow(this)} />
                                                         </a>
                                                     </td>
                                                 </tr>

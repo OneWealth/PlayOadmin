@@ -154,6 +154,12 @@ class RFID extends Component {
                         onChange={evt => {
                           this.setState({ rfid: evt.target.value });
                         }}
+                        onKeyPress={event => {
+                          if (event.charCode === 13) {
+                            event.preventDefault();
+                            return false;
+                          }
+                        }}
                       />
                     </div>
                     <button type="submit" class="btn">
