@@ -138,12 +138,6 @@ class PackageContent extends Component {
         document.getElementById("packagesapiresult").style.display = "block";
     }
 
-    deleteRow(r) {
-        var i = r.parentNode.parentNode.rowIndex;
-        document.getElementById("packagesapiresult").deleteRow(i);
-      }
-
-
     
     render() {
         console.log("Here ", this.props.customAllProducts);

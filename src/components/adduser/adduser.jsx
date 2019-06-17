@@ -54,7 +54,14 @@ class AddUser extends Component {
         document.getElementById("apiresult").style.display = "inline-table";
       });
   };
-
+  clearText = () => {
+    this.setState({
+      username: "",
+      password: "",
+      contact: "",
+      email: ""
+    });
+  };
   onSubmit = async evt => {
     evt.preventDefault();
 
@@ -78,7 +85,7 @@ class AddUser extends Component {
             emailid: "",
             confirmpassword: ""
           });
-
+          this.clearText();
           document.getElementById("username").value = "";
           document.getElementById("password").value = "";
           document.getElementById("contact").value = "";
@@ -89,6 +96,7 @@ class AddUser extends Component {
   };
 
   show = async evt => {
+    this.clearText();
     document.getElementById("addnew").style.display = "block";
     document.getElementById("apiresult").style.display = "none";
   };
