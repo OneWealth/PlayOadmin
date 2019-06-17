@@ -14,7 +14,8 @@ export const createRFID = values => dispatch => {
         RFIDCd: values.RFIDCd,
         IsActive: true,
         friendlyRFID: values.friendlyRFID,
-        VenueID: values.VenueID
+        VenueID: values.VenueID,
+        venueName: values.venueName
       },
       {
         headers: {
@@ -67,10 +68,10 @@ export const updaterfidnew = values => dispatch => {
   console.log(values);
   return axios
     .put(
-      BACKEND_URL + "tableapi/RFID",
+      BACKEND_URL + "tableapi/RFID/" + values.rfid,
       {
-        // RFIDCd: values.RFIDCd,
-        IsActive: true,
+        rfidCd: values.rfid,
+        // IsActive: true,
         friendlyRFID: values.friendlyRFID,
         // venueName: values.venueName,
         VenueID: values.VenueID
@@ -82,14 +83,17 @@ export const updaterfidnew = values => dispatch => {
       }
     )
     .then(res => {
-      dispatch(UPDATE_RFID(res.data));
-      // document.getElementById("updatepackages").style.display = "none";
       alert("Created Updated");
+      // console.log(res);
+      // dispatch(UPDATE_RFID(res.data));
+      // document.getElementById("updatepackages").style.display = "none";
+
       window.location.reload();
     })
     .catch(error => {
-      // alert(error.response.data.errorMessage);
-      alert("hello");
+      //console.log("some error" + JSON.stringify(error.response));
+      alert(error.response.data.errorMessage);
+      //alert("hello");
       return Promise.reject();
     });
 };

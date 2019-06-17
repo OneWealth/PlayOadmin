@@ -90,13 +90,15 @@ class RFID extends Component {
     this.setState({ VenueID: p.venueID });
     this.setState({ friendlyRFID: p.friendlyRFID });
     this.setState({ rfid: p.rfidCd });
+    this.setState({ venueName: p.venueName });
   };
   updateRFID = async evt => {
     evt.preventDefault();
     await this.props.updaterfidnew({
       VenueID: this.state.VenueID,
-      friendlyRFID: this.state.friendlyRFID
-      // RFIDCd: this.state.rfid
+      friendlyRFID: this.state.friendlyRFID,
+      venueName: this.state.venueName,
+      rfid: this.state.rfid
     });
   };
   render() {
@@ -127,7 +129,7 @@ class RFID extends Component {
                         <th>RfidCd</th>
                         <th>FriendlyRFID</th>
                         <th>Venue Name</th>
-                        {/* <th>Link</th> */}
+                        <th>Link</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -140,7 +142,7 @@ class RFID extends Component {
                               <td> {paymentmode.rfidCd}</td>
                               <td> {paymentmode.friendlyRFID}</td>
                               <td> {paymentmode.venueName}</td>
-                              {/* <td>
+                              <td>
                                 <a href="#" title="Update/Edit">
                                   <i
                                     class="fa fa-pencil"
@@ -150,7 +152,7 @@ class RFID extends Component {
                                     }
                                   />
                                 </a>
-                              </td> */}
+                              </td>
                             </tr>
                           );
                         })}

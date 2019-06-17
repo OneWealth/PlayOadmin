@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 import SideBar from "../sidebar/sidebar";
+import { Button } from "react-bootstrap";
 
 class AddUser extends Component {
-  constructor(props) {
-    super();
+  constructor(props, context) {
+    super(props, context);
+
     this.state = {
       username: null,
       password: null,
@@ -15,8 +17,10 @@ class AddUser extends Component {
       venueid: null,
       userName: "",
       venueName: "",
-      emailId: ""
+      emailId: "",
+      isLoading: false
     };
+    this.handleClick = this.handleClick.bind(this);
   }
   async componentDidMount() {
     if (!localStorage.getItem("token")) {
@@ -60,6 +64,7 @@ class AddUser extends Component {
       alert("Wrong confirm password !");
     } else {
       await this.props
+
         .playosuer({
           Username: this.state.username,
           Password: this.state.password,
@@ -92,8 +97,19 @@ class AddUser extends Component {
     document.getElementById("apiresult").style.display = "inline-table";
     document.getElementById("addnew").style.display = "none";
   };
-  confirmPass() {}
+
+  simulateNetworkRequest() {
+    return new Promise(resolve => setTimeout(resolve, 2000));
+  }
+  handleClick() {
+    this.setState({ isLoading: true }, () => {
+      this.simulateNetworkRequest().then(() => {
+        this.setState({ isLoading: false });
+      });
+    });
+  }
   render() {
+    const { isLoading } = this.state;
     return (
       <div className="row">
         <div className="col-md-12">
@@ -267,9 +283,17 @@ class AddUser extends Component {
                         required
                       />
                     </div>
-                    <button type="submit" class="btn">
+                    <button
+                      type="submit"
+                      class="btn"
+                      // variant="primary"
+                      // disabled={isLoading}
+                      // onClick={!isLoading ? this.handleClick : null}
+                    >
+                      {/* {isLoading ? "Loading…" : "add"} */}
                       add
                     </button>
+
                     <button
                       class="btn"
                       style={{ float: "right" }}
