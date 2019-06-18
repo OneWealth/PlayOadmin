@@ -4,8 +4,7 @@ import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 import { CSVLink, CSVDownload } from "react-csv";
 import SideBar from "../sidebar/sidebar";
-
-import CsvDownload from 'react-json-to-csv'
+import CsvDownload from 'react-json-to-csv';
 class Downloads extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +23,6 @@ class Downloads extends Component {
             Month: null,
             Year: null
         };
-        this.getdownloadlink = this.getdownloadlink.bind(this);
     }
 
     async  componentDidMount() {
@@ -45,6 +43,7 @@ class Downloads extends Component {
                 contactNcr: this.props.allvenues.vanues.items[i].contactNbr
             });
         }
+
     }
     handleChange(evt) {
         if (evt.target.value === "All") {
@@ -58,6 +57,13 @@ class Downloads extends Component {
             this.setState({ venueID: evt.target.value, productID: '' });
         }
     }
+
+    getproducts = async (id) => {
+        this.props.products({
+            id
+        })
+    };
+
 
     show = async (evt) => {
         var selectedVal = parseInt(document.getElementById("selectone").value);
@@ -85,20 +91,6 @@ class Downloads extends Component {
         })
     };
 
-
-
-    getdownloadlink = () => {
-        if (this.props.RESULT.result.length >= 0) {
-            return (
-                ""
-            )
-        }
-        else {
-            document.getElementById("downloadbtn").style.display = "none";
-            document.getElementById("downloaddata").style.display = "block";
-        }
-    }
-
     render() {
         let { customAllProducts } = this.props;
         let packages = [];
@@ -108,6 +100,7 @@ class Downloads extends Component {
             packages = _c[0].linkedPackages;
         }
 
+        document.getElementById("showbutton").style.display = this.props.RESULT.result ? "inline-block" : "none";
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -247,32 +240,32 @@ class Downloads extends Component {
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn" onClick={this.getreports} id="donloadbtn">
+                                    <button type="submit" class="btn" onClick={this.getreports} id="downloadbtn">
                                         Download Data
                                     </button>
-                                    <CsvDownload
-                                        id="downloaddata"
-                                        data={this.props.RESULT.result}
-                                        filename="good_data.csv"
-                                        style={{ //pass other props, like styles
-                                            boxShadow: "inset 0px 1px 0px 0px #e184f3",
-                                            background: "linear-gradient(to bottom, #c123de 5%, #a20dbd 100%)",
-                                            backgroundColor: "#c123de",
-                                            borderRadius: "6px",
-                                            border: "1px solid #a511c0",
-                                            display: "inline-block",
-                                            cursor: "pointer", "color": "#ffffff",
-                                            fontSize: "15px",
-                                            fontWeight: "bold",
-                                            padding: "6px 24px",
-                                            textDecoration: "none",
-                                            textShadow: "0px 1px 0px #9b14b3",
-                                            display: 'none',
-                                        }}  >
-                                        Good Data ✨
-                                    </CsvDownload>
 
-                                    {this.props.RESULT.result ? this.getdownloadlink() : null}
+                                    <div className="col-md-12" id="showbutton" style={{ display: "none" }}>
+                                        <CsvDownload
+                                            data={this.props.RESULT.result}
+                                            id="filedownload"
+                                            filename="good_data.csv"
+                                            style={{
+                                                boxShadow: "inset 0px 1px 0px 0px #e184f3",
+                                                background: "linear-gradient(to bottom, #c123de 5%, #a20dbd 100%)",
+                                                backgroundColor: "#c123de",
+                                                borderRadius: "6px",
+                                                border: "1px solid #a511c0",
+                                                display: "inline-block",
+                                                cursor: "pointer", "color": "#ffffff",
+                                                fontSize: "15px",
+                                                fontWeight: "bold",
+                                                padding: "6px 24px",
+                                                textDecoration: "none",
+                                                textShadow: "0px 1px 0px #9b14b3",
+                                            }}>
+                                            Good Data ✨
+                                         </CsvDownload>
+                                    </div>
                                 </form>
                             </div>
 
