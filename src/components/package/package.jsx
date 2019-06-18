@@ -23,8 +23,10 @@ class PackageContent extends Component {
             showPackageTable: {
                 display: 'none',
             },
-            packageID: ""
+            packageID: "",
+            isLoading: false
         };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async componentDidMount() {
@@ -88,6 +90,11 @@ class PackageContent extends Component {
     };
     createpackage = async (evt) => {
         evt.preventDefault();
+        this.setState({ isLoading: true }, () => {
+            this.simulateNetworkRequest().then(() => {
+              this.setState({ isLoading: false });
+            });
+          });
         await this.props.createpackage({
             Name: this.state.name,
             Description: this.state.description,
@@ -108,6 +115,11 @@ class PackageContent extends Component {
 
     updatepackage = async (evt) => {
         evt.preventDefault();
+        this.setState({ isLoading: true }, () => {
+            this.simulateNetworkRequest().then(() => {
+              this.setState({ isLoading: false });
+            });
+          });
         await this.props.updatepackagenew({
             Name: this.state.name,
             Description: this.state.description,
@@ -137,9 +149,13 @@ class PackageContent extends Component {
         document.getElementById("updatepackages").style.display = "none";
         document.getElementById("packagesapiresult").style.display = "block";
     }
-
+    simulateNetworkRequest() {
+        return new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      handleClick() {}
     
     render() {
+        const { isLoading } = this.state;
         console.log("Here ", this.props.customAllProducts);
 
         if (this.props.customAllProducts.length > 0) {
@@ -316,8 +332,12 @@ class PackageContent extends Component {
                                                 }}
                                                 required />
                                         </div>
-                                        <button type="submit" class="btn">
-                                            add
+                                        <button type="submit" class="btn"
+                                           variant="primary"
+                                           disabled={isLoading}
+                                        //    onClick={!isLoading ? this.handleClick : null}
+                                            >
+                                            {isLoading ? "Loading…" : "add"}
                                         </button>
                                         <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
                                             Cancel
@@ -392,8 +412,12 @@ class PackageContent extends Component {
                                         }}
                                     />
                                 </div>
-                                <button type="submit" class="btn">
-                                    update
+                                <button type="submit" class="btn"
+                                variant="primary"
+                                disabled={isLoading}
+                                // onClick={!isLoading ? this.handleClick : null}
+                              >
+                                {isLoading ? "Loading…" : "update"}
                                 </button>
                                 <a class="btn butn" style={{ float: "right" }} onClick={this.unshowproduct}>
                                     Cancel

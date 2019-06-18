@@ -12,12 +12,12 @@ class Venue extends Component {
       name: "",
       adderess: "",
       contactNcr: "",
-      data: {}
-    };
-    this.state = {
+      data: {},
       show: false,
-      selectedUser: null
+      selectedUser: null,
+      isLoading: false
     };
+    this.handleClick = this.handleClick.bind(this);
   }
   async componentDidMount() {
     if (!localStorage.getItem("token")) {
@@ -61,6 +61,11 @@ class Venue extends Component {
   };
   onSubmit = async evt => {
     evt.preventDefault();
+    this.setState({ isLoading: true }, () => {
+      this.simulateNetworkRequest().then(() => {
+        this.setState({ isLoading: false });
+      });
+    });
     await this.props
       .createvanue({
         Name: this.state.name,
@@ -77,6 +82,11 @@ class Venue extends Component {
   };
   updatedata = async evt => {
     evt.preventDefault();
+    this.setState({ isLoading: true }, () => {
+      this.simulateNetworkRequest().then(() => {
+        this.setState({ isLoading: false });
+      });
+    });
     await this.props.updatedata({
       venueID: this.state.venueID,
       Name: this.state.name,
@@ -113,7 +123,12 @@ class Venue extends Component {
     document.getElementById("apivenue").style.display = "inline-block";
     document.getElementById("newvenue").style.display = "none";
   };
+  simulateNetworkRequest() {
+    return new Promise(resolve => setTimeout(resolve, 2000));
+  }
+  handleClick() {}
   render() {
+    const { isLoading } = this.state;
     return (
       <div className="row">
         <div className="col-md-12">
@@ -229,8 +244,14 @@ class Venue extends Component {
                         id="mobile"
                       />
                     </div>
-                    <button type="submit" class="btn">
-                      update
+                    <button
+                      type="submit"
+                      class="btn"
+                      variant="primary"
+                      disabled={isLoading}
+                      // onClick={!isLoading ? this.handleClick : null}
+                    >
+                      {isLoading ? "Loading…" : "update"}
                     </button>
                     <a
                       class="btn butn"
@@ -295,8 +316,14 @@ class Venue extends Component {
                         required
                       />
                     </div>
-                    <button type="submit" class="btn">
-                      add{" "}
+                    <button
+                      type="submit"
+                      class="btn"
+                      variant="primary"
+                      disabled={isLoading}
+                      // onClick={!isLoading ? this.handleClick : null}
+                    >
+                      {isLoading ? "Loading…" : "add"}
                     </button>
                     <button
                       class="btn"

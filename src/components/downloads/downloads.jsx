@@ -23,6 +23,7 @@ class Downloads extends Component {
             Month: null,
             Year: null
         };
+        this.getdownloadlink = this.getdownloadlink.bind(this);
     }
 
     async  componentDidMount() {
@@ -91,6 +92,8 @@ class Downloads extends Component {
         })
     };
 
+
+
     render() {
         let { customAllProducts } = this.props;
         let packages = [];
@@ -100,7 +103,8 @@ class Downloads extends Component {
             packages = _c[0].linkedPackages;
         }
 
-        document.getElementById("showbutton").style.display = this.props.RESULT.result ? "inline-block" : "none";
+
+
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -266,6 +270,10 @@ class Downloads extends Component {
                                             Good Data ✨
                                          </CsvDownload>
                                     </div>
+
+
+
+                                    {this.props.RESULT.result ? this.getdownloadlink() : null}
                                 </form>
                             </div>
 
