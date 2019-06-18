@@ -17,8 +17,10 @@ class Product extends Component {
             timeDependentFlag: false,
             activeFlag: "",
             venueid: "",
-            productID: ""
+            productID: "",
+            isLoading: false
         };
+        this.handleClick = this.handleClick.bind(this);
     }
     async  componentDidMount() {
         if (!localStorage.getItem("token")) {
@@ -26,6 +28,18 @@ class Product extends Component {
                 pathname: '/',
             });
         }
+        await this.props.verifyvenue();
+        let allvanues = [];
+        for (var i = 0; i < allvanues; i++) {
+          this.setState({ venueID: this.props.allvenues.vanues.items[i].venueID });
+          this.setState({ name: this.props.allvenues.vanues.items[i].name });
+          this.setState({
+            adderess: this.props.allvenues.vanues.items[i].adderess
+          });
+          this.setState({
+            contactNcr: this.props.allvenues.vanues.items[i].contactNbr
+          });
+        } 
 
     }
     onSubmit = async (evt) => {
@@ -54,6 +68,11 @@ class Product extends Component {
 
     Createproject = async (evt) => {
         evt.preventDefault();
+        this.setState({ isLoading: true }, () => {
+            this.simulateNetworkRequest().then(() => {
+              this.setState({ isLoading: false });
+            });
+          });
         await this.props.createproduct({
             Name: this.state.name,
             Description: this.state.description,
@@ -76,6 +95,11 @@ class Product extends Component {
     };
     updateproduct = async (evt) => {
         evt.preventDefault();
+        this.setState({ isLoading: true }, () => {
+            this.simulateNetworkRequest().then(() => {
+              this.setState({ isLoading: false });
+            });
+          });
         await this.props.updateproduct({
             productID: this.state.productID,
             Name: this.state.name,
@@ -131,9 +155,13 @@ class Product extends Component {
         document.getElementById("editproduct").style.display = "none";
         document.getElementById("productapiresult").style.display = "inline-block";
     }
-
+    simulateNetworkRequest() {
+        return new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      handleClick() {}
 
     render() {
+        const { isLoading } = this.state;
         let style = {
             display: 'none',
         };
@@ -266,8 +294,13 @@ class Product extends Component {
                                         time dependent
                                      </label>
                                 </div>
-                                <button type="submit" class="btn">
-                                    add
+                                <button type="submit" className="btn"
+                                variant="primary"
+                                disabled={isLoading}
+                                // onClick={!isLoading ? this.handleClick : null}
+                              >
+                                {isLoading ? "Loading…" : "add"}
+                                
                                  </button>
                                 <a style={{ float: "right" }} onClick={this.unshowproducts} className="butn btn">
                                     Cancel
@@ -327,8 +360,12 @@ class Product extends Component {
                                      </label>
                                 </div>
 
-                                <button type="submit" class="btn" >
-                                    update
+                                <button type="submit" class="btn" 
+                                    variant="primary"
+                                    disabled={isLoading}
+                                    // onClick={!isLoading ? this.handleClick : null}
+                                  >
+                                    {isLoading ? "Loading…" : "update"}
                                  </button>
                                 <a style={{ float: "right" }} onClick={this.unshoweditproduct} className="butn btn">
                                     Cancel

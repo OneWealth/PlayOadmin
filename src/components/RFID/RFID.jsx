@@ -13,8 +13,10 @@ class RFID extends Component {
       RFIDCd: "",
       friendlyRFID: "",
       VenueID: "",
-      rfid: ""
+      rfid: "",
+      isLoading: false
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
@@ -43,6 +45,11 @@ class RFID extends Component {
 
   createRFID = async evt => {
     evt.preventDefault();
+    this.setState({ isLoading: true }, () => {
+      this.simulateNetworkRequest().then(() => {
+        this.setState({ isLoading: false });
+      });
+    });
     await this.props
       .createRFID({
         RFIDCd: this.state.rfid,
@@ -94,6 +101,11 @@ class RFID extends Component {
   };
   updateRFID = async evt => {
     evt.preventDefault();
+    this.setState({ isLoading: true }, () => {
+      this.simulateNetworkRequest().then(() => {
+        this.setState({ isLoading: false });
+      });
+    });
     await this.props.updaterfidnew({
       VenueID: this.state.VenueID,
       friendlyRFID: this.state.friendlyRFID,
@@ -101,7 +113,13 @@ class RFID extends Component {
       rfid: this.state.rfid
     });
   };
+
+  simulateNetworkRequest() {
+    return new Promise(resolve => setTimeout(resolve, 2000));
+  }
+  handleClick() {}
   render() {
+    const { isLoading } = this.state;
     return (
       <div className="row">
         <div className="col-md-12">
@@ -225,8 +243,14 @@ class RFID extends Component {
                         }}
                       />
                     </div>
-                    <button type="submit" class="btn">
-                      add
+                    <button
+                      type="submit"
+                      class="btn"
+                      variant="primary"
+                      disabled={isLoading}
+                      // onClick={!isLoading ? this.handleClick : null}
+                    >
+                      {isLoading ? "Loading…" : "add"}
                     </button>
                     <a
                       class="btn butn"
@@ -306,8 +330,14 @@ class RFID extends Component {
                         readOnly
                       />
                     </div>
-                    <button type="submit" class="btn">
-                      update
+                    <button
+                      type="submit"
+                      class="btn"
+                      variant="primary"
+                      disabled={isLoading}
+                      // onClick={!isLoading ? this.handleClick : null}
+                    >
+                      {isLoading ? "Loading…" : "update"}
                     </button>
                     <a
                       class="btn butn"

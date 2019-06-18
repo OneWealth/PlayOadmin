@@ -21,8 +21,10 @@ class Downloads extends Component {
             DayStart: null,
             DayEnd: null,
             Month: null,
-            Year: null
+            Year: null,
+            isLoading: false
         };
+        this.handleClick = this.handleClick.bind(this);
         this.getdownloadlink = this.getdownloadlink.bind(this);
     }
 
@@ -67,6 +69,11 @@ class Downloads extends Component {
 
     getreports = async (evt) => {
         evt.preventDefault();
+        this.setState({ isLoading: true }, () => {
+            this.simulateNetworkRequest().then(() => {
+              this.setState({ isLoading: false });
+            });
+        });
         await this.props.getreport({
             venueID: this.state.venueID,
             ProductId: this.state.productID,
@@ -89,7 +96,13 @@ class Downloads extends Component {
         return (<CSVDownload data={this.props.RESULT.result} target="_blank" id="csvresult" />);
     }
 
+    simulateNetworkRequest() {
+        return new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      handleClick() {}
+
     render() {
+        const { isLoading } = this.state;
         let { customAllProducts } = this.props;
         let packages = [];
 
@@ -114,7 +127,7 @@ class Downloads extends Component {
                             <form className="frm" >
                                 <div className="row sl-3">
                                     <label className="col-md-3">Venue</label>
-                                    <select className="col-md-9" value={this.state.venueid}
+                                    <select required className="col-md-9" value={this.state.venueid}
                                         // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
                                         onChange={this.handleChange.bind(this)}>
                                         <option value="0">All Venue</option>
@@ -206,7 +219,8 @@ class Downloads extends Component {
                                                 this.setState({ DayStart: evt.target.value });
                                             }}
                                             id="day"
-                                            required style={{ display: "none", marginTop: "10px", marginTop: "10px" }} />
+                                            required 
+                                            style={{ display: "none", marginTop: "10px", marginTop: "10px" }} />
 
                                         
                                         <div className="startdate col-md-12" id="startdate" style={{ display: "none", marginTop: "10px" }}>
@@ -237,8 +251,12 @@ class Downloads extends Component {
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn" onClick={this.getreports}>
-                                    Download Data
+                                <button type="submit" class="btn" 
+                                // onClick={this.getreports}
+                                 variant="primary"
+                                 disabled={isLoading}
+                                 onClick={this.getreports}>
+                                     {isLoading ? "Loading…" : " Download Data"}
                                 </button>
 
                                 {this.props.RESULT.result ? this.getdownloadlink() : null}

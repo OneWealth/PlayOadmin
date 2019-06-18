@@ -64,7 +64,11 @@ class AddUser extends Component {
   };
   onSubmit = async evt => {
     evt.preventDefault();
-
+    this.setState({ isLoading: true }, () => {
+      this.simulateNetworkRequest().then(() => {
+        this.setState({ isLoading: false });
+      });
+    });
     var pass = document.getElementById("password").value;
     var confPass = document.getElementById("contact").value;
     if (pass != confPass) {
@@ -109,13 +113,7 @@ class AddUser extends Component {
   simulateNetworkRequest() {
     return new Promise(resolve => setTimeout(resolve, 2000));
   }
-  handleClick() {
-    this.setState({ isLoading: true }, () => {
-      this.simulateNetworkRequest().then(() => {
-        this.setState({ isLoading: false });
-      });
-    });
-  }
+  handleClick() {}
   render() {
     const { isLoading } = this.state;
     return (
@@ -293,13 +291,12 @@ class AddUser extends Component {
                     </div>
                     <button
                       type="submit"
-                      class="btn"
-                      // variant="primary"
-                      // disabled={isLoading}
+                      className="btn"
+                      variant="primary"
+                      disabled={isLoading}
                       // onClick={!isLoading ? this.handleClick : null}
                     >
-                      {/* {isLoading ? "Loading…" : "add"} */}
-                      add
+                      {isLoading ? "Loading…" : "add"}
                     </button>
 
                     <button
