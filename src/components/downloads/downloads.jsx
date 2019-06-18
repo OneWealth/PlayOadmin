@@ -4,7 +4,8 @@ import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 import { CSVLink, CSVDownload } from "react-csv";
 import SideBar from "../sidebar/sidebar";
-import { async } from "q";
+
+import CsvDownload from 'react-json-to-csv'
 class Downloads extends Component {
     constructor(props) {
         super(props);
@@ -32,6 +33,18 @@ class Downloads extends Component {
                 pathname: '/',
             });
         }
+        await this.props.verifyvenue();
+        let allvanues = [];
+        for (var i = 0; i < allvanues; i++) {
+            this.setState({ venueID: this.props.allvenues.vanues.items[i].venueID });
+            this.setState({ name: this.props.allvenues.vanues.items[i].name });
+            this.setState({
+                adderess: this.props.allvenues.vanues.items[i].adderess
+            });
+            this.setState({
+                contactNcr: this.props.allvenues.vanues.items[i].contactNbr
+            });
+        }
     }
     handleChange(evt) {
         if (evt.target.value === "All") {
@@ -45,13 +58,6 @@ class Downloads extends Component {
             this.setState({ venueID: evt.target.value, productID: '' });
         }
     }
-
-    getproducts = async (id) => {
-        this.props.products({
-            id
-        })
-    };
-
 
     show = async (evt) => {
         var selectedVal = parseInt(document.getElementById("selectone").value);
@@ -80,13 +86,17 @@ class Downloads extends Component {
     };
 
 
+
     getdownloadlink = () => {
         if (this.props.RESULT.result.length >= 0) {
             return (
                 ""
             )
         }
-        return (<CSVDownload data={this.props.RESULT.result} target="_blank" id="csvresult" />);
+        else {
+            document.getElementById("downloadbtn").style.display = "none";
+            document.getElementById("downloaddata").style.display = "block";
+        }
     }
 
     render() {
@@ -106,144 +116,165 @@ class Downloads extends Component {
                             <SideBar />
                         </div>
                         <div className="col-md-10 outputonclick">
-                        <div className="col-md-12 main-heading">
-                             <h2>Reports</h2>
-                        </div>
+                            <div className="col-md-12 main-heading">
+                                <h2>Reports</h2>
+                            </div>
 
-                        <div className="col-md-12 venuefrm">
-                            <form className="frm" >
-                                <div className="row sl-3">
-                                    <label className="col-md-3">Venue</label>
-                                    <select className="col-md-9" value={this.state.venueid}
-                                        // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
-                                        onChange={this.handleChange.bind(this)}>
-                                        <option value="0">All Venue</option>
+                            <div className="col-md-12 venuefrm">
+                                <form className="frm" >
+                                    <div className="row sl-3">
+                                        <label className="col-md-3">Venue</label>
+                                        <select className="col-md-9" value={this.state.venueid}
+                                            // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
+                                            onChange={this.handleChange.bind(this)}>
+                                            <option value="0">All Venue</option>
 
-                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                            < option value={allvanues.venueID} > {allvanues.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-
-
-                                <div className="row sl-3" id="products">
-                                    <label className="col-md-3">Product</label>
-                                    <select id="choose-packages" className="col-md-9" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
-                                        <option selected value="0">All Product  </option>
-
-                                        {this.props.customAllProducts.map((Allproducts, index) => (
-
-                                            <option value={Allproducts.productID}>{Allproducts.name}</option>
-                                        ))}
-
-                                    </select>
-                                </div>
-
-
-                                <div className="row sl-3" id="packages1">
-                                    <label className="col-md-3">Package</label>
-                                    <select className="col-md-9" value={this.state.PackageId} onChange={(e) => this.setState({ PackageId: e.target.value })} >
-                                        <option selected value="0">All Package</option>
-                                        {packages.map((p, index) => (
-                                            <option value={p.packageID}>{p.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-
-
-                                <div className="row sl-3" id="alldate" >
-                                    <div className="row">
-                                        <label className="col-md-12">Filter by Year/Month/Day</label>
-
-                                        <select className="col-md-12" value={this.state.Range}
-                                            onChange={this.show} id="selectone">
-                                            <option selected value="-1">Choose...</option>
-                                            <option value="2" >Year</option>
-                                            <option value="1">Month</option>
-                                            <option value="0">Date</option>
-                                            <option value="3">Custom</option>
+                                            {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                                < option value={allvanues.venueID} > {allvanues.name}</option>
+                                            ))}
                                         </select>
-
-                                        <select className="col-md-5" id="year" style={{ display: "none", marginTop: "10px" }}
-                                            value={this.state.Year} onChange={(e) => this.setState({ Year: e.target.value })}
-
-                                        >
-                                            <option selected value="0">Select Year</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2023">2023</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2025">2025</option>
-
-                                        </select>
-
-                                        <select className="col-md-5 offset-md-1" id="month" style={{ display: "none", marginTop: "10px" }}
-                                            value={this.state.Month} onChange={(e) => this.setState({ Month: e.target.value })}
-                                        >
-                                            <option selected value="0">Select Month</option>
-                                            <option value="1">Jan</option>
-                                            <option value="2">Feb</option>
-                                            <option value="3">Mar</option>
-                                            <option value="4">Apr</option>
-                                            <option value="5">May</option>
-                                            <option value="6">Jun</option>
-                                            <option value="7">Jul</option>
-                                            <option value="8">Aug</option>
-                                            <option value="9">Sep</option>
-                                            <option value="10">Oct</option>
-                                            <option value="11">Nov</option>
-                                            <option value="12">Dec</option>
-                                        </select>
-
-
-                                        <input
-                                            type="date"
-                                            className="form-control col-md-12 small"
-                                            placeholder="Choose Date"
-                                            value={this.state.DayStart} onChange={evt => {
-                                                this.setState({ DayStart: evt.target.value });
-                                            }}
-                                            id="day"
-                                            required style={{ display: "none", marginTop: "10px", marginTop: "10px" }} />
-
-                                        
-                                        <div className="startdate col-md-12" id="startdate" style={{ display: "none", marginTop: "10px" }}>
-                                            <label>Start Date</label>
-                                        <input
-                                            type="date"
-                                            className="form-control col-md-12 small"
-                                            placeholder="Start Date"
-                                            value={this.state.DayStart} onChange={evt => {
-                                                this.setState({ DayStart: evt.target.value });
-                                            }}
-                                            id=""
-                                            required  />
-                                        </div>
-                                     
-                                        <div className="enddate col-md-12" id="enddate" style={{ display: "none", marginTop: "10px" }}>
-                                            <label>End Date</label>
-                                        <input
-                                            type="date"
-                                            className="form-control col-md-12 small"
-                                            placeholder="End Date"
-                                            value={this.state.DayEnd} onChange={evt => {
-                                                this.setState({ DayEnd: evt.target.value });
-                                            }}
-                                            id=""
-                                            required />
-                                            </div>
                                     </div>
-                                </div>
 
-                                <button type="submit" class="btn" onClick={this.getreports}>
-                                    Download Data
-                                </button>
 
-                                {this.props.RESULT.result ? this.getdownloadlink() : null}
-                            </form>
-                        </div>
+                                    <div className="row sl-3" id="products">
+                                        <label className="col-md-3">Product</label>
+                                        <select id="choose-packages" className="col-md-9" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
+                                            <option selected value="0">All Product  </option>
+
+                                            {this.props.customAllProducts.map((Allproducts, index) => (
+
+                                                <option value={Allproducts.productID}>{Allproducts.name}</option>
+                                            ))}
+
+                                        </select>
+                                    </div>
+
+
+                                    <div className="row sl-3" id="packages1">
+                                        <label className="col-md-3">Package</label>
+                                        <select className="col-md-9" value={this.state.PackageId} onChange={(e) => this.setState({ PackageId: e.target.value })} >
+                                            <option selected value="0">All Package</option>
+                                            {packages.map((p, index) => (
+                                                <option value={p.packageID}>{p.name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+
+                                    <div className="row sl-3" id="alldate" >
+                                        <div className="row">
+                                            <label className="col-md-12">Filter by Year/Month/Day</label>
+
+                                            <select className="col-md-12" value={this.state.Range}
+                                                onChange={this.show} id="selectone">
+                                                <option selected value="-1">Choose...</option>
+                                                <option value="2" >Year</option>
+                                                <option value="1">Month</option>
+                                                <option value="0">Date</option>
+                                                <option value="3">Custom</option>
+                                            </select>
+
+                                            <select className="col-md-5" id="year" style={{ display: "none", marginTop: "10px" }}
+                                                value={this.state.Year} onChange={(e) => this.setState({ Year: e.target.value })}
+
+                                            >
+                                                <option selected value="0">Select Year</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+
+                                            </select>
+
+                                            <select className="col-md-5 offset-md-1" id="month" style={{ display: "none", marginTop: "10px" }}
+                                                value={this.state.Month} onChange={(e) => this.setState({ Month: e.target.value })}
+                                            >
+                                                <option selected value="0">Select Month</option>
+                                                <option value="1">Jan</option>
+                                                <option value="2">Feb</option>
+                                                <option value="3">Mar</option>
+                                                <option value="4">Apr</option>
+                                                <option value="5">May</option>
+                                                <option value="6">Jun</option>
+                                                <option value="7">Jul</option>
+                                                <option value="8">Aug</option>
+                                                <option value="9">Sep</option>
+                                                <option value="10">Oct</option>
+                                                <option value="11">Nov</option>
+                                                <option value="12">Dec</option>
+                                            </select>
+
+
+                                            <input
+                                                type="date"
+                                                className="form-control col-md-12 small"
+                                                placeholder="Choose Date"
+                                                value={this.state.DayStart} onChange={evt => {
+                                                    this.setState({ DayStart: evt.target.value });
+                                                }}
+                                                id="day"
+                                                required style={{ display: "none", marginTop: "10px", marginTop: "10px" }} />
+
+
+                                            <div className="startdate col-md-12" id="startdate" style={{ display: "none", marginTop: "10px" }}>
+                                                <label>Start Date</label>
+                                                <input
+                                                    type="date"
+                                                    className="form-control col-md-12 small"
+                                                    placeholder="Start Date"
+                                                    value={this.state.DayStart} onChange={evt => {
+                                                        this.setState({ DayStart: evt.target.value });
+                                                    }}
+                                                    id=""
+                                                    required />
+                                            </div>
+
+                                            <div className="enddate col-md-12" id="enddate" style={{ display: "none", marginTop: "10px" }}>
+                                                <label>End Date</label>
+                                                <input
+                                                    type="date"
+                                                    className="form-control col-md-12 small"
+                                                    placeholder="End Date"
+                                                    value={this.state.DayEnd} onChange={evt => {
+                                                        this.setState({ DayEnd: evt.target.value });
+                                                    }}
+                                                    id=""
+                                                    required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn" onClick={this.getreports} id="donloadbtn">
+                                        Download Data
+                                    </button>
+                                    <CsvDownload
+                                        id="downloaddata"
+                                        data={this.props.RESULT.result}
+                                        filename="good_data.csv"
+                                        style={{ //pass other props, like styles
+                                            boxShadow: "inset 0px 1px 0px 0px #e184f3",
+                                            background: "linear-gradient(to bottom, #c123de 5%, #a20dbd 100%)",
+                                            backgroundColor: "#c123de",
+                                            borderRadius: "6px",
+                                            border: "1px solid #a511c0",
+                                            display: "inline-block",
+                                            cursor: "pointer", "color": "#ffffff",
+                                            fontSize: "15px",
+                                            fontWeight: "bold",
+                                            padding: "6px 24px",
+                                            textDecoration: "none",
+                                            textShadow: "0px 1px 0px #9b14b3",
+                                            display: 'none',
+                                        }}  >
+                                        Good Data ✨
+                                    </CsvDownload>
+
+                                    {this.props.RESULT.result ? this.getdownloadlink() : null}
+                                </form>
+                            </div>
 
                         </div>
                     </div>
