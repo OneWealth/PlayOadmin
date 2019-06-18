@@ -277,7 +277,7 @@ class PackageContent extends Component {
                                             <select id="choose-packages" className="col-md-10" value={this.state.ProductID} onChange={evt => {
                                                 this.setState({ ProductID: evt.target.value });
                                             }} required >
-                                                <option >Choose Packages Name </option>
+                                                <option >Choose Product Name </option>
                                                 {this.props.customAllProducts.map((Allproducts, index) => (
                                                     <option value={Allproducts.productID}>{Allproducts.name}  ---- {Allproducts.description}</option>
                                                 ))}
