@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Tab, Tabs, Col, Nav, Row } from "react-bootstrap";
-import Menu from "../menu/menu";
+// import Menu from "../menu/menu";
 import AddUser from "../adduser/adduser";
 import Venue from "../venues/venues";
 import RightDashboard from "../rightdashboard/rightdashboard";
@@ -34,7 +34,7 @@ class Dashboard extends Component {
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                         <Row>
                             <Col sm={2} className="sidenavbar">
-                                <Menu />
+                                {/* <Menu /> */}
                             </Col>
                             <Col sm={10} className="rightbar">
                                 <Tab.Content>

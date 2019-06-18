@@ -14,7 +14,8 @@ export const createvanue = values => dispatch => {
             {
                 Name: values.Name,
                 Adderess: values.Adderess,
-                ContactNbr: values.ContactNbr
+                ContactNbr: values.ContactNbr,
+                 GSTNbr:values.GSTNbr,
             },
             {
                 headers: {
@@ -56,7 +57,8 @@ export const updatedata = values => dispatch => {
                 venueID: values.venueID,
                 name: values.Name,
                 adderess: values.Adderess,
-                contactNbr: values.ContactNbr
+                contactNbr: values.ContactNbr,
+                GSTNbr:values.GSTNbr,
             },
             {
                 headers: {

@@ -11,6 +11,7 @@ class Venue extends Component {
             venueID: "",
             name: "",
             adderess: "",
+            GSTNbr:"",
             contactNcr: "",
             data: {},
             show: false,
@@ -56,6 +57,7 @@ class Venue extends Component {
         this.setState({
             name: "",
             adderess: "",
+            GSTNbr:"",
             contactNcr: ""
         });
     };
@@ -70,12 +72,14 @@ class Venue extends Component {
             .createvanue({
                 Name: this.state.name,
                 Adderess: this.state.adderess,
+                GSTNbr:this.state.GSTNbr,
                 ContactNbr: this.state.contactNcr
             })
             .then(() => {
                 this.clearText();
                 document.getElementById("name").value = "";
                 document.getElementById("adderess").value = "";
+                document.getElementById("GSTNbr").value="";
                 document.getElementById("contactNcr").value = "";
                 return;
             });
@@ -91,6 +95,7 @@ class Venue extends Component {
             venueID: this.state.venueID,
             Name: this.state.name,
             Adderess: this.state.adderess,
+            GSTNbr:this.state.GSTNbr,
             ContactNbr: this.state.contactNcr
         });
     };
@@ -232,6 +237,19 @@ class Venue extends Component {
                                             />
                                         </div>
                                         <div class="form-group col-md-12">
+                                            <label for="gstnbr">GST Number</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="Enter GST Nbr"
+                                                value={this.state.GSTNbr}
+                                                onChange={evt => {
+                                                    this.setState({ GSTNbr: evt.target.value });
+                                                }}
+                                                id="GSTNbr"
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-12">
                                             <label for="mobileno">mobile no</label>
                                             <input
                                                 type="number"
@@ -300,6 +318,19 @@ class Venue extends Component {
                                                     this.setState({ adderess: evt.target.value });
                                                 }}
                                                 required
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="gstnbr">GST Number</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="Enter GST Nbr"
+                                                value={this.state.GSTNbr}
+                                                onChange={evt => {
+                                                    this.setState({ GSTNbr: evt.target.value });
+                                                }}
+                                                id="GSTNbr"
                                             />
                                         </div>
                                         <div class="form-group col-md-12">

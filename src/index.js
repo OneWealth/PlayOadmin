@@ -13,7 +13,7 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 
 import AdminLogin from "./components/login/login";
 import Dashboard from "./components/dashboard/dashboard";
-import Menu from "./components/menu/menu";
+// import Menu from "./components/menu/menu";
 import Venue from "./components/venues/venues";
 import ModeOfPayment from "./components/modeofpayment/modeofpayment";
 //import RightDashboard from "./components/rightdashboard/rightdashboard";
@@ -40,7 +40,7 @@ const routing = (
       <div>
         <Route exact path="/" component={AdminLogin} />
         <Route path="/profile" component={Dashboard} />
-        <Route path="/menu" component={Menu} />
+        {/* <Route path="/menu" component={Menu} /> */}
         <Route path="/venue" component={Venue} />
         {/* <Route path="/rightboard" component={RightDashboard} /> */}
         <Route path="/product" component={Product} />
