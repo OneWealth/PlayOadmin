@@ -55,6 +55,11 @@ class AddUser extends Component {
 
     onSubmit = async evt => {
         evt.preventDefault();
+        this.setState({ isLoading: true }, () => {
+            this.simulateNetworkRequest().then(() => {
+                this.setState({ isLoading: false });
+            });
+        });
         var pass = document.getElementById("password").value;
         var confPass = document.getElementById("contact").value;
         if (pass != confPass) {
@@ -85,11 +90,13 @@ class AddUser extends Component {
     };
 
     show = async evt => {
+
         document.getElementById("addnew").style.display = "block";
         document.getElementById("apiresult").style.display = "none";
     };
 
     unshow = async evt => {
+
         document.getElementById("apiresult").style.display = "inline-table";
         document.getElementById("addnew").style.display = "none";
     };
@@ -98,11 +105,6 @@ class AddUser extends Component {
         return new Promise(resolve => setTimeout(resolve, 2000));
     }
     handleClick() {
-        this.setState({ isLoading: true }, () => {
-            this.simulateNetworkRequest().then(() => {
-                this.setState({ isLoading: false });
-            });
-        });
     }
     render() {
         const { isLoading } = this.state;
@@ -120,13 +122,14 @@ class AddUser extends Component {
                                     <p>List of all users in a Venue all across the world.</p>
                                 </div>
 
-                                <div className="col-md-12 add">
-                                    <a href="#" onClick={this.show}>
-                                        + add user
-                                     </a>
-                                </div>
 
-                                <div className="col-md-12">
+
+                                <div className="col-md-10">
+                                    <div className="col-md-12 add">
+                                        <a href="#" onClick={this.show}>
+                                            + add user
+                                     </a>
+                                    </div>
                                     <form onSubmit={this.getvenueuser}>
                                         <div className="row venuetbl">
                                             <div className="col-md-7">
@@ -154,9 +157,11 @@ class AddUser extends Component {
                                             <div className="col-md-5 text-right">
                                                 <button
                                                     class="btn btn-primary btn-block"
-                                                    onClick={this.unshow}>
+                                                    onClick={this.unshow}
+                                                >
                                                     Get Users
-                                                 </button>
+
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -189,7 +194,7 @@ class AddUser extends Component {
                                     </table>
                                 </div>
 
-                                <div className="col-md-12">
+                                <div className="col-md-10">
                                     <form
                                         className="frm"
                                         onSubmit={this.onSubmit}
@@ -270,7 +275,7 @@ class AddUser extends Component {
                                             class="btn"
                                             variant="primary"
                                             disabled={isLoading}
-                                            onClick={!isLoading ? this.handleClick : null}>
+                                        >
                                             {isLoading ? "Loading…" : "add"}
                                         </button>
 

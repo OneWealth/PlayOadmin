@@ -31,15 +31,15 @@ class Product extends Component {
         await this.props.verifyvenue();
         let allvanues = [];
         for (var i = 0; i < allvanues; i++) {
-          this.setState({ venueID: this.props.allvenues.vanues.items[i].venueID });
-          this.setState({ name: this.props.allvenues.vanues.items[i].name });
-          this.setState({
-            adderess: this.props.allvenues.vanues.items[i].adderess
-          });
-          this.setState({
-            contactNcr: this.props.allvenues.vanues.items[i].contactNbr
-          });
-        } 
+            this.setState({ venueID: this.props.allvenues.vanues.items[i].venueID });
+            this.setState({ name: this.props.allvenues.vanues.items[i].name });
+            this.setState({
+                adderess: this.props.allvenues.vanues.items[i].adderess
+            });
+            this.setState({
+                contactNcr: this.props.allvenues.vanues.items[i].contactNbr
+            });
+        }
 
     }
     onSubmit = async (evt) => {
@@ -70,9 +70,9 @@ class Product extends Component {
         evt.preventDefault();
         this.setState({ isLoading: true }, () => {
             this.simulateNetworkRequest().then(() => {
-              this.setState({ isLoading: false });
+                this.setState({ isLoading: false });
             });
-          });
+        });
         await this.props.createproduct({
             Name: this.state.name,
             Description: this.state.description,
@@ -97,9 +97,9 @@ class Product extends Component {
         evt.preventDefault();
         this.setState({ isLoading: true }, () => {
             this.simulateNetworkRequest().then(() => {
-              this.setState({ isLoading: false });
+                this.setState({ isLoading: false });
             });
-          });
+        });
         await this.props.updateproduct({
             productID: this.state.productID,
             Name: this.state.name,
@@ -157,8 +157,8 @@ class Product extends Component {
     }
     simulateNetworkRequest() {
         return new Promise(resolve => setTimeout(resolve, 2000));
-      }
-      handleClick() {}
+    }
+    handleClick() { }
 
     render() {
         const { isLoading } = this.state;
@@ -177,208 +177,208 @@ class Product extends Component {
                         </div>
                         <div className="col-md-10 outputonclick">
                             <div className="row">
-                            <div className="col-md-12 main-heading">
-                                <h2>products</h2>
-                             </div>
-                             <div className="col-md-12 add">
-                                <a href="#" onClick={this.addnew}>+ add Product</a>
-                             </div>
-                             <div className="col-md-12">
-                             <form onSubmit={this.getproducts}>
-                                 <div className="row venuetbl">
-                                    <div className="col-md-7">
-                                <       div className="row sl-3">
-                                        <select className="col-md-12" value={this.state.venueid}
-                                        onChange={evt => {
-                                            this.setState({ venueid: evt.target.value });
-                                        }}>
-                                        <option selected>Choose Venue Name </option>
-                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                            <option value={allvanues.venueID} >{allvanues.name}</option>
-                                        ))}
-                                    </select>
+                                <div className="col-md-12 main-heading">
+                                    <h2>products</h2>
                                 </div>
-                            </div>
-                            <div className="col-md-5 text-right">
-                                <button type="" class="btn btn-primary btn-block" onClick={this.unshowproduct}>
-                                    Get Products
+                                <div className="col-md-10 add">
+                                    <a href="#" onClick={this.addnew}>+ add Product</a>
+                                </div>
+                                <div className="col-md-10">
+                                    <form onSubmit={this.getproducts}>
+                                        <div className="row venuetbl">
+                                            <div className="col-md-7">
+                                                <       div className="row sl-3">
+                                                    <select className="col-md-12" value={this.state.venueid}
+                                                        onChange={evt => {
+                                                            this.setState({ venueid: evt.target.value });
+                                                        }}>
+                                                        <option selected>Choose Venue Name </option>
+                                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                                            <option value={allvanues.venueID} >{allvanues.name}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-5 text-right">
+                                                <button type="" class="btn btn-primary btn-block" onClick={this.unshowproduct}>
+                                                    Get Products
                                 </button>
-                            </div>
-                        </div>
-                    </form>
+                                            </div>
+                                        </div>
+                                    </form>
 
-                             </div>
-                         {/* Create Product Form */}
-                             <div className="col-md-12 venuetbl" style={style} id="productapiresult">
-                            <table className="table tbl">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>description</th>
-                                        <th>Time Dependent</th>
-                                        <th>Link</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                </div>
+                                {/* Create Product Form */}
+                                <div className="col-md-10 venuetbl" style={style} id="productapiresult">
+                                    <table className="table tbl">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>description</th>
+                                                <th>Time Dependent</th>
+                                                <th>Link</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    {this.props.customAllProducts.map((Allproducts, index) => (
-                                        <tr>
-                                            <th>{Allproducts.productID}</th>
-                                            <td>{Allproducts.name}</td>
-                                            <td>{Allproducts.description}</td>
-                                            <td>{Allproducts.timeDependentFlag ? "Yes" : "No"}</td>
-                                            <td>
-                                                <a href="#" title="Update/Edit">
-                                                    <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(Allproducts)} />
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-
-
-
-                        {/* Create Product Form */}
-
-                        <div className="col-md-12 venuefrm" id="createproduct" style={{ display: "none" }}>
-                            <form className="frm" onSubmit={this.Createproject}>
-                                <h2>new product</h2>
-                                <div className="form-group sl-3">
-                                    <label>Select Venue</label>
-                                    <select className="col-md-12 form-control" value={this.state.venueid}
-                                        onChange={evt => {
-                                            this.setState({ venueid: evt.target.value });
-                                        }} required>
-                                        <option selected>Choose Venue Name </option>
-                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                            <option value={allvanues.venueID} >{allvanues.name}</option>
-                                        ))}
-                                    </select>
+                                            {this.props.customAllProducts.map((Allproducts, index) => (
+                                                <tr>
+                                                    <th>{Allproducts.productID}</th>
+                                                    <td>{Allproducts.name}</td>
+                                                    <td>{Allproducts.description}</td>
+                                                    <td>{Allproducts.timeDependentFlag ? "Yes" : "No"}</td>
+                                                    <td>
+                                                        <a href="#" title="Update/Edit">
+                                                            <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(Allproducts)} />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="name">name</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="venuename"
-                                        placeholder="product Name"
-                                        value={this.state.name}
-                                        onChange={evt => {
-                                            this.setState({ name: evt.target.value });
-                                        }}
-                                        required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">description</label>
-                                    <textarea
-                                        type="text"
-                                        class="form-control"
-                                        id="venuedecription"
-                                        placeholder="description"
-                                        value={this.state.description}
-                                        onChange={evt => {
-                                            this.setState({ description: evt.target.value });
-                                        }}
-                                        required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="dependent">
-                                        <input type="checkbox" id="contact" value={this.state.timeDependentFlag}
-                                            onClick={evt => {
-                                                this.setState({ timeDependentFlag: !this.state.timeDependentFlag });
-                                            }} />
-                                        time dependent
+
+
+                                {/* Create Product Form */}
+
+                                <div className="col-md-10 venuefrm" id="createproduct" style={{ display: "none" }}>
+                                    <form className="frm" onSubmit={this.Createproject}>
+                                        <h2>new product</h2>
+                                        <div className="form-group sl-3 col-md-12">
+                                            <label>Select Venue</label>
+                                            <select className="col-md-12 form-control" value={this.state.venueid}
+                                                onChange={evt => {
+                                                    this.setState({ venueid: evt.target.value });
+                                                }} required>
+                                                <option selected>Choose Venue Name </option>
+                                                {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                                    <option value={allvanues.venueID} >{allvanues.name}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="name">name</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="venuename"
+                                                placeholder="product Name"
+                                                value={this.state.name}
+                                                onChange={evt => {
+                                                    this.setState({ name: evt.target.value });
+                                                }}
+                                                required />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="description">description</label>
+                                            <textarea
+                                                type="text"
+                                                class="form-control"
+                                                id="venuedecription"
+                                                placeholder="description"
+                                                value={this.state.description}
+                                                onChange={evt => {
+                                                    this.setState({ description: evt.target.value });
+                                                }}
+                                                required />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="dependent">
+                                                <input type="checkbox" id="contact" value={this.state.timeDependentFlag}
+                                                    onClick={evt => {
+                                                        this.setState({ timeDependentFlag: !this.state.timeDependentFlag });
+                                                    }} />
+                                                time dependent
                                      </label>
-                                </div>
-                                <button type="submit" className="btn"
-                                variant="primary"
-                                disabled={isLoading}
-                                // onClick={!isLoading ? this.handleClick : null}
-                              >
-                                {isLoading ? "Loading…" : "add"}
-                                
-                                 </button>
-                                <a style={{ float: "right" }} onClick={this.unshowproducts} className="butn btn">
-                                    Cancel
-                                </a>
-                            </form>
-                        </div>
-                        {/* Create Product Form */}
+                                        </div>
+                                        <button type="submit" className="btn"
+                                            variant="primary"
+                                            disabled={isLoading}
+                                        // onClick={!isLoading ? this.handleClick : null}
+                                        >
+                                            {isLoading ? "Loading…" : "add"}
 
-                           {/* Edit Product Form */}
-                           <div className="col-md-12 venuefrm" id="editproduct" style={{ display: "none" }}>
-                            <form className="frm" onSubmit={this.updateproduct}>
-                                <h2>Update product</h2>
-                                <div class="form-group">
-                                    <label for="name">name</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="venueid"
-                                        placeholder="product Name"
-                                        value={this.state.productID}
-                                        onChange={evt => {
-                                            this.setState({ productID: evt.target.value });
-                                        }}
-                                        style={{ display: "none" }}
-                                    />
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="venuename"
-                                        placeholder="product Name"
-                                        value={this.state.name}
-                                        onChange={evt => {
-                                            this.setState({ name: evt.target.value });
-                                        }}
-                                    />
+                                        </button>
+                                        <a style={{ float: "right" }} onClick={this.unshowproducts} className="butn btn">
+                                            Cancel
+                                </a>
+                                    </form>
                                 </div>
-                                <div class="form-group">
-                                    <label for="description">description</label>
-                                    <textarea
-                                        type="text"
-                                        class="form-control"
-                                        id="venuedecription"
-                                        placeholder="description"
-                                        value={this.state.description}
-                                        onChange={evt => {
-                                            this.setState({ description: evt.target.value });
-                                        }}
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="dependent">
-                                        <input type="checkbox" id="checkedcontact" value={this.state.timeDependentFlag}
-                                            onClick={evt => {
-                                                this.setState({ timeDependentFlag: "true" });
-                                            }} id="mycheck" />
-                                        time dependent
+                                {/* Create Product Form */}
+
+                                {/* Edit Product Form */}
+                                <div className="col-md-10 venuefrm" id="editproduct" style={{ display: "none" }}>
+                                    <form className="frm" onSubmit={this.updateproduct}>
+                                        <h2>Update product</h2>
+                                        <div class="form-group col-md-12">
+                                            <label for="name">name</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="venueid"
+                                                placeholder="product Name"
+                                                value={this.state.productID}
+                                                onChange={evt => {
+                                                    this.setState({ productID: evt.target.value });
+                                                }}
+                                                style={{ display: "none" }}
+                                            />
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="venuename"
+                                                placeholder="product Name"
+                                                value={this.state.name}
+                                                onChange={evt => {
+                                                    this.setState({ name: evt.target.value });
+                                                }}
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="description">description</label>
+                                            <textarea
+                                                type="text"
+                                                class="form-control"
+                                                id="venuedecription"
+                                                placeholder="description"
+                                                value={this.state.description}
+                                                onChange={evt => {
+                                                    this.setState({ description: evt.target.value });
+                                                }}
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="dependent">
+                                                <input type="checkbox" id="checkedcontact" value={this.state.timeDependentFlag}
+                                                    onClick={evt => {
+                                                        this.setState({ timeDependentFlag: "true" });
+                                                    }} id="mycheck" />
+                                                time dependent
                                      </label>
-                                </div>
+                                        </div>
 
-                                <button type="submit" class="btn" 
-                                    variant="primary"
-                                    disabled={isLoading}
-                                    // onClick={!isLoading ? this.handleClick : null}
-                                  >
-                                    {isLoading ? "Loading…" : "update"}
-                                 </button>
-                                <a style={{ float: "right" }} onClick={this.unshoweditproduct} className="butn btn">
-                                    Cancel
+                                        <button type="submit" class="btn"
+                                            variant="primary"
+                                            disabled={isLoading}
+                                        // onClick={!isLoading ? this.handleClick : null}
+                                        >
+                                            {isLoading ? "Loading…" : "update"}
+                                        </button>
+                                        <a style={{ float: "right" }} onClick={this.unshoweditproduct} className="butn btn">
+                                            Cancel
                                 </a>
-                            </form>
-                        </div>
-                        {/* Edit Product Form */}
+                                    </form>
+                                </div>
+                                {/* Edit Product Form */}
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                
+
+
             </div>
         );
     }

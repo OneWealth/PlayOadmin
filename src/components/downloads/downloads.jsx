@@ -110,11 +110,11 @@ class Downloads extends Component {
                             <SideBar />
                         </div>
                         <div className="col-md-10 outputonclick">
-                            <div className="col-md-12 main-heading">
+                            <div className="col-md-10 main-heading">
                                 <h2>Reports</h2>
                             </div>
 
-                            <div className="col-md-12 venuefrm">
+                            <div className="col-md-10 venuefrm">
                                 <form className="frm" >
                                     <div className="row sl-3">
                                         <label className="col-md-3">Venue</label>

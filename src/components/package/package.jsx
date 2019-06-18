@@ -92,9 +92,9 @@ class PackageContent extends Component {
         evt.preventDefault();
         this.setState({ isLoading: true }, () => {
             this.simulateNetworkRequest().then(() => {
-              this.setState({ isLoading: false });
+                this.setState({ isLoading: false });
             });
-          });
+        });
         await this.props.createpackage({
             Name: this.state.name,
             Description: this.state.description,
@@ -117,9 +117,9 @@ class PackageContent extends Component {
         evt.preventDefault();
         this.setState({ isLoading: true }, () => {
             this.simulateNetworkRequest().then(() => {
-              this.setState({ isLoading: false });
+                this.setState({ isLoading: false });
             });
-          });
+        });
         await this.props.updatepackagenew({
             Name: this.state.name,
             Description: this.state.description,
@@ -151,9 +151,9 @@ class PackageContent extends Component {
     }
     simulateNetworkRequest() {
         return new Promise(resolve => setTimeout(resolve, 2000));
-      }
-      handleClick() {}
-    
+    }
+    handleClick() { }
+
     render() {
         const { isLoading } = this.state;
         console.log("Here ", this.props.customAllProducts);
@@ -178,52 +178,52 @@ class PackageContent extends Component {
                         </div>
                         <div className="col-md-10 outputonclick">
                             <div className="row">
-                            <div className="col-md-12 main-heading">
-                                <h2>packages</h2>
-                            </div>
-                            <div className="col-md-12 add">
-                                <a href="#" onClick={this.show}>+ add package</a>
-                            </div>
-                            <div className="col-md-12">
-                                
-                    <form >
-                        <div className="row venuetbl">
-                            <div className="col-md-4">
-                                <div className="row sl-3">
-                                    <select className="col-md-10" value={this.state.venueid}
-                                        // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
-                                        onChange={this.handleChange.bind(this)}>
-                                        <option selected>Choose Venue Name </option>
-                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                            < option value={allvanues.venueID} > {allvanues.name}</option>
-                                        ))}
-                                    </select>
+                                <div className="col-md-12 main-heading">
+                                    <h2>packages</h2>
                                 </div>
-                            </div>
-                            <div className="col-md-4">
-                                <div className="row sl-12">
-                                    <select id="choose-packages" className="col-md-10" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
-                                        <option selected>Choose Product Name </option>
-                                        {this.props.customAllProducts.map((Allproducts, index) => (
 
-                                            <option value={Allproducts.productID}>{Allproducts.name}</option>
-                                        ))}
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="col-md-4 text-right linkstyle">
-                                <a class="btn btn-primary btn-block" onClick={this.onFinalClickHandler.bind(this)}>
-                                    Get Packages
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                                <div className="col-md-10">
+                                    <div className="col-md-12 add">
+                                        <a href="#" onClick={this.show}>+ add package</a>
                                     </div>
+                                    <form >
+                                        <div className="row venuetbl">
+                                            <div className="col-md-4">
+                                                <div className="row sl-3">
+                                                    <select className="col-md-10" value={this.state.venueid}
+                                                        // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
+                                                        onChange={this.handleChange.bind(this)}>
+                                                        <option selected>Choose Venue Name </option>
+                                                        {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
+                                                            < option value={allvanues.venueID} > {allvanues.name}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-4">
+                                                <div className="row sl-12">
+                                                    <select id="choose-packages" className="col-md-10" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
+                                                        <option selected>Choose Product Name </option>
+                                                        {this.props.customAllProducts.map((Allproducts, index) => (
 
-                                    <div className="col-md-12 venuetbl" style={this.state.showPackageTable} id="packagesapiresult">
+                                                            <option value={Allproducts.productID}>{Allproducts.name}</option>
+                                                        ))}
 
-                                    <table className="table tbl">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-4 text-right linkstyle">
+                                                <a class="btn btn-primary btn-block" onClick={this.onFinalClickHandler.bind(this)}>
+                                                    Get Packages
+                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div className="col-md-10 venuetbl" style={this.state.showPackageTable} id="packagesapiresult">
+
+                                    <table className="table tbl col-md-12">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -254,16 +254,16 @@ class PackageContent extends Component {
                                             ))}
                                         </tbody>
                                     </table>
-                                    </div>
-                                    {/* Package Table */}
-                                        {/* Create Package Form */}
+                                </div>
+                                {/* Package Table */}
+                                {/* Create Package Form */}
 
-                                <div className="col-md-12 venuefrm" id="newpackages" style={{ display: "none" }}  >
+                                <div className="col-md-10 venuefrm" id="newpackages" style={{ display: "none" }}  >
                                     <form className="frm" onSubmit={this.createpackage}>
                                         <h2>new package</h2>
                                         <div className="row sl-3">
                                             <label className="col-md-12">Select venue</label>
-                                            <select className="col-md-10" value={this.state.venueid}
+                                            <select className="col-md-12" value={this.state.venueid}
                                                 // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
                                                 onChange={this.handleChange.bind(this)} required>
                                                 <option >Choose Venue Name </option>
@@ -274,7 +274,7 @@ class PackageContent extends Component {
                                         </div>
                                         <div className="row sl-3">
                                             <label className="col-md-12">Select Product</label>
-                                            <select id="choose-packages" className="col-md-10" value={this.state.ProductID} onChange={evt => {
+                                            <select id="choose-packages" className="col-md-12" value={this.state.ProductID} onChange={evt => {
                                                 this.setState({ ProductID: evt.target.value });
                                             }} required >
                                                 <option >Choose Product Name </option>
@@ -284,7 +284,7 @@ class PackageContent extends Component {
 
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-md-12">
                                             <label for="name">name</label>
                                             <input
                                                 type="text"
@@ -296,7 +296,7 @@ class PackageContent extends Component {
                                                 }}
                                                 required />
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-md-12">
                                             <label for="description">description</label>
                                             <textarea
                                                 type="address"
@@ -308,7 +308,7 @@ class PackageContent extends Component {
                                                 }}
                                                 required />
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-md-12">
                                             <label for="duration">time duration</label>
                                             <input
                                                 type="number"
@@ -320,7 +320,7 @@ class PackageContent extends Component {
                                                 }}
                                                 required />
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-md-12">
                                             <label for="money">money</label>
                                             <input
                                                 type="number"
@@ -333,10 +333,10 @@ class PackageContent extends Component {
                                                 required />
                                         </div>
                                         <button type="submit" class="btn"
-                                           variant="primary"
-                                           disabled={isLoading}
+                                            variant="primary"
+                                            disabled={isLoading}
                                         //    onClick={!isLoading ? this.handleClick : null}
-                                            >
+                                        >
                                             {isLoading ? "Loading…" : "add"}
                                         </button>
                                         <button class="btn" style={{ float: "right" }} onClick={this.unshowproduct}>
@@ -344,93 +344,93 @@ class PackageContent extends Component {
                                         </button>
                                     </form>
                                 </div>
-                                    {/* Create Package Form */}
+                                {/* Create Package Form */}
 
-                                    
-                            {/* Update Package Form */}
-                   
-                        <div className="col-md-12 venuefrm" id="updatepackages" style={{ display: "none" }} >
-                            <form className="frm" onSubmit={this.updatepackage}>
-                                <h2>Update package</h2>
 
-                                <div class="form-group">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="venuename"
-                                        placeholder="package name"
-                                        value={this.state.PackageID} onChange={evt => {
-                                            this.setState({ PackageID: evt.target.value });
-                                        }}
-                                        style={{ display: "none" }} />
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">name</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="venuename"
-                                        placeholder="package name"
-                                        value={this.state.name} onChange={evt => {
-                                            this.setState({ name: evt.target.value });
-                                        }}
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">description</label>
-                                    <textarea
-                                        type="address"
-                                        class="form-control"
-                                        id="address"
-                                        placeholder="description"
-                                        value={this.state.description} onChange={evt => {
-                                            this.setState({ description: evt.target.value });
-                                        }}
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="duration">time duration</label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="contact"
-                                        placeholder="duration"
-                                        value={this.state.duration} onChange={evt => {
-                                            this.setState({ duration: evt.target.value });
-                                        }}
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="money">money</label>
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="contact"
-                                        placeholder="money"
-                                        value={this.state.money} onChange={evt => {
-                                            this.setState({ money: evt.target.value });
-                                        }}
-                                    />
-                                </div>
-                                <button type="submit" class="btn"
-                                variant="primary"
-                                disabled={isLoading}
-                                // onClick={!isLoading ? this.handleClick : null}
-                              >
-                                {isLoading ? "Loading…" : "update"}
-                                </button>
-                                <a class="btn butn" style={{ float: "right" }} onClick={this.unshowproduct}>
-                                    Cancel
+                                {/* Update Package Form */}
+
+                                <div className="col-md-10 venuefrm" id="updatepackages" style={{ display: "none" }} >
+                                    <form className="frm" onSubmit={this.updatepackage}>
+                                        <h2>Update package</h2>
+
+                                        <div class="form-group col-md-12">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="venuename"
+                                                placeholder="package name"
+                                                value={this.state.PackageID} onChange={evt => {
+                                                    this.setState({ PackageID: evt.target.value });
+                                                }}
+                                                style={{ display: "none" }} />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="name">name</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="venuename"
+                                                placeholder="package name"
+                                                value={this.state.name} onChange={evt => {
+                                                    this.setState({ name: evt.target.value });
+                                                }}
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="description">description</label>
+                                            <textarea
+                                                type="address"
+                                                class="form-control"
+                                                id="address"
+                                                placeholder="description"
+                                                value={this.state.description} onChange={evt => {
+                                                    this.setState({ description: evt.target.value });
+                                                }}
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="duration">time duration</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="contact"
+                                                placeholder="duration"
+                                                value={this.state.duration} onChange={evt => {
+                                                    this.setState({ duration: evt.target.value });
+                                                }}
+                                            />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="money">money</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="contact"
+                                                placeholder="money"
+                                                value={this.state.money} onChange={evt => {
+                                                    this.setState({ money: evt.target.value });
+                                                }}
+                                            />
+                                        </div>
+                                        <button type="submit" class="btn"
+                                            variant="primary"
+                                            disabled={isLoading}
+                                        // onClick={!isLoading ? this.handleClick : null}
+                                        >
+                                            {isLoading ? "Loading…" : "update"}
+                                        </button>
+                                        <a class="btn butn" style={{ float: "right" }} onClick={this.unshowproduct}>
+                                            Cancel
                                 </a>
-                            </form>
-                        </div>
-                
-                    {/* Update Package Form */}
+                                    </form>
+                                </div>
+
+                                {/* Update Package Form */}
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         );
     }
