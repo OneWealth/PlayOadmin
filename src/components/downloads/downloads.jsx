@@ -23,7 +23,6 @@ class Downloads extends Component {
             Month: null,
             Year: null
         };
-        this.getdownloadlink = this.getdownloadlink.bind(this);
     }
 
     async  componentDidMount() {
@@ -248,7 +247,7 @@ class Downloads extends Component {
                                         Download Data
                                     </button>
 
-                                    <div className="col-md-12" id="showbutton" style={{ display: "none" }}>
+                                    <div className="col-md-12" id="showbutton" >
                                         <CsvDownload
                                             data={this.props.RESULT.result}
                                             id="filedownload"
@@ -270,10 +269,7 @@ class Downloads extends Component {
                                             Good Data ✨
                                          </CsvDownload>
                                     </div>
-
-
-
-                                    {this.props.RESULT.result ? this.getdownloadlink() : null}
+                                    {/* {this.props.RESULT.result ? document.getElementById("showbutton").style.display = "block" : "none"} */}
                                 </form>
                             </div>
 
