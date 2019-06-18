@@ -88,10 +88,11 @@ class Downloads extends Component {
             Month: this.state.Month,
             Year: this.state.Year,
             Range: this.state.Range
-        })
+        }).then(() => {
+            document.getElementById("downloadata").style.display = "block"
+            return;
+        });
     };
-
-
 
     render() {
         let { customAllProducts } = this.props;
@@ -101,9 +102,6 @@ class Downloads extends Component {
             let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
             packages = _c[0].linkedPackages;
         }
-
-
-
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -246,11 +244,9 @@ class Downloads extends Component {
                                     <button type="submit" class="btn" onClick={this.getreports} id="downloadbtn">
                                         Download Data
                                     </button>
-
-                                    <div className="col-md-12" id="showbutton" >
+                                    <div className="col-md-12" id="downloadata" style={{ display: "none", paddingLeft: "0px" }}>
                                         <CsvDownload
                                             data={this.props.RESULT.result}
-                                            id="filedownload"
                                             filename="good_data.csv"
                                             style={{
                                                 boxShadow: "inset 0px 1px 0px 0px #e184f3",
@@ -262,14 +258,14 @@ class Downloads extends Component {
                                                 cursor: "pointer", "color": "#ffffff",
                                                 fontSize: "15px",
                                                 fontWeight: "bold",
-                                                padding: "6px 24px",
+                                                padding: "10px 24px",
                                                 textDecoration: "none",
                                                 textShadow: "0px 1px 0px #9b14b3",
+                                                marginLeft: "-10px",
                                             }}>
                                             Good Data ✨
-                                         </CsvDownload>
+                                        </CsvDownload>
                                     </div>
-                                    {/* {this.props.RESULT.result ? document.getElementById("showbutton").style.display = "block" : "none"} */}
                                 </form>
                             </div>
 
