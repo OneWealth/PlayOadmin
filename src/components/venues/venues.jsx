@@ -11,7 +11,7 @@ class Venue extends Component {
             venueID: "",
             name: "",
             adderess: "",
-            GSTNbr:"",
+            GSTNbr: "",
             contactNcr: "",
             data: {},
             show: false,
@@ -57,7 +57,7 @@ class Venue extends Component {
         this.setState({
             name: "",
             adderess: "",
-            GSTNbr:"",
+            GSTNbr: "",
             contactNcr: ""
         });
     };
@@ -72,14 +72,14 @@ class Venue extends Component {
             .createvanue({
                 Name: this.state.name,
                 Adderess: this.state.adderess,
-                GSTNbr:this.state.GSTNbr,
+                GSTNbr: this.state.GSTNbr,
                 ContactNbr: this.state.contactNcr
             })
             .then(() => {
                 this.clearText();
                 document.getElementById("name").value = "";
                 document.getElementById("adderess").value = "";
-                document.getElementById("GSTNbr").value="";
+                document.getElementById("GSTNbr").value = "";
                 document.getElementById("contactNcr").value = "";
                 return;
             });
@@ -95,11 +95,12 @@ class Venue extends Component {
             venueID: this.state.venueID,
             Name: this.state.name,
             Adderess: this.state.adderess,
-            GSTNbr:this.state.GSTNbr,
+            GSTNbr: this.state.GSTNbr,
             ContactNbr: this.state.contactNcr
         });
     };
     show = async allvanues => {
+        console.log(allvanues)
         document.getElementById("updatevenue").style.display = "block";
         document.getElementById("newvenue").style.display = "none";
         document.getElementById("apivenue").style.display = "none";
@@ -108,6 +109,7 @@ class Venue extends Component {
         this.setState({ name: allvanues.name });
         this.setState({ adderess: allvanues.adderess });
         this.setState({ contactNcr: allvanues.contactNbr });
+        this.setState({ GSTNbr: allvanues.gstNbr });
         document.getElementById("name").value = allvanues.name || "";
         document.getElementById("adderess").value = allvanues.adderess || "";
         document.getElementById("mobile").value = allvanues.contactNbr || "";
