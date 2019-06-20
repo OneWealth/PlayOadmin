@@ -7,11 +7,12 @@
 }
 
 .sidebar ul li a {
-    padding: 15px 0px;
+    padding: 10px 15px;
     color: #fff;
     font-size: 16px;
     font-weight: 600;
     display: block;
+    margin-bottom: 10px;
 }
 
 .sidebar ul li {
@@ -28,4 +29,10 @@
 
 .outputonclick {
     padding: 0px 50px;
+}
+
+.is-active
+{
+    background-color: #fff;
+    color: #0e2da5 !important;
 }
