@@ -50,7 +50,7 @@ class EditHoliday extends React.PureComponent {
                     <h2>Edit Holiday Details</h2>
 
                     <div className="form-group col-md-12">
-                        <label for="address">Choose Venue Name</label>
+                        <label>Choose Venue Name</label>
                         <select
                             className="col-md-12"
                             value={this.state.venueID}
@@ -72,11 +72,10 @@ class EditHoliday extends React.PureComponent {
                     </div>
 
                     <div class="form-group col-md-12">
-                        <label for="address">Holiday Date</label>
+                        <label>Holiday Date</label>
                         <input
                             type="date"
                             class="form-control"
-                            placeholder="Enter Friendly RFID"
                             value={this.state.holiday}
                             onChange={evt => {
                                 this.setState({ holiday: evt.target.value });
@@ -85,7 +84,7 @@ class EditHoliday extends React.PureComponent {
                     </div>
 
                     <div class="form-group col-md-12">
-                        <label for="name">Reason</label>
+                        <label>Reason</label>
 
                         <input
                             type="texarea"

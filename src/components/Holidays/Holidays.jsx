@@ -26,12 +26,12 @@ class Holidays extends React.PureComponent {
         let holidaypackages = [];
         for (var i = 0; i < holidaypackages; i++) { }
     }
-    showupdate = async () => {
+    addholiday = async () => {
         document.getElementById("editholiday").style.display = "block";
         document.getElementById("holidayapiresult").style.display = "none";
     };
 
-    showupdate = async (holidaypackages) => {
+    delholiday = async (holidaypackages) => {
         await this.props.deleteholiday({
             id: holidaypackages.id,
         })
@@ -51,7 +51,7 @@ class Holidays extends React.PureComponent {
                                 <h2>Holidays</h2>
                             </div>
                             <div className="col-md-10 add">
-                                <a href="#" onClick={this.showupdate}>+ add Holiday</a>
+                                <a href="#" onClick={this.addholiday}>+ add Holiday</a>
                             </div>
                             <div className="col-md-10 holidayfrm" id="holidayapiresult">
                                 <table className="table tbl" style={{ marginTop: "20px" }}>
@@ -81,7 +81,7 @@ class Holidays extends React.PureComponent {
                                                                 <i
                                                                     class="fa fa-trash"
                                                                     aria-hidden="true"
-                                                                    onClick={(evt) => this.showupdate(holidaypackages)}
+                                                                    onClick={(evt) => this.delholiday(holidaypackages)}
                                                                 />
                                                             </a>
                                                         </td>

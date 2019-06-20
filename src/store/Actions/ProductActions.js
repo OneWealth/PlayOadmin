@@ -92,6 +92,7 @@ export const createpackage = values => dispatch => {
         Name: values.Name,
         Description: values.Description,
         Duration: values.Duration,
+        HolidayMoney: values.HolidayMoney,
         Money: values.Money,
         ProductID: values.ProductID,
         isActive: "true"
@@ -123,6 +124,7 @@ export const updatepackagenew = values => dispatch => {
         Description: values.Description,
         Duration: values.Duration,
         Money: values.Money,
+        HolidayMoney: values.HolidayMoney,
         PackageID: values.PackageID
       },
       {

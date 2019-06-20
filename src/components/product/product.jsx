@@ -265,7 +265,7 @@ class Product extends Component {
                                                 type="text"
                                                 class="form-control"
                                                 id="venuename"
-                                                placeholder="product Name"
+                                                placeholder="Product Name"
                                                 value={this.state.name}
                                                 onChange={evt => {
                                                     this.setState({ name: evt.target.value });
@@ -278,7 +278,7 @@ class Product extends Component {
                                                 type="text"
                                                 class="form-control"
                                                 id="venuedecription"
-                                                placeholder="description"
+                                                placeholder="Description"
                                                 value={this.state.description}
                                                 onChange={evt => {
                                                     this.setState({ description: evt.target.value });
