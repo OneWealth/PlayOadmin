@@ -62,7 +62,6 @@ select {
   font-size: 14px !important;
   height: 50px;
   padding: 15px !important;
-  text-transform: capitalize;
 }
 
 .frm input:focus {

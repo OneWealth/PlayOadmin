@@ -15,6 +15,7 @@ class PackageContent extends Component {
             Name: "",
             Description: "",
             Duration: "",
+            holidaymoney: "",
             Money: "",
             IsActive: "",
             venueID: null,
@@ -84,6 +85,7 @@ class PackageContent extends Component {
             name: "",
             description: "",
             duration: "",
+            holidaymoney: "",
             money: "",
             ProductID: ""
         });
@@ -96,9 +98,11 @@ class PackageContent extends Component {
             });
         });
         await this.props.createpackage({
+
             Name: this.state.name,
             Description: this.state.description,
             Duration: this.state.duration,
+            HolidayMoney: this.state.holidaymoney,
             Money: this.state.money,
             ProductID: this.state.ProductID
         }).then(() => {
@@ -106,6 +110,7 @@ class PackageContent extends Component {
             document.getElementById("name").value = "";
             document.getElementById("description").value = "";
             document.getElementById("duration").value = "";
+            document.getElementById("holidaymoney").value = "";
             document.getElementById("money").value = "";
             document.getElementById("ProductID").value = "";
             return;
@@ -124,6 +129,7 @@ class PackageContent extends Component {
             Name: this.state.name,
             Description: this.state.description,
             Duration: this.state.duration,
+            HolidayMoney: this.state.holidaymoney,
             Money: this.state.money,
             PackageID: this.state.PackageID
         })
@@ -136,6 +142,7 @@ class PackageContent extends Component {
         this.setState({ name: p.name })
         this.setState({ description: p.description })
         this.setState({ duration: p.duration })
+        this.setState({ holidaymoney: p.HolidayMoney })
         this.setState({ money: p.money })
     };
     show = async (evt) => {
@@ -153,20 +160,25 @@ class PackageContent extends Component {
         return new Promise(resolve => setTimeout(resolve, 2000));
     }
     handleClick() { }
-
+    delpackages = async (packages) => {
+        console.log(packages);
+        await this.props.deletepackages({
+            packageID: packages.packageID,
+        })
+    };
     render() {
         const { isLoading } = this.state;
-        console.log("Here ", this.props.customAllProducts);
-
         if (this.props.customAllProducts.length > 0) {
 
         }
         let { customAllProducts } = this.props;
         let packages = [];
 
+
         if (customAllProducts.length > 0 && parseInt(this.state.productID)) {
             let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
             packages = _c[0].linkedPackages;
+            console.log(packages);
         }
 
         return (
@@ -231,24 +243,28 @@ class PackageContent extends Component {
                                                 <th>description</th>
                                                 <th>duration</th>
                                                 <th>money</th>
+                                                <th>holiday money</th>
                                                 <th>Link</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {packages.map((p, index) => (
+
                                                 <tr>
                                                     <td>{p.packageID}</td>
                                                     <td>{p.name}</td>
                                                     <td>{p.description}</td>
                                                     <td>{p.duration}</td>
+
                                                     <td>{p.money}</td>
+                                                    <td>{p.HolidayMoney}</td>
                                                     <td>
                                                         <a href="#" title="Update/Edit">
                                                             <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.showupdate(p)} />
                                                         </a>
-                                                        {/* <a href="#" title="Delete">
-                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.deleteRow(this)} />
-                                                        </a> */}
+                                                        <a href="#" title="Delete">
+                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.delpackages(packages)} />
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -262,7 +278,7 @@ class PackageContent extends Component {
                                     <form className="frm" onSubmit={this.createpackage}>
                                         <h2>new package</h2>
                                         <div className="row sl-3">
-                                            <label className="col-md-12">Select venue</label>
+                                            <label className="col-md-12">Select Venue</label>
                                             <select className="col-md-12" value={this.state.venueid}
                                                 // evt => { this.setState({ venueid: evt.target.value }), this.getproducts }
                                                 onChange={this.handleChange.bind(this)} required>
@@ -290,7 +306,7 @@ class PackageContent extends Component {
                                                 type="text"
                                                 class="form-control"
                                                 id="venuename"
-                                                placeholder="package name"
+                                                placeholder="Package Name"
                                                 value={this.state.name} onChange={evt => {
                                                     this.setState({ name: evt.target.value });
                                                 }}
@@ -302,7 +318,7 @@ class PackageContent extends Component {
                                                 type="address"
                                                 class="form-control"
                                                 id="address"
-                                                placeholder="description"
+                                                placeholder="Description"
                                                 value={this.state.description} onChange={evt => {
                                                     this.setState({ description: evt.target.value });
                                                 }}
@@ -314,21 +330,34 @@ class PackageContent extends Component {
                                                 type="number"
                                                 class="form-control"
                                                 id="contact"
-                                                placeholder="duration"
+                                                placeholder="Duration"
                                                 value={this.state.duration} onChange={evt => {
                                                     this.setState({ duration: evt.target.value });
                                                 }}
                                                 required />
                                         </div>
+
                                         <div class="form-group col-md-12">
                                             <label for="money">money</label>
                                             <input
                                                 type="number"
                                                 class="form-control"
                                                 id="contact"
-                                                placeholder="money"
+                                                placeholder="Money"
                                                 value={this.state.money} onChange={evt => {
                                                     this.setState({ money: evt.target.value });
+                                                }}
+                                                required />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="money">Holiday money</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="holidaymoney"
+                                                placeholder="Holiday Money"
+                                                value={this.state.holidaymoney} onChange={evt => {
+                                                    this.setState({ holidaymoney: evt.target.value });
                                                 }}
                                                 required />
                                         </div>
@@ -411,6 +440,18 @@ class PackageContent extends Component {
                                                     this.setState({ money: evt.target.value });
                                                 }}
                                             />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="money">Holiday money</label>
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="holidaymoney"
+                                                placeholder="Holiday Money"
+                                                value={this.state.holidaymoney} onChange={evt => {
+                                                    this.setState({ holidaymoney: evt.target.value });
+                                                }}
+                                                required />
                                         </div>
                                         <button type="submit" class="btn"
                                             variant="primary"

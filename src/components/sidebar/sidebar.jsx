@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./sidebar.css";
 
 class SideBar extends Component {
@@ -19,34 +19,34 @@ class SideBar extends Component {
                 <div className="col-md-12 sidebar">
                     <ul>
                         <li>
-                            <Link to="/revenue">Home</Link>
+                            <NavLink exact={true} activeClassName='is-active' to="/revenue">Home</NavLink>
                         </li>
                         <li>
-                            <Link to="/adduser">User</Link>
+                            <NavLink activeClassName='is-active' to="/adduser">User</NavLink>
                         </li>
                         <li>
-                            <Link to="/venue">Venue</Link>
+                            <NavLink activeClassName='is-active' to="/venue">Venue</NavLink>
                         </li>
                         <li>
-                            <Link to="/product">Product</Link>
+                            <NavLink activeClassName='is-active' to="/product">Product</NavLink>
                         </li>
                         <li>
-                            <Link to="/package">Package</Link>
+                            <NavLink activeClassName='is-active' to="/package">Package</NavLink>
                         </li>
                         <li>
-                            <Link to="/holidays">Holidays</Link>
+                            <NavLink activeClassName='is-active' to="/holidays">Holidays</NavLink>
                         </li>
                         <li>
-                            <Link to="/rfid">RFID</Link>
+                            <NavLink activeClassName='is-active' to="/rfid">RFID</NavLink>
                         </li>
                         <li>
-                            <Link to="/payment">Payment</Link>
+                            <NavLink activeClassName='is-active' to="/payment">Payment</NavLink>
                         </li>
                         <li>
-                            <Link to="/reportgeneration">Report</Link>
+                            <NavLink activeClassName='is-active' to="/reportgeneration">Report</NavLink>
                         </li>
                         <li>
-                            <Link onClick={this.logout}>logout</Link>
+                            <NavLink onClick={this.logout}>logout</NavLink>
                         </li>
                     </ul>
                 </div>

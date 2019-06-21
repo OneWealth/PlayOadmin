@@ -31,7 +31,7 @@ class Holidays extends React.PureComponent {
         document.getElementById("holidayapiresult").style.display = "none";
     };
 
-    showupdate = async (holidaypackages) => {
+    delholiday = async (holidaypackages) => {
         await this.props.deleteholiday({
             id: holidaypackages.id,
         })
@@ -81,7 +81,7 @@ class Holidays extends React.PureComponent {
                                                                 <i
                                                                     class="fa fa-trash"
                                                                     aria-hidden="true"
-                                                                    onClick={(evt) => this.showupdate(holidaypackages)}
+                                                                    onClick={(evt) => this.delholiday(holidaypackages)}
                                                                 />
                                                             </a>
                                                         </td>
