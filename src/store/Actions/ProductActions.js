@@ -7,7 +7,6 @@ const CREATE_PRODUCT = createAction("CREATE_PRODUCT");
 const UPDATE_PRODUCT = createAction("UPDATE_PRODUCT");
 const CREATE_PACKAGE = createAction("CREATE_PACKAGE");
 const UPDATE_PACKAGE = createAction("UPDATE_PACKAGE");
-const DELETE_PACKAGE = createAction("DELETE_PACKAGE");
 
 export const products = values => dispatch => {
     axios
@@ -146,16 +145,16 @@ export const updatepackagenew = values => dispatch => {
 };
 
 export const deletepackages = values => dispatch => {
+    console.log(values);
     axios.delete(BACKEND_URL + "tableapi/Packages/" + values.PackageID, {
         headers: {
             Authorization: localStorage.getItem("token")
         }
     })
         .then(res => {
-            console.log(res.data);
+            //console.log(res.data);
             alert("Deleted Successfully");
             dispatch(CREATE_PACKAGE(res.data));
-
             window.location.reload();
         })
         .catch(error => {

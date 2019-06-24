@@ -160,10 +160,11 @@ class PackageContent extends Component {
         return new Promise(resolve => setTimeout(resolve, 2000));
     }
     handleClick() { }
-    delpackages = async (packages) => {
-        console.log(packages);
+
+    delpackages = async (pack) => {
+        //console.log("indelpackage" + JSON.stringify( pack));
         await this.props.deletepackages({
-            packageID: packages.packageID,
+            PackageID: pack.packageID,
         })
     };
     render() {
@@ -263,7 +264,7 @@ class PackageContent extends Component {
                                                             <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.showupdate(p)} />
                                                         </a>
                                                         <a href="#" title="Delete">
-                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.delpackages(packages)} />
+                                                            <i class="fa fa-trash" aria-hidden="true" onClick={(evt) => this.delpackages(p)} />
                                                         </a>
                                                     </td>
                                                 </tr>
