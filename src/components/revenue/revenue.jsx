@@ -50,9 +50,9 @@ class Revenue extends Component {
                       </span>{" "}
                     </Card.Header>
                     <Card.Body>
-                      <Card.Text>
+                      {/* <Card.Text> */}
                         <Monthly daystart={todayRevenue} />
-                      </Card.Text>
+                      {/* </Card.Text> */}
                     </Card.Body>
                   </Card>
                 </div>
@@ -67,7 +67,7 @@ class Revenue extends Component {
                     </Card.Header>
                     <Card.Body>
                       <Daily daystart={todayRevenue} />
-                      <Card.Text />
+                      {/* <Card.Text /> */}
                     </Card.Body>
                   </Card>
                 </div>
@@ -82,9 +82,9 @@ class Revenue extends Component {
                       </span>{" "}
                     </Card.Header>
                     <Card.Body>
-                      <Card.Text>
+                      {/* <Card.Text> */}
                         <MonthlyDetail daystart={todayRevenue} />
-                      </Card.Text>
+                      {/* </Card.Text> */}
                     </Card.Body>
                   </Card>
                 </div>

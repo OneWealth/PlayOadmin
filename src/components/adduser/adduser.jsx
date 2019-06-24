@@ -9,11 +9,11 @@ class AddUser extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            username: null,
-            password: null,
-            confirmpassword: null,
-            emailid: null,
-            venueid: null,
+            username: "",
+            password: "",
+            confirmpassword: "",
+            emailid: "",
+            venueid: "",
             userName: "",
             venueName: "",
             emailId: "",
@@ -141,12 +141,12 @@ class AddUser extends Component {
                                                             this.setState({ venueid: evt.target.value });
                                                         }}
                                                     >
-                                                        <option selected>Choose Venue Name </option>
+                                                        <option>Choose Venue Name </option>
                                                         {this.props.allvenues.vanues.items &&
                                                             this.props.allvenues.vanues.items &&
                                                             this.props.allvenues.vanues.items.map(
                                                                 (allvanues, index) => (
-                                                                    <option value={allvanues.venueID}>
+                                                                    <option key={index} value={allvanues.venueID}>
                                                                         {allvanues.name}
                                                                     </option>
                                                                 )
@@ -156,7 +156,7 @@ class AddUser extends Component {
                                             </div>
                                             <div className="col-md-5 text-right">
                                                 <button
-                                                    class="btn btn-primary btn-block"
+                                                    className="btn btn-primary btn-block"
                                                     onClick={this.unshow}
                                                 >
                                                     Get Users
@@ -184,9 +184,9 @@ class AddUser extends Component {
                                                 this.props.alluser.getuser.items.map(
                                                     (allusers, index) => (
                                                         <tr>
-                                                            <td>{allusers.userName}</td>
-                                                            <td>{allusers.venueName}</td>
-                                                            <td>{allusers.emailId}</td>
+                                                            <td key={index}>{allusers.userName}</td>
+                                                            <td key={index}>{allusers.venueName}</td>
+                                                            <td key={index}>{allusers.emailId}</td>
                                                         </tr>
                                                     )
                                                 )}
@@ -209,12 +209,12 @@ class AddUser extends Component {
                                                 onChange={evt => {
                                                     this.setState({ venueid: evt.target.value });
                                                 }} required >
-                                                <option selected>Choose Venue Name </option>
+                                                <option>Choose Venue Name </option>
                                                 {this.props.allvenues.vanues.items &&
                                                     this.props.allvenues.vanues.items &&
                                                     this.props.allvenues.vanues.items.map(
                                                         (allvanues, index) => (
-                                                            <option value={allvanues.venueID}>
+                                                            <option key={index} value={allvanues.venueID}>
                                                                 {allvanues.name}
                                                             </option>
                                                         )
@@ -222,11 +222,11 @@ class AddUser extends Component {
                                             </select>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="username">username</label>
+                                        <div className="form-group">
+                                            <label>username</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="username"
                                                 placeholder="Enter Username"
                                                 value={this.state.username}
@@ -234,8 +234,8 @@ class AddUser extends Component {
                                                     this.setState({ username: evt.target.value });
                                                 }} required />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="password">password</label>
+                                        <div className="form-group">
+                                            <label>password</label>
                                             <input
                                                 type="password"
                                                 className="form-control small"
@@ -246,8 +246,8 @@ class AddUser extends Component {
                                                     this.setState({ password: evt.target.value });
                                                 }} required />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="confirm password">confirm password</label>
+                                        <div className="form-group">
+                                            <label>confirm password</label>
                                             <input
                                                 type="password"
                                                 id="contact"
@@ -258,8 +258,8 @@ class AddUser extends Component {
                                                     this.setState({ confirmpassword: evt.target.value });
                                                 }} required />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="email">email id</label>
+                                        <div className="form-group">
+                                            <label>email id</label>
                                             <input
                                                 type="email"
                                                 id="email"
@@ -272,7 +272,7 @@ class AddUser extends Component {
                                         </div>
                                         <button
                                             type="submit"
-                                            class="btn"
+                                            className="btn"
                                             variant="primary"
                                             disabled={isLoading}
                                         >
@@ -280,7 +280,7 @@ class AddUser extends Component {
                                         </button>
 
                                         <button
-                                            class="btn"
+                                            className="btn"
                                             style={{ float: "right" }}
                                             onClick={this.unshow}>
                                             Cancel

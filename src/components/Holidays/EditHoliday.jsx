@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
@@ -10,7 +10,8 @@ class EditHoliday extends React.PureComponent {
             venueID: "",
             holiday: "",
             isholiday: "",
-            reason: ""
+            reason: "",
+            venueName:""
         };
     }
 
@@ -33,7 +34,8 @@ class EditHoliday extends React.PureComponent {
             venueID: this.state.venueID,
             holiday: this.state.holiday,
             isholiday: this.state.isholiday,
-            reason: this.state.reason
+            reason: this.state.reason,
+            venueName: this.state.venueName
         })
     };
 
@@ -58,12 +60,12 @@ class EditHoliday extends React.PureComponent {
                                 this.setState({ venueID: evt.target.value });
                             }}
                         >
-                            <option selected>Choose Venue Name </option>
+                            <option>Choose Venue Name </option>
                             {this.props.allvenues.vanues.items &&
                                 this.props.allvenues.vanues.items &&
                                 this.props.allvenues.vanues.items.map(
                                     (allvanues, index) => (
-                                        <option value={allvanues.venueID}>
+                                        <option key={index}  value={allvanues.venueID}>
                                             {allvanues.name}
                                         </option>
                                     )
@@ -71,32 +73,33 @@ class EditHoliday extends React.PureComponent {
                         </select>
                     </div>
 
-                    <div class="form-group col-md-12">
+                    <div className="form-group col-md-12">
                         <label>Holiday Date</label>
                         <input
                             type="date"
-                            class="form-control"
+                            className="form-control"
                             value={this.state.holiday}
+                        
                             onChange={evt => {
                                 this.setState({ holiday: evt.target.value });
                             }}
                             required />
                     </div>
 
-                    <div class="form-group col-md-12">
+                    <div className="form-group col-md-12">
                         <label>Reason</label>
 
                         <input
                             type="texarea"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Enter Reason of Holiday"
                             value={this.state.rfid}
                             onChange={evt => {
                                 this.setState({ reason: evt.target.value });
                             }} />
                     </div>
-                    <div class="form-group col-md-12">
-                        <label for="dependent">
+                    <div className="form-group col-md-12">
+                        <label>
                             <input type="checkbox" value={this.state.isholiday}
                                 onClick={evt => {
                                     this.setState({ isholiday: "true" });
@@ -106,12 +109,12 @@ class EditHoliday extends React.PureComponent {
                     </div>
                     <button
                         type="submit"
-                        class="btn"
+                        className="btn"
                         variant="primary">
                         Add Holiday
                     </button>
                     <a
-                        class="btn butn"
+                        className="btn butn"
                         style={{ float: "right" }}
                         onClick={this.unshow} >
                         Cancel

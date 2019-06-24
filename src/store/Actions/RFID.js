@@ -65,7 +65,6 @@ export const getreport = values => dispatch => {
 };
 
 export const updaterfidnew = values => dispatch => {
-  console.log(values);
   return axios
     .put(
       BACKEND_URL + "tableapi/RFID/" + values.rfid,
@@ -84,16 +83,15 @@ export const updaterfidnew = values => dispatch => {
     )
     .then(res => {
       alert("Created Updated");
-      // console.log(res);
+     
       // dispatch(UPDATE_RFID(res.data));
       // document.getElementById("updatepackages").style.display = "none";
 
       window.location.reload();
     })
     .catch(error => {
-      //console.log("some error" + JSON.stringify(error.response));
+     
       alert(error.response.data.errorMessage);
-      //alert("hello");
       return Promise.reject();
     });
 };

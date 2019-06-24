@@ -100,7 +100,6 @@ class Venue extends Component {
         });
     };
     show = async allvanues => {
-        console.log(allvanues)
         document.getElementById("updatevenue").style.display = "block";
         document.getElementById("newvenue").style.display = "none";
         document.getElementById("apivenue").style.display = "none";
@@ -149,9 +148,9 @@ class Venue extends Component {
                                     <h2>Venue</h2>
                                 </div>
                                 <div className="col-md-10 add">
-                                    <a href="#" onClick={this.addnew}>
+                                    <a onClick={this.addnew}>
                                         + add venue
-                  </a>
+                                    </a>
                                 </div>
 
                                 <div className="col-md-10 venuetbl venuestbl" id="apivenue">
@@ -170,15 +169,15 @@ class Venue extends Component {
                                                 this.props.allvenues.vanues.items &&
                                                 this.props.allvenues.vanues.items.map(
                                                     (allvanues, index) => (
-                                                        <tr>
-                                                            <th>{allvanues.venueID}</th>
+                                                        <tr key={index} >
+                                                            <td>{allvanues.venueID}</td>
                                                             <td>{allvanues.name}</td>
                                                             <td>{allvanues.adderess}</td>
                                                             <td>{allvanues.contactNbr}</td>
                                                             <td>
                                                                 <a>
                                                                     <i
-                                                                        class="fa fa-pencil"
+                                                                        className="fa fa-pencil"
                                                                         aria-hidden="true"
                                                                         onClick={evt => this.show(allvanues)}
                                                                     />
@@ -199,12 +198,12 @@ class Venue extends Component {
                                 >
                                     <form className="frm" onSubmit={this.updatedata}>
                                         <h2>update Venue</h2>
-                                        <div class="form-group col-md-12">
-                                            <label for="name">name</label>
+                                        <div className="form-group col-md-12">
+                                            <label>name</label>
 
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter Venue Name"
                                                 value={this.state.venueID}
                                                 onChange={evt => {
@@ -216,7 +215,7 @@ class Venue extends Component {
 
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter Venue Name"
                                                 value={this.state.name}
                                                 onChange={evt => {
@@ -225,11 +224,11 @@ class Venue extends Component {
                                                 id="name"
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="address">address</label>
+                                        <div className="form-group col-md-12">
+                                            <label>address</label>
                                             <input
                                                 type="address"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter Venue Address"
                                                 value={this.state.adderess}
                                                 onChange={evt => {
@@ -238,11 +237,11 @@ class Venue extends Component {
                                                 id="adderess"
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="gstnbr">GST Number</label>
+                                        <div className="form-group col-md-12">
+                                            <label>GST Number</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter GST Nbr"
                                                 value={this.state.GSTNbr}
                                                 onChange={evt => {
@@ -251,11 +250,11 @@ class Venue extends Component {
                                                 id="GSTNbr"
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="mobileno">mobile no</label>
+                                        <div className="form-group col-md-12">
+                                            <label>mobile no</label>
                                             <input
                                                 type="number"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter mobile no"
                                                 value={this.state.contactNcr}
                                                 onChange={evt => {
@@ -266,7 +265,7 @@ class Venue extends Component {
                                         </div>
                                         <button
                                             type="submit"
-                                            class="btn"
+                                            className="btn"
                                             variant="primary"
                                             disabled={isLoading}
                                         // onClick={!isLoading ? this.handleClick : null}
@@ -274,12 +273,12 @@ class Venue extends Component {
                                             {isLoading ? "Loading…" : "update"}
                                         </button>
                                         <a
-                                            class="btn butn"
+                                            className="btn butn"
                                             style={{ float: "right" }}
                                             onClick={this.unshow}
                                         >
                                             Cancel
-                    </a>
+                                        </a>
                                         <label id="Sucess" className="text-success" />
                                     </form>
                                 </div>
@@ -294,11 +293,11 @@ class Venue extends Component {
                                 >
                                     <form className="frm" onSubmit={this.onSubmit}>
                                         <h2>new Venue</h2>
-                                        <div class="form-group col-md-12">
-                                            <label for="name">name</label>
+                                        <div className="form-group col-md-12">
+                                            <label>name</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter Venue Name"
                                                 value={this.state.name}
                                                 onChange={evt => {
@@ -308,11 +307,11 @@ class Venue extends Component {
                                                 required
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="address">address</label>
+                                        <div className="form-group col-md-12">
+                                            <label>address</label>
                                             <input
                                                 type="address"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter Venue Address"
                                                 id="adderess"
                                                 value={this.state.adderess}
@@ -322,11 +321,11 @@ class Venue extends Component {
                                                 required
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="gstnbr">GST Number</label>
+                                        <div className="form-group col-md-12">
+                                            <label>GST Number</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter GST Nbr"
                                                 value={this.state.GSTNbr}
                                                 onChange={evt => {
@@ -335,11 +334,11 @@ class Venue extends Component {
                                                 id="GSTNbr"
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="mobileno">mobile no</label>
+                                        <div className="form-group col-md-12">
+                                            <label>mobile no</label>
                                             <input
                                                 type="number"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter mobile no"
                                                 value={this.state.contactNcr}
                                                 id="contactNcr"
@@ -351,7 +350,7 @@ class Venue extends Component {
                                         </div>
                                         <button
                                             type="submit"
-                                            class="btn"
+                                            className="btn"
                                             variant="primary"
                                             disabled={isLoading}
                                         // onClick={!isLoading ? this.handleClick : null}
@@ -359,7 +358,7 @@ class Venue extends Component {
                                             {isLoading ? "Loading…" : "add"}
                                         </button>
                                         <button
-                                            class="btn"
+                                            className="btn"
                                             style={{ float: "right" }}
                                             onClick={this.unshowedit}
                                         >

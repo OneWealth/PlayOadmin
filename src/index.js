@@ -38,22 +38,18 @@ const store = createStore(Reducers, composeEnhancers(applyMiddleware(thunk)));
 const routing = (
     <Provider store={store}>
         <Router>
-            <div>
+            
                 <Route exact path="/" component={AdminLogin} />
                 <Route path="/profile" component={Dashboard} />
-                {/* <Route path="/menu" component={Menu} /> */}
                 <Route path="/venue" component={Venue} />
-                {/* <Route path="/rightboard" component={RightDashboard} /> */}
                 <Route path="/product" component={Product} />
                 <Route path="/package" component={PackageContent} />
                 <Route path="/revenue" component={Revenue} />
-                {/* <Route path="/profilecomponent" component={Profile} /> */}
                 <Route path="/adduser" component={AddUser} />
                 <Route path="/holidays" component={Holidays} />
                 <Route path="/rfid" component={RFID} />
                 <Route path="/payment" component={ModeOfPayment} />
                 <Route path="/reportgeneration" component={Downloads} />
-            </div>
         </Router>
     </Provider>
 );

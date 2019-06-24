@@ -2,26 +2,26 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
-import { CSVLink, CSVDownload } from "react-csv";
+// import { CSVLink, CSVDownload } from "react-csv";
 import SideBar from "../sidebar/sidebar";
 import CsvDownload from 'react-json-to-csv';
 class Downloads extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            venueID: null,
-            selectedProduct: null,
+            venueID: "",
+            selectedProduct: "",
             linkedPackages: [],
             showPackageTable: {
                 display: 'none',
             },
-            packageId: null,
-            productID: null,
-            Range: null,
-            DayStart: null,
-            DayEnd: null,
-            Month: null,
-            Year: null
+            packageId: "",
+            productID: "",
+            Range: "",
+            DayStart: "",
+            DayEnd: "",
+            Month: "",
+            Year: ""
         };
     }
 
@@ -67,11 +67,11 @@ class Downloads extends Component {
 
     show = async (evt) => {
         var selectedVal = parseInt(document.getElementById("selectone").value);
-        document.getElementById("year").style.display = selectedVal == 1 || selectedVal == 2 ? "inline-block" : "none";
-        document.getElementById("month").style.display = selectedVal == 1 ? "inline-block" : "none";
-        document.getElementById("startdate").style.display = selectedVal == 3 ? "inline-block" : "none";
-        document.getElementById("enddate").style.display = selectedVal == 3 ? "inline-block" : "none";
-        document.getElementById("day").style.display = selectedVal == 0 ? "inline-block" : "none";
+        document.getElementById("year").style.display = selectedVal === 1 || selectedVal === 2 ? "inline-block" : "none";
+        document.getElementById("month").style.display = selectedVal === 1 ? "inline-block" : "none";
+        document.getElementById("startdate").style.display = selectedVal === 3 ? "inline-block" : "none";
+        document.getElementById("enddate").style.display = selectedVal === 3 ? "inline-block" : "none";
+        document.getElementById("day").style.display = selectedVal === 0 ? "inline-block" : "none";
         this.setState({ Range: evt.target.value })
     };
 
@@ -99,7 +99,7 @@ class Downloads extends Component {
         let packages = [];
 
         if (customAllProducts.length > 0 && parseInt(this.state.productID)) {
-            let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
+            let _c = customAllProducts.filter((c) => c.productID === this.state.productID);
             packages = _c[0].linkedPackages;
         }
         return (
@@ -124,7 +124,7 @@ class Downloads extends Component {
                                             <option value="0">All Venue</option>
 
                                             {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                                < option value={allvanues.venueID} > {allvanues.name}</option>
+                                                < option key={index} value={allvanues.venueID} > {allvanues.name}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -133,11 +133,11 @@ class Downloads extends Component {
                                     <div className="row sl-3" id="products">
                                         <label className="col-md-3">Product</label>
                                         <select id="choose-packages" className="col-md-9" value={this.state.productID} onChange={(e) => this.setState({ productID: e.target.value, showPackageTable: { display: 'none' } })}>
-                                            <option selected value="0">All Product  </option>
+                                            <option value="0">All Product  </option>
 
                                             {this.props.customAllProducts.map((Allproducts, index) => (
 
-                                                <option value={Allproducts.productID}>{Allproducts.name}</option>
+                                                <option key={index}  value={Allproducts.productID}>{Allproducts.name}</option>
                                             ))}
 
                                         </select>
@@ -147,9 +147,9 @@ class Downloads extends Component {
                                     <div className="row sl-3" id="packages1">
                                         <label className="col-md-3">Package</label>
                                         <select className="col-md-9" value={this.state.PackageId} onChange={(e) => this.setState({ PackageId: e.target.value })} >
-                                            <option selected value="0">All Package</option>
+                                            <option value="0">All Package</option>
                                             {packages.map((p, index) => (
-                                                <option value={p.packageID}>{p.name}</option>
+                                                <option key={index}  value={p.packageID}>{p.name}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -161,7 +161,7 @@ class Downloads extends Component {
 
                                             <select className="col-md-12" value={this.state.Range}
                                                 onChange={this.show} id="selectone">
-                                                <option selected value="-1">Choose...</option>
+                                                <option value="-1">Choose...</option>
                                                 <option value="2" >Year</option>
                                                 <option value="1">Month</option>
                                                 <option value="0">Date</option>
@@ -172,7 +172,7 @@ class Downloads extends Component {
                                                 value={this.state.Year} onChange={(e) => this.setState({ Year: e.target.value })}
 
                                             >
-                                                <option selected value="0">Select Year</option>
+                                                <option value="0">Select Year</option>
                                                 <option value="2019">2019</option>
                                                 <option value="2020">2020</option>
                                                 <option value="2021">2021</option>
@@ -186,7 +186,7 @@ class Downloads extends Component {
                                             <select className="col-md-5 offset-md-1" id="month" style={{ display: "none", marginTop: "10px" }}
                                                 value={this.state.Month} onChange={(e) => this.setState({ Month: e.target.value })}
                                             >
-                                                <option selected value="0">Select Month</option>
+                                                <option value="0">Select Month</option>
                                                 <option value="1">Jan</option>
                                                 <option value="2">Feb</option>
                                                 <option value="3">Mar</option>
@@ -210,7 +210,7 @@ class Downloads extends Component {
                                                     this.setState({ DayStart: evt.target.value });
                                                 }}
                                                 id="day"
-                                                required style={{ display: "none", marginTop: "10px", marginTop: "10px" }} />
+                                                required style={{ display: "none", marginTop: "10px"}} />
 
 
                                             <div className="startdate col-md-12" id="startdate" style={{ display: "none", marginTop: "10px" }}>
@@ -241,7 +241,7 @@ class Downloads extends Component {
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn" onClick={this.getreports} id="downloadbtn">
+                                    <button type="submit" className="btn" onClick={this.getreports} id="downloadbtn">
                                         Download Data
                                     </button>
                                     <div className="col-md-12" id="downloadata" style={{ display: "none", paddingLeft: "0px" }}>
@@ -285,7 +285,6 @@ const mapStateToProps = state => {
     return ({
         allvenues: state.venue,
         customAllProducts: state.products.allproducts,
-        allvenues: state.venue,
         RESULT: state.Rfid
     })
 };

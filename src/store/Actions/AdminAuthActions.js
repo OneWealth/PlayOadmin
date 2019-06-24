@@ -16,12 +16,12 @@ export const verifyadmin = values => dispatch => {
             crossdomain: true
         })
         .then(res => {
-            console.log(res.data);
+           
             localStorage.setItem("token", "Bearer " + res.data.token);
             dispatch(VERIFY_ADMIN());
         })
         .catch(error => {
-            // console.log(error.data);
+            
             document.getElementById("emailerror").innerHTML = error.response.data.errorMessage;
             return Promise.reject();
         });

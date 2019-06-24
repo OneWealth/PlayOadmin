@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./sidebar.css";
+import {Row, Col} from 'react-bootstrap';
 
 class SideBar extends Component {
     constructor() {
@@ -15,17 +16,18 @@ class SideBar extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-md-12 sidebar">
+            <Row>
+                <Col md={12} className="sidebar">       
+                   
                     <ul>
                         <li>
                             <NavLink exact={true} activeClassName='is-active' to="/revenue">Home</NavLink>
+                        </li>                       
+                        <li>
+                            <NavLink activeClassName='is-active' to="/venue">Venue</NavLink>
                         </li>
                         <li>
                             <NavLink activeClassName='is-active' to="/adduser">User</NavLink>
-                        </li>
-                        <li>
-                            <NavLink activeClassName='is-active' to="/venue">Venue</NavLink>
                         </li>
                         <li>
                             <NavLink activeClassName='is-active' to="/product">Product</NavLink>
@@ -46,11 +48,12 @@ class SideBar extends Component {
                             <NavLink activeClassName='is-active' to="/reportgeneration">Report</NavLink>
                         </li>
                         <li>
-                            <NavLink onClick={this.logout}>logout</NavLink>
+                            <NavLink to="/" onClick={this.logout}>logout</NavLink>
                         </li>
                     </ul>
-                </div>
-            </div>
+
+                </Col>
+            </Row>
         );
     }
 }

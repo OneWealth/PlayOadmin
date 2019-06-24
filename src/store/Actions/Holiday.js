@@ -27,7 +27,8 @@ export const createholiday = values => dispatch => {
         venueID: values.venueID,
         holiday: values.holiday,
         isholiday: values.isholiday,
-        reason: values.reason
+        reason: values.reason,
+        venueName:values.venueName,
     },
         {
             headers: {
