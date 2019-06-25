@@ -17,10 +17,11 @@ export default class RevnueTable extends React.PureComponent {
     }
   }
   
+  
+
   showrevneuerows = () => {
     const allrevenue = this.props.revenuedata.allrevenue;
     if (
-
       allrevenue === null ||
       allrevenue === undefined ||
       allrevenue.length === undefined ||

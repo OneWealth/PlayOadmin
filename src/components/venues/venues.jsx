@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 import SideBar from "../sidebar/sidebar";
+import { MDBDataTable } from 'mdbreact';
+
 class Venue extends Component {
     constructor(props, context) {
         super(props, context);
@@ -16,7 +18,8 @@ class Venue extends Component {
             data: {},
             show: false,
             selectedUser: null,
-            isLoading: false
+            isLoading: false,
+
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -154,6 +157,12 @@ class Venue extends Component {
                                 </div>
 
                                 <div className="col-md-10 venuetbl venuestbl" id="apivenue">
+                                {/* <MDBDataTable
+                                striped
+                                bordered
+                                hover
+                                /> */}
+                                
                                     <table className="table tbl">
                                         <thead>
                                             <tr>
@@ -188,6 +197,7 @@ class Venue extends Component {
                                                 )}
                                         </tbody>
                                     </table>
+                                
                                 </div>
 
                                 {/* Edit New Vanue */}
