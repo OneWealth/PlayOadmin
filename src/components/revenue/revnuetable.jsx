@@ -16,6 +16,9 @@ export default class RevnueTable extends React.PureComponent {
             });
         }
     }
+    componentWillUnmount() {
+        clearTimeout(this.state.time)
+    }
 
     showrevneuerows = () => {
         const allrevenue = this.props.revenuedata.allrevenue;
@@ -36,7 +39,9 @@ export default class RevnueTable extends React.PureComponent {
                 <td id="revenue">{item.revenue}</td>
             </tr>
         ));
+        this.state.time = setTimeout(this.fetchRevenue, 5000)
     };
+
 
 
 

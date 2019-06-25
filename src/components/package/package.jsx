@@ -162,7 +162,6 @@ class PackageContent extends Component {
     handleClick() { }
 
     delpackages = async (pack) => {
-        
         await this.props.deletepackages({
             PackageID: pack.packageID,
         })
@@ -170,16 +169,12 @@ class PackageContent extends Component {
     render() {
         const { isLoading } = this.state;
         if (this.props.customAllProducts.length > 0) {
-
         }
         let { customAllProducts } = this.props;
         let packages = [];
-
-
         if (customAllProducts.length > 0 && parseInt(this.state.productID)) {
-            let _c = customAllProducts.filter((c) => c.productID === this.state.productID);
-            packages = _c[0].linkedPackages;
-
+            let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
+            packages = _c[0].linkedPackages || [];
         }
 
         return (
@@ -208,7 +203,7 @@ class PackageContent extends Component {
                                                         onChange={this.handleChange.bind(this)}>
                                                         <option>Choose Venue Name </option>
                                                         {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                                            < option key={index}  value={allvanues.venueID} > {allvanues.name}</option>
+                                                            < option key={index} value={allvanues.venueID} > {allvanues.name}</option>
                                                         ))}
                                                     </select>
                                                 </div>
@@ -219,7 +214,7 @@ class PackageContent extends Component {
                                                         <option>Choose Product Name </option>
                                                         {this.props.customAllProducts.map((Allproducts, index) => (
 
-                                                            <option key={index}  value={Allproducts.productID}>{Allproducts.name}</option>
+                                                            <option key={index} value={Allproducts.productID}>{Allproducts.name}</option>
                                                         ))}
 
                                                     </select>
@@ -285,7 +280,7 @@ class PackageContent extends Component {
                                                 onChange={this.handleChange.bind(this)} required>
                                                 <option>Choose Venue Name </option>
                                                 {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                                    < option key={index}  value={allvanues.venueID} > {allvanues.name}</option>
+                                                    < option key={index} value={allvanues.venueID} > {allvanues.name}</option>
                                                 ))}
                                             </select>
                                         </div>

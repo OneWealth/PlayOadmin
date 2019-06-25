@@ -30,10 +30,8 @@ export default class RevenueDetailTable extends React.PureComponent {
                             {
                                 type: 0,
                                 name: vendetail.venueName
-
                             }
                         );
-
                         bfirst = true;
                     }
 
@@ -43,7 +41,6 @@ export default class RevenueDetailTable extends React.PureComponent {
                             date: vendetail.date.substring(0, 10),
                             footFall: vendetail.footFall,
                             revenue: vendetail.revenue,
-
                         }
                     );
                 }
