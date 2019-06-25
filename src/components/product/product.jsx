@@ -192,15 +192,15 @@ class Product extends Component {
                                                         onChange={evt => {
                                                             this.setState({ venueid: evt.target.value });
                                                         }}>
-                                                        <option selected>Choose Venue Name </option>
+                                                        <option>Choose Venue Name </option>
                                                         {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                                            <option value={allvanues.venueID} >{allvanues.name}</option>
+                                                            <option key={index}  value={allvanues.venueID} >{allvanues.name}</option>
                                                         ))}
                                                     </select>
                                                 </div>
                                             </div>
                                             <div className="col-md-5 text-right">
-                                                <button type="" class="btn btn-primary btn-block" onClick={this.unshowproduct}>
+                                                <button type="" className="btn btn-primary btn-block" onClick={this.unshowproduct}>
                                                     Get Products
                                 </button>
                                             </div>
@@ -223,14 +223,14 @@ class Product extends Component {
                                         <tbody>
 
                                             {this.props.customAllProducts.map((Allproducts, index) => (
-                                                <tr>
-                                                    <th>{Allproducts.productID}</th>
+                                                <tr key={index} >
+                                                    <td>{Allproducts.productID}</td>
                                                     <td>{Allproducts.name}</td>
                                                     <td>{Allproducts.description}</td>
                                                     <td>{Allproducts.timeDependentFlag ? "Yes" : "No"}</td>
                                                     <td>
                                                         <a href="#" title="Update/Edit">
-                                                            <i class="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(Allproducts)} />
+                                                            <i className="fa fa-pencil" aria-hidden="true" onClick={(evt) => this.show(Allproducts)} />
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -252,18 +252,18 @@ class Product extends Component {
                                                 onChange={evt => {
                                                     this.setState({ venueid: evt.target.value });
                                                 }} required>
-                                                <option selected>Choose Venue Name </option>
+                                                <option>Choose Venue Name </option>
                                                 {this.props.allvenues.vanues.items && this.props.allvenues.vanues.items && this.props.allvenues.vanues.items.map((allvanues, index) => (
-                                                    <option value={allvanues.venueID} >{allvanues.name}</option>
+                                                    <option key={index} value={allvanues.venueID} >{allvanues.name}</option>
                                                 ))}
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-md-12">
-                                            <label for="name">name</label>
+                                        <div className="form-group col-md-12">
+                                            <label>name</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="venuename"
                                                 placeholder="Product Name"
                                                 value={this.state.name}
@@ -272,11 +272,11 @@ class Product extends Component {
                                                 }}
                                                 required />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="description">description</label>
+                                        <div className="form-group col-md-12">
+                                            <label>description</label>
                                             <textarea
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="venuedecription"
                                                 placeholder="Description"
                                                 value={this.state.description}
@@ -285,8 +285,8 @@ class Product extends Component {
                                                 }}
                                                 required />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="dependent">
+                                        <div className="form-group col-md-12">
+                                            <label>
                                                 <input type="checkbox" id="contact" value={this.state.timeDependentFlag}
                                                     onClick={evt => {
                                                         this.setState({ timeDependentFlag: !this.state.timeDependentFlag });
@@ -313,11 +313,11 @@ class Product extends Component {
                                 <div className="col-md-10 venuefrm" id="editproduct" style={{ display: "none" }}>
                                     <form className="frm" onSubmit={this.updateproduct}>
                                         <h2>Update product</h2>
-                                        <div class="form-group col-md-12">
-                                            <label for="name">name</label>
+                                        <div className="form-group col-md-12">
+                                            <label>name</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="venueid"
                                                 placeholder="product Name"
                                                 value={this.state.productID}
@@ -328,7 +328,7 @@ class Product extends Component {
                                             />
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="venuename"
                                                 placeholder="product Name"
                                                 value={this.state.name}
@@ -337,11 +337,11 @@ class Product extends Component {
                                                 }}
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="description">description</label>
+                                        <div className="form-group col-md-12">
+                                            <label>description</label>
                                             <textarea
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 id="venuedecription"
                                                 placeholder="description"
                                                 value={this.state.description}
@@ -350,8 +350,8 @@ class Product extends Component {
                                                 }}
                                             />
                                         </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="dependent">
+                                        <div className="form-group col-md-12">
+                                            <label>
                                                 <input type="checkbox" id="checkedcontact" value={this.state.timeDependentFlag}
                                                     onClick={evt => {
                                                         this.setState({ timeDependentFlag: "true" });
@@ -360,7 +360,7 @@ class Product extends Component {
                                      </label>
                                         </div>
 
-                                        <button type="submit" class="btn"
+                                        <button type="submit" className="btn"
                                             variant="primary"
                                             disabled={isLoading}
                                         // onClick={!isLoading ? this.handleClick : null}

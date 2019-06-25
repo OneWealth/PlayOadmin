@@ -6,7 +6,6 @@ const PLAYO_USER = createAction("PLAYO_USER");
 const MODEOFPAYMENT = createAction("MODEOFPAYMENT");
 const RFID = createAction("RFID");
 export const playosuer = values => dispatch => {
-    console.log(values);
     return axios
         .post(
             BACKEND_URL + "adminapi/PlayoUser",

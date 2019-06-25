@@ -19,7 +19,7 @@ class Profile extends Component {
                         <div className="col-md-2">
                             <img
                                 src={profile}
-                                class="rounded-circle img-responsive"
+                                className="rounded-circle img-responsive"
                                 alt="Admin"
                             />
                         </div>

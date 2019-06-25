@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Profile from "../profile/profile";
 import Revenue from "../revenue/revenue";
 import "./rightdashboard.css";
 class RightDashboard extends Component {

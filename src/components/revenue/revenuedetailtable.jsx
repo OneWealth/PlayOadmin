@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
 export default class RevenueDetailTable extends React.PureComponent {
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
 
     ShowRevenueRowsWithVenueHeader = () => {
@@ -15,7 +15,7 @@ export default class RevenueDetailTable extends React.PureComponent {
         var availableVenues = [];
 
         allrevenue.forEach(function (item, index) {
-            if (availableVenues.indexOf(item.venueId) == -1) { availableVenues.push(item.venueId); }
+            if (availableVenues.indexOf(item.venueId) === -1) { availableVenues.push(item.venueId); }
         }
         );
 
@@ -23,7 +23,7 @@ export default class RevenueDetailTable extends React.PureComponent {
 
         availableVenues.forEach(function (item, index) {
             var bfirst = false;
-            allrevenue.filter(x => x.venueId == item).forEach(
+            allrevenue.filter(x => x.venueId === item).forEach(
                 function (vendetail, idx) {
                     if (bfirst === false) {
                         displaydata.push(
@@ -52,7 +52,7 @@ export default class RevenueDetailTable extends React.PureComponent {
         });
         return displaydata.map(
             (item, index) => (
-                item.type == 1 ? this.linecomponent(item) : this.headercomponent(item)
+                item.type === 1 ? this.linecomponent(item) : this.headercomponent(item)
             )
         );
     }
@@ -73,7 +73,7 @@ export default class RevenueDetailTable extends React.PureComponent {
 
     render() {
         return (
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">Date</th>

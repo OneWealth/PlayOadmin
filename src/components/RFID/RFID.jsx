@@ -90,7 +90,6 @@ class RFID extends Component {
     };
 
     showupdate = async p => {
-        console.log(p);
         document.getElementById("updaterfid").style.display = "block";
         document.getElementById("newrfid").style.display = "none";
         document.getElementById("rfidapi").style.display = "none";
@@ -153,9 +152,9 @@ class RFID extends Component {
                                         <tbody>
                                             {this.props.Rfid.rfid.items &&
                                                 this.props.Rfid.rfid.items &&
-                                                this.props.Rfid.rfid.items.map(paymentmode => {
+                                                this.props.Rfid.rfid.items.map((paymentmode, index) => {
                                                     return (
-                                                        <tr>
+                                                        <tr key={index} >
                                                             <td> {paymentmode.venueID}</td>
                                                             <td> {paymentmode.rfidCd}</td>
                                                             <td> {paymentmode.friendlyRFID}</td>
@@ -163,7 +162,7 @@ class RFID extends Component {
                                                             <td>
                                                                 <a href="#" title="Update/Edit">
                                                                     <i
-                                                                        class="fa fa-pencil"
+                                                                        className="fa fa-pencil"
                                                                         aria-hidden="true"
                                                                         onClick={evt =>
                                                                             this.showupdate(paymentmode)
@@ -188,7 +187,7 @@ class RFID extends Component {
                                         <h2>Enter New RFID Details</h2>
 
                                         <div className="form-group col-md-12">
-                                            <label for="address">Choose Venue Name</label>
+                                            <label>Choose Venue Name</label>
                                             <select
                                                 className="col-md-12"
                                                 value={this.state.VenueID}
@@ -196,12 +195,12 @@ class RFID extends Component {
                                                     this.setState({ VenueID: evt.target.value });
                                                 }}
                                             >
-                                                <option selected>Choose Venue Name </option>
+                                                <option>Choose Venue Name </option>
                                                 {this.props.allvenues.vanues.items &&
                                                     this.props.allvenues.vanues.items &&
                                                     this.props.allvenues.vanues.items.map(
                                                         (allvanues, index) => (
-                                                            <option value={allvanues.venueID}>
+                                                            <option key={index} value={allvanues.venueID}>
                                                                 {allvanues.name}
                                                             </option>
                                                         )
@@ -209,11 +208,11 @@ class RFID extends Component {
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-md-12">
-                                            <label for="address">Friendly RFID</label>
+                                        <div className="form-group col-md-12">
+                                            <label>Friendly RFID</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter Friendly RFID"
                                                 value={this.state.friendlyRFID}
                                                 onChange={evt => {
@@ -223,12 +222,12 @@ class RFID extends Component {
                                             />
                                         </div>
 
-                                        <div class="form-group col-md-12">
-                                            <label for="name">RFID</label>
+                                        <div className="form-group col-md-12">
+                                            <label>RFID</label>
 
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter RFID"
                                                 value={this.state.rfid}
                                                 onChange={evt => {
@@ -245,7 +244,7 @@ class RFID extends Component {
                                         </div>
                                         <button
                                             type="submit"
-                                            class="btn"
+                                            className="btn"
                                             variant="primary"
                                             disabled={isLoading}
                                         // onClick={!isLoading ? this.handleClick : null}
@@ -253,7 +252,7 @@ class RFID extends Component {
                                             {isLoading ? "Loading…" : "add"}
                                         </button>
                                         <a
-                                            class="btn butn"
+                                            className="btn butn"
                                             style={{ float: "right" }}
                                             onClick={this.unshow}
                                         >
@@ -274,7 +273,7 @@ class RFID extends Component {
                                         <h2>Update RFID Details</h2>
 
                                         <div className="form-group">
-                                            <label for="address">Choose Venue Name</label>
+                                            <label>Choose Venue Name</label>
                                             <select
                                                 className="col-md-12"
                                                 value={this.state.VenueID}
@@ -282,12 +281,12 @@ class RFID extends Component {
                                                     this.setState({ VenueID: evt.target.value });
                                                 }}
                                             >
-                                                <option selected>Choose Venue Name </option>
+                                                <option>Choose Venue Name </option>
                                                 {this.props.allvenues.vanues.items &&
                                                     this.props.allvenues.vanues.items &&
                                                     this.props.allvenues.vanues.items.map(
                                                         (allvanues, index) => (
-                                                            <option value={allvanues.venueID}>
+                                                            <option key={index} value={allvanues.venueID}>
                                                                 {allvanues.name}
                                                             </option>
                                                         )
@@ -295,11 +294,11 @@ class RFID extends Component {
                                             </select>
                                         </div>
 
-                                        <div class="form-group col-md-12">
-                                            <label for="address">Friendly RFID</label>
+                                        <div className="form-group col-md-12">
+                                            <label>Friendly RFID</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter Friendly RFID"
                                                 value={this.state.friendlyRFID}
                                                 onChange={evt => {
@@ -309,12 +308,12 @@ class RFID extends Component {
                                             />
                                         </div>
 
-                                        <div class="form-group col-md-12">
-                                            <label for="name">RFID</label>
+                                        <div className="form-group col-md-12">
+                                            <label>RFID</label>
 
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Enter RFID"
                                                 value={this.state.rfid}
                                                 onChange={evt => {
@@ -332,7 +331,7 @@ class RFID extends Component {
                                         </div>
                                         <button
                                             type="submit"
-                                            class="btn"
+                                            className="btn"
                                             variant="primary"
                                             disabled={isLoading}
                                         // onClick={!isLoading ? this.handleClick : null}
@@ -340,7 +339,7 @@ class RFID extends Component {
                                             {isLoading ? "Loading…" : "update"}
                                         </button>
                                         <a
-                                            class="btn butn"
+                                            className="btn butn"
                                             style={{ float: "right" }}
                                             onClick={this.unshow}
                                         >

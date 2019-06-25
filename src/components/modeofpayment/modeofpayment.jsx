@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form, Button } from "react-bootstrap";
 
 import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
@@ -49,9 +48,9 @@ class ModeOfPayment extends Component {
                                         {this.props.payment.modeofpayment.items &&
                                             this.props.payment.modeofpayment.items &&
                                             this.props.payment.modeofpayment.items.map(
-                                                paymentmode => {
+                                                (paymentmode, index) => {
                                                     return (
-                                                        <tr>
+                                                        <tr key={index} >
                                                             <td> {paymentmode.paymentName}</td>
                                                         </tr>
                                                     );

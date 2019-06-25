@@ -35,9 +35,9 @@ class MonthlyDetail extends Component {
         this.setState({
           monlthyDetailRevenue: this.props.allrevenues.monthlydetailrevenue
         });
-        setTimeout(() => {
-          this.fetchRevenue();
-        }, 5000);
+        // setTimeout(() => {
+        //   this.fetchRevenue();
+        // }, 50000);
       });
   };
   render() {

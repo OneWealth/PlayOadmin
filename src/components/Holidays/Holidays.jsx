@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Holidays.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
@@ -13,7 +13,8 @@ class Holidays extends React.PureComponent {
             venueID: "",
             holiday: "",
             isholiday: "",
-            reason: ""
+            reason: "",
+            venueName:""
         };
     }
     async componentDidMount() {
@@ -58,7 +59,7 @@ class Holidays extends React.PureComponent {
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>VenueID</th>
+                                            <th>VenueName</th>
                                             <th>Holiday</th>
                                             <th>Is Holiday</th>
                                             <th>Action</th>
@@ -68,18 +69,18 @@ class Holidays extends React.PureComponent {
                                     <tbody>
                                         {this.props.allholidays &&
                                             this.props.allholidays &&
-                                            this.props.allholidays.map(holidaypackages => {
+                                            this.props.allholidays.map((holidaypackages,index) => {
                                                 return (
-                                                    <tr>
+                                                    <tr key={index} >
                                                         <td> {holidaypackages.id}</td>
-                                                        <td> {holidaypackages.venueID}</td>
+                                                        <td> {holidaypackages.venueName}</td>
                                                         <td> {holidaypackages.holiday.substring(0, 10)}</td>
                                                         <td> {holidaypackages.isHoliday ? "True" : "False"}</td>
 
                                                         <td>
                                                             <a href="#" title="Update/Edit">
                                                                 <i
-                                                                    class="fa fa-trash"
+                                                                    className="fa fa-trash"
                                                                     aria-hidden="true"
                                                                     onClick={(evt) => this.delholiday(holidaypackages)}
                                                                 />

@@ -46,7 +46,6 @@ export const dailyrevenue = values => dispatch => {
     )
     .then(res => {
       dispatch(DAILY_REVENUE(res.data.items));
-      console.log(res.data.items);
     })
     .catch(error => {
       return Promise.reject();
@@ -71,7 +70,6 @@ export const monthlydetailrevenue = values => dispatch => {
     )
     .then(res => {
       dispatch(MONTHLY_DETAIL_REVENUE(res.data.items));
-      console.log(res.data.items);
     })
     .catch(error => {
       return Promise.reject();

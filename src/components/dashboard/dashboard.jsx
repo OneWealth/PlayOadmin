@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Tab, Tabs, Col, Nav, Row } from "react-bootstrap";
+import { Tab, Col, Row } from "react-bootstrap";
 // import Menu from "../menu/menu";
 import AddUser from "../adduser/adduser";
 import Venue from "../venues/venues";
@@ -12,13 +12,12 @@ import RFID from "../RFID/RFID";
 import "./dashboard.css";
 
 import { connect } from "react-redux";
-import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     async componentDidMount() {
         if (!localStorage.getItem("token")) {

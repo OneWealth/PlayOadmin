@@ -2,16 +2,16 @@ import { createAction } from "redux-actions";
 import axios from "axios";
 import { BACKEND_URL } from "../../config.js";
 
+const api_get_product = 'tableapi/products/adminproduct/';
 const GET_PRODUCTS = createAction("GET_PRODUCTS");
 const CREATE_PRODUCT = createAction("CREATE_PRODUCT");
 const UPDATE_PRODUCT = createAction("UPDATE_PRODUCT");
 const CREATE_PACKAGE = createAction("CREATE_PACKAGE");
 const UPDATE_PACKAGE = createAction("UPDATE_PACKAGE");
-const DELETE_PACKAGE = createAction("DELETE_PACKAGE");
 
 export const products = values => dispatch => {
     axios
-        .get(BACKEND_URL + "tableapi/products/venue/" + values.id, {
+        .get(BACKEND_URL + api_get_product + values.id, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -25,7 +25,6 @@ export const products = values => dispatch => {
 };
 
 export const createproduct = values => dispatch => {
-    console.log(values);
     return axios
         .post(
             BACKEND_URL + "tableapi/products",
@@ -55,7 +54,7 @@ export const createproduct = values => dispatch => {
 };
 
 export const updateproduct = values => dispatch => {
-    console.log(values);
+  
     return axios
         .put(
             BACKEND_URL + "tableapi/products/" + values.productID,
@@ -84,7 +83,7 @@ export const updateproduct = values => dispatch => {
 };
 
 export const createpackage = values => dispatch => {
-    console.log(values);
+
     return axios
         .post(
             BACKEND_URL + "tableapi/Packages",
@@ -92,7 +91,7 @@ export const createpackage = values => dispatch => {
                 Name: values.Name,
                 Description: values.Description,
                 Duration: values.Duration,
-                HolidayMoney: values.HolidayMoney,
+                holidayMoney: values.holidayMoney,
                 Money: values.Money,
                 ProductID: values.ProductID,
                 isActive: "true"
@@ -146,16 +145,16 @@ export const updatepackagenew = values => dispatch => {
 };
 
 export const deletepackages = values => dispatch => {
+   
     axios.delete(BACKEND_URL + "tableapi/Packages/" + values.PackageID, {
         headers: {
             Authorization: localStorage.getItem("token")
         }
     })
         .then(res => {
-            console.log(res.data);
+          
             alert("Deleted Successfully");
             dispatch(CREATE_PACKAGE(res.data));
-
             window.location.reload();
         })
         .catch(error => {
