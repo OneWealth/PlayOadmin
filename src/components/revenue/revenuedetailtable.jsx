@@ -59,7 +59,7 @@ export default class RevenueDetailTable extends React.PureComponent {
 
     headercomponent = (item, index) => {
         return (<tr key={index}>
-            <td  colSpan='3'><strong>{item.name}</strong></td>
+            <td colSpan='3'><strong>{item.name}</strong></td>
         </tr>)
     }
 
