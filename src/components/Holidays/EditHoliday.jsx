@@ -113,7 +113,7 @@ class EditHoliday extends React.PureComponent {
                         variant="primary">
                         Add Holiday
                     </button>
-                    <a
+                    <a href="#"
                         className="btn butn"
                         style={{ float: "right" }}
                         onClick={this.unshow} >

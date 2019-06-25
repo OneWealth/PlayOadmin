@@ -31,9 +31,9 @@ class Daily extends Component {
       })
       .then(() => {
         this.setState({ allDailyRevenue: this.props.allrevenues.dailyrevenue });
-        setTimeout(() => {
-          this.fetchRevenue();
-        }, 5000);
+        // setTimeout(() => {
+        //   this.fetchRevenue();
+        // }, 5000);
       });
   };
   render() {

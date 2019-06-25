@@ -48,10 +48,9 @@ class SideBar extends Component {
                             <NavLink activeClassName='is-active' to="/reportgeneration">Report</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" onClick={this.logout}>logout</NavLink>
+                            <NavLink to="" onClick={this.logout}>logout</NavLink>
                         </li>
                     </ul>
-
                 </Col>
             </Row>
         );
