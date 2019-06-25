@@ -22,7 +22,7 @@ class MonthlyDetail extends Component {
       });
     }
 
-    // this.monthlydetailrevenue();
+    this.fetchRevenue();
   }
   fetchRevenue = () => {
     this.props
@@ -35,14 +35,12 @@ class MonthlyDetail extends Component {
         this.setState({
           monlthyDetailRevenue: this.props.allrevenues.monthlydetailrevenue
         });
-      },3000);
+        // setTimeout(() => {
+        //   this.fetchRevenue();
+        // }, 50000);
+      });
   };
-
-  
   render() {
-
-    
-
     const allrevenue = this.state.monlthyDetailRevenue;
     return <RevenueDetailTable revenuedata={{ allrevenue }} />;
   }
