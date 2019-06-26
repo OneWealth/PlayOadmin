@@ -5,56 +5,55 @@ import { withRouter } from "react-router";
 import RevnueTable from '../revnuetable';
 
 class Monthly extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {     
-      allmonthlyrevenue :[],
-      range:1,
-      daystart : this.props.daystart
-    };
-  }
-
-  
-
-  async componentDidMount() {
-    if (!localStorage.getItem("token")) {
-      this.props.history.push({
-        pathname: "/"
-      });
+    constructor(props) {
+        super(props);
+        this.state = {
+            allmonthlyrevenue: [],
+            range: 1,
+            daystart: this.props.daystart
+        };
     }
 
 
-    this.props
-      .monthlyrevenue({
-        range: this.state.range,
-        daystart: this.state.daystart
-      })
-      .then(() => {      
-        this.setState({allmonthlyrevenue : this.props.allrevenues.revenues});
-        
-      });    
-  }  
-  render() {
+    async componentDidMount() {
+        if (!localStorage.getItem("token")) {
+            this.props.history.push({
+                pathname: "/"
+            });
+        }
 
-    const allrevenue = this.state.allmonthlyrevenue;
-    return (
-      <RevnueTable revenuedata={{allrevenue}} />
-    );
-  }
+
+        this.props
+            .monthlyrevenue({
+                range: this.state.range,
+                daystart: this.state.daystart
+            })
+            .then(() => {
+                this.setState({ allmonthlyrevenue: this.props.allrevenues.revenues });
+
+            });
+    }
+    render() {
+
+        const allrevenue = this.state.allmonthlyrevenue;
+        return (
+            <RevnueTable revenuedata={{ allrevenue }} />
+        );
+    }
 }
 
 const mapStateToProps = state => {
-  return {
-    allrevenues: state.revenue
-  };
+    return {
+        allrevenues: state.revenue
+    };
 };
 const mapDispatchToProps = dispatch => ({
-  monthlyrevenue: v => dispatch(actions.monthlyrevenue(v))
+    monthlyrevenue: v => dispatch(actions.monthlyrevenue(v))
 });
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Monthly)
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Monthly)
 );

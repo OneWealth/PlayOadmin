@@ -132,7 +132,7 @@ class EditHoliday extends React.PureComponent {
                         {isLoading ? "Loading…" : " Add Holiday"}
                        
                     </button>
-                    <a
+                    <a href="#"
                         className="btn butn"
                         style={{ float: "right" }}
                         onClick={this.unshow} >

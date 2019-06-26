@@ -86,6 +86,7 @@ class Holidays extends React.PureComponent {
                                                                 />
                                                             </a>
                                                         </td>
+
                                                     </tr>
                                                 );
                                             })}

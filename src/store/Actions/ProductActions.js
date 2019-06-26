@@ -54,7 +54,7 @@ export const createproduct = values => dispatch => {
 };
 
 export const updateproduct = values => dispatch => {
-  
+
     return axios
         .put(
             BACKEND_URL + "tableapi/products/" + values.productID,
@@ -145,14 +145,14 @@ export const updatepackagenew = values => dispatch => {
 };
 
 export const deletepackages = values => dispatch => {
-   
+
     axios.delete(BACKEND_URL + "tableapi/Packages/" + values.PackageID, {
         headers: {
             Authorization: localStorage.getItem("token")
         }
     })
         .then(res => {
-          
+
             alert("Deleted Successfully");
             dispatch(CREATE_PACKAGE(res.data));
             window.location.reload();
