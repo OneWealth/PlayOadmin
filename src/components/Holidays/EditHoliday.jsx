@@ -11,8 +11,18 @@ class EditHoliday extends React.PureComponent {
             holiday: "",
             isholiday: "",
             reason: "",
-            venueName:""
+            venueName:"",
+            isLoading: false
         };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+
+    simulateNetworkRequest() {
+        return new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    handleClick() {
+
     }
 
     async componentDidMount() {
@@ -30,6 +40,11 @@ class EditHoliday extends React.PureComponent {
 
     HOLIDAYS = async evt => {
         evt.preventDefault();
+        this.setState({ isLoading: true }, () => {
+            this.simulateNetworkRequest().then(() => {
+                this.setState({ isLoading: false });
+            });
+        });
         await this.props.createholiday({
             venueID: this.state.venueID,
             holiday: this.state.holiday,
@@ -46,6 +61,7 @@ class EditHoliday extends React.PureComponent {
     }
 
     render() {
+        const { isLoading } = this.state;
         return (
             <div className="col-md-10 holidayedit" >
                 <form className="frm" onSubmit={this.HOLIDAYS}>
@@ -110,8 +126,11 @@ class EditHoliday extends React.PureComponent {
                     <button
                         type="submit"
                         className="btn"
-                        variant="primary">
-                        Add Holiday
+                        variant="primary"
+                        disabled={isLoading}
+                        >
+                        {isLoading ? "Loading…" : " Add Holiday"}
+                       
                     </button>
                     <a
                         className="btn butn"

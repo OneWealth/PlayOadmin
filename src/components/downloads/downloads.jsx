@@ -94,13 +94,17 @@ class Downloads extends Component {
         });
     };
 
+    hide = () => {
+        document.getElementById("downloadata").style.display = "none";
+        alert("Please Find Below Attchment");
+    }
     render() {
         let { customAllProducts } = this.props;
         let packages = [];
 
         if (customAllProducts.length > 0 && parseInt(this.state.productID)) {
-            let _c = customAllProducts.filter((c) => c.productID === this.state.productID);
-            packages = _c[0].linkedPackages;
+            let _c = customAllProducts.filter((c) => c.productID == this.state.productID);
+            packages = _c[0].linkedPackages || [];
         }
         return (
             <div className="row">

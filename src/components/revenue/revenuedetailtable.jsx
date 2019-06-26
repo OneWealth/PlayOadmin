@@ -52,19 +52,19 @@ export default class RevenueDetailTable extends React.PureComponent {
         });
         return displaydata.map(
             (item, index) => (
-                item.type === 1 ? this.linecomponent(item) : this.headercomponent(item)
+                item.type === 1 ? this.linecomponent(item, index) : this.headercomponent(item, index)
             )
         );
     }
 
-    headercomponent = (item) => {
-        return (<tr>
+    headercomponent = (item, index) => {
+        return (<tr key={index}>
             <td colSpan='3'><strong>{item.name}</strong></td>
         </tr>)
     }
 
-    linecomponent = (item) => {
-        return (<tr>
+    linecomponent = (item, index) => {
+        return (<tr key={index}>
             <td>{item.date}</td>
             <td>{item.footFall}</td>
             <td>{item.revenue}</td>
