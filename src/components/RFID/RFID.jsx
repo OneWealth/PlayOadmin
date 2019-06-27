@@ -43,6 +43,17 @@ class RFID extends Component {
         for (var i = 0; i < rfid; i++) { }
     }
 
+    getvenueuser = async evt => {
+        evt.preventDefault();
+        console.log(this.state.venueid);
+        await this.props
+            .getvenueuser({
+                venueID: this.state.venueid
+            })
+            .then(() => {
+                document.getElementById("rfidapi").style.display = "block";
+            });
+    };
     createRFID = async evt => {
         evt.preventDefault();
         this.setState({ isLoading: true }, () => {
@@ -59,6 +70,11 @@ class RFID extends Component {
             })
             .then(() => {
                 this.clearText();
+                this.setState({
+                    rfid: "",
+                    friendlyRFID: "",
+                    VenueID: "",
+                });
                 document.getElementById("friendlyRFID").value = "";
                 document.getElementById("rfid").value = "";
                 document.getElementById("VenueID").value = "";
@@ -86,6 +102,11 @@ class RFID extends Component {
     unshow = async evt => {
         document.getElementById("newrfid").style.display = "none";
         document.getElementById("rfidapi").style.display = "block";
+        document.getElementById("updaterfid").style.display = "none";
+    };
+    showtable = async evt => {
+        document.getElementById("rfidapi").style.display = "block";
+        document.getElementById("newrfid").style.display = "none";
         document.getElementById("updaterfid").style.display = "none";
     };
 
@@ -117,6 +138,9 @@ class RFID extends Component {
         return new Promise(resolve => setTimeout(resolve, 2000));
     }
     handleClick() { }
+
+    
+
     render() {
         const { isLoading } = this.state;
         return (
@@ -133,16 +157,51 @@ class RFID extends Component {
                                 </div>
 
                                 <div className="col-md-10 add">
+                                    <div className="col-md-12">
                                     <a href="#" onClick={this.addnew}>
                                         + add RFID
-                  </a>
-                                </div>
+                                    </a>
+                                    </div>
+                                    <form onSubmit={this.getvenueuser}>
+                                        <div className="row venuetbl">
+                                            <div className="col-md-7">
+                                                <div className="row sl-3">
+                                                    <select
+                                                        className="col-md-12"
+                                                        value={this.state.venueid}
+                                                        onChange={evt => {
+                                                            this.setState({ venueid: evt.target.value });
+                                                        }}
+                                                    >
+                                                        <option>Choose Venue Name </option>
+                                                        {this.props.allvenues.vanues.items &&
+                                                            this.props.allvenues.vanues.items &&
+                                                            this.props.allvenues.vanues.items.map(
+                                                                (allvanues, index) => (
+                                                                    <option key={index} value={allvanues.venueID}>
+                                                                        {allvanues.name}
+                                                                    </option>
+                                                                )
+                                                            )}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-5 text-right">
+                                                <button
+                                                    className="btn btn-primary btn-block"
+                                                    onClick={this.showtable}
+                                                >
+                                                    Get RFID
 
-                                <div className="col-md-10 venuetbl venuestbl" id="rfidapi">
-                                    <table className="table tbl">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div className="col-md-10 venuetbl venuestbl" id="rfidapi" style={{ display: "none" }}>
+                                    <table className="table tbl"  >
                                         <thead>
                                             <tr>
-                                                <th>VenueID</th>
                                                 <th>RfidCd</th>
                                                 <th>FriendlyRFID</th>
                                                 <th>Venue Name</th>
@@ -155,7 +214,6 @@ class RFID extends Component {
                                                 this.props.Rfid.rfid.items.map((paymentmode, index) => {
                                                     return (
                                                         <tr key={index} >
-                                                            <td> {paymentmode.venueID}</td>
                                                             <td> {paymentmode.rfidCd}</td>
                                                             <td> {paymentmode.friendlyRFID}</td>
                                                             <td> {paymentmode.venueName}</td>
@@ -366,7 +424,8 @@ const mapDispatchToProps = dispatch => ({
     rfid: v => dispatch(actions.rfid(v)),
     createRFID: v => dispatch(actions.createRFID(v)),
     updaterfidnew: v => dispatch(actions.updaterfidnew(v)),
-    verifyvenue: v => dispatch(actions.verifyvenue(v))
+    verifyvenue: v => dispatch(actions.verifyvenue(v)),
+    getvenueuser: v => dispatch(actions.getvenueuser(v))
 });
 
 export default withRouter(

@@ -166,7 +166,7 @@ class AddUser extends Component {
                                         </div>
                                     </form>
                                 </div>
-                                <div className="col-md-12">
+                                <div className="col-md-10">
                                     <table
                                         className="table  tbl"
                                         id="apiresult"
@@ -183,10 +183,10 @@ class AddUser extends Component {
                                                 this.props.alluser.getuser.items &&
                                                 this.props.alluser.getuser.items.map(
                                                     (allusers, index) => (
-                                                        <tr>
-                                                            <td key={index}>{allusers.userName}</td>
-                                                            <td key={index}>{allusers.venueName}</td>
-                                                            <td key={index}>{allusers.emailId}</td>
+                                                        <tr key={index}>
+                                                            <td>{allusers.userName}</td>
+                                                            <td>{allusers.venueName}</td>
+                                                            <td>{allusers.emailId}</td>
                                                         </tr>
                                                     )
                                                 )}
