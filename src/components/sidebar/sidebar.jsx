@@ -42,6 +42,9 @@ class SideBar extends Component {
                             <NavLink activeClassName='is-active' to="/rfid">RFID</NavLink>
                         </li>
                         <li>
+                            <NavLink activeClassName='is-active' to="/wallet">Wallet</NavLink>
+                        </li>
+                        <li>
                             <NavLink activeClassName='is-active' to="/payment">Payment</NavLink>
                         </li>
                         <li>

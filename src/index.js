@@ -6,25 +6,21 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { createStore, applyMiddleware, compose } from "redux";
 import Reducers from "./store/Reducers/Index";
-
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-
 import AdminLogin from "./components/login/login";
 import Dashboard from "./components/dashboard/dashboard";
-// import Menu from "./components/menu/menu";
 import Venue from "./components/venues/venues";
 import ModeOfPayment from "./components/modeofpayment/modeofpayment";
-//import RightDashboard from "./components/rightdashboard/rightdashboard";
 import Product from "./components/product/product";
 import PackageContent from "./components/package/package";
 import RFID from "./components/RFID/RFID";
 import Revenue from "./components/revenue/revenue";
 import Holidays from "./components/Holidays/Holidays";
-//import Profile from "./components/profile/profile";
 import AddUser from "./components/adduser/adduser";
 import Downloads from "./components/downloads/downloads";
+import Wallet from "./components/wallet/wallet";
 const composeEnhancers =
     (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -37,8 +33,7 @@ const store = createStore(Reducers, composeEnhancers(applyMiddleware(thunk)));
 
 const routing = (
     <Provider store={store}>
-        <Router>
-            
+        <Router>   
                 <Route exact path="/" component={AdminLogin} />
                 <Route path="/profile" component={Dashboard} />
                 <Route path="/venue" component={Venue} />
@@ -50,6 +45,7 @@ const routing = (
                 <Route path="/rfid" component={RFID} />
                 <Route path="/payment" component={ModeOfPayment} />
                 <Route path="/reportgeneration" component={Downloads} />
+                <Route path="/wallet" component={Wallet} />
         </Router>
     </Provider>
 );
