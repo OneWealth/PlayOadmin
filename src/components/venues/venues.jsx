@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import actions from "../../store/Actions/Index";
 import { withRouter } from "react-router";
 import SideBar from "../sidebar/sidebar";
-import { MDBDataTable } from 'mdbreact';
 
 class Venue extends Component {
     constructor(props, context) {

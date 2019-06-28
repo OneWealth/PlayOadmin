@@ -4,7 +4,9 @@ class Wallet extends Component {
     state = {  }
     render() { 
         return ( 
-            <div></div>
+            <div>
+                    
+            </div>
          );
     }
 }
